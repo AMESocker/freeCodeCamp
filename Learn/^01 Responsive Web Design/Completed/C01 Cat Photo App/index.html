@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CatPhotoApp</title>
+</head>
+<body>
+    <main>                                                              <!--Step 5-->
+        <h1>CatPhotoApp</h1>                                            <!--Step 2-->
+        <section>                                                       <!--Step 16-->
+            <h2>Cat Photos</h2>                                         <!--Step 3-->
+            <!-- TODO: Add link to cat photos -->                       <!--Step 4-->
+            <p>See more <a href="https://freecatphotoapp.com" target="_blank">cat photos</a> in our gallery.</p>
+                                                                        <!--Step 6,12,14-->
+            <!-- <a href="https://freecatphotoapp.com">link to cat pictures</a> Step 10,11,13 -->
+            <a href="https://freecatphotoapp.com"><img
+                    src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg"
+                    alt="A cute orange cat lying on its back"></a>      <!--Step 7,8,9,15-->
+        </section>
+        <section>                                                       <!--Step 17-->
+            <h2>Cat Lists</h2>                                          <!--Step 18-->
+            <h3>Things cats love:</h3>                                  <!--Step 19-->
+            <ul>                                                        <!--Step 20-->
+                <li>cat nip</li>                                        <!--Step 21-->
+                <li>laser pointers</li>
+                <li>lasagna</li>
+            </ul>
+            <figure>                                                    <!--Step 23--> 
+                <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg" alt="A slice of lasagna on a plate.">                          <!--Step 22--> 
+                <figcaption>Cats <em>love</em> lasagna.</figcaption>    <!--Step 24,25-->
+            </figure>
+            <h3>Top 3 things cats hate:</h3>                            <!--Step 26-->
+                <ol>                                                    <!--Step 27-->
+                    <li>flea treatment</li>
+                    <li>thunder</li>
+                    <li>other cats</li>
+                </ol>
+                <figure>                                                <!--Step 28-->
+                    <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/cats.jpg" alt="Five cats looking around a field.">            <!--Step 29,30-->
+                    <figcaption>Cats <strong>hate</strong> other cats.</figcaption>      <!--Step 31,32-->
+                </figure>                                               
+        </section>
+        <section>                                                       <!--Step 33-->
+            <h2>Cat Form</h2>                                           <!--Step 34-->
+            <form action="https://freecatphotoapp.com/submit-cat-photo">                                          <!--Step 35,36-->
+                <fieldset>                                              <!--Step 50-->
+                    <legend>Is your cat an indoor or outdoor cat?</legend><!--Step 51-->
+                    <label>
+                        <input checked value="indoor" name="indoor-outdoor" id="indoor" type="radio"> Indoor                                          <!--Step 44,45,46,48,49-->
+                    </label>  
+                    <label>
+                        <input value="outdoor" name="indoor-outdoor" id="outdoor" type="radio">Outdoor                            <!--Step 47,48,49-->
+                    </label>
+                </fieldset>
+                <fieldset>                                              <!--Step 52-->
+                    <legend>What's your cat's personality?</legend>     <!--Step 53-->
+                    <input checked name="personality" type="checkbox" id="loving" value="loving"><label for="loving">Loving</label><!--Step 54,55,56,57-->
+                    <input name="personality" type="checkbox" id="lazy" value="lazy"><label for="lazy">Lazy</label><!--Step 58-->
+                    <input name="personality" type="checkbox" id="energetic" value="energetic"><label for="energetic">Energetic</label><!--Step 59-->
+                </fieldset>
+                <input type="text" name="catphotourl" placeholder="cat photo URL" required>                                               <!--Step 37,38,39,40,41-->
+                <button type="submit">Submit</button>                   <!--Step 42,43-->
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>No Copyright - <a href="https://www.freecodecamp.org"> freeCodeCamp.org</a></p>
+    </footer>
+</body>
+
+</html>

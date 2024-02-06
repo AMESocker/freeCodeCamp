@@ -1,0 +1,74 @@
+<!-- Learn Form Validation by Building a Calorie Counter -->
+
+<!-- Sometimes when you're coding a web application, you'll need to be able to accept input from a user. In this calorie counter project, you'll learn how to validate user input, perform calculations based on that input, and dynamically update your interface to display the results.
+  
+In this practice project, you'll learn basic regular expressions, template literals, the addEventListener() method, and more. -->
+
+<!-- Step 1 Provided boilerplate CSS and HTML.-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Calorie Counter</title>
+</head>
+
+<body>
+  <main>
+    <h1>Calorie Counter</h1>
+    <div class="container">
+      <form id="calorie-counter"> <!-- Step 1 -->
+        <label for="budget">Budget</label> <!-- Step 2 -->
+        <input id="budget" type="number" min="0" placeholder="Daily calorie budget" /><!-- Step 3 -->
+
+
+
+        <fieldset id="breakfast"> <!-- Step 4 -->
+          <legend>Breakfast</legend>
+          <div class="input-container"></div>
+        </fieldset>
+        <fieldset id="lunch"><!-- Step 5 -->
+          <legend>Lunch</legend>
+          <div class="input-container"></div>
+        </fieldset>
+        <fieldset id="dinner"><!-- Step 6 -->
+          <legend>Dinner</legend>
+          <div class="input-container"></div>
+        </fieldset>
+        <fieldset id="snacks"><!-- Step 7 -->
+          <legend>Snacks</legend>
+          <div class="input-container"></div>
+        </fieldset>
+        <fieldset id="exercise">
+          <legend>Exercise</legend>
+          <div class="input-container"></div>
+        </fieldset>
+        <div class="controls"><!-- Step 8 -->
+          <span>
+            <label for="entry-dropdown">Add food or exercise:</label><!-- Step 9 -->
+            <select id="entry-dropdown" name="options">
+              <option value="breakfast" selected>Breakfast</option><!-- Step 10 -->
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snacks">Snacks</option>
+              <option value="exercise">Exercise</option>
+            </select>
+            <button id="add-entry">Add Entry</button>
+          </span>
+        </div>
+        <div><!-- Step 11 -->
+          <button id="calculate-calories" type="submit">
+            Calculate Remaining Calories
+          </button>
+          <button id="clear" type="button">Clear</button>
+        </div>
+      </form>
+      <div id="output" class="output hide"></div><!--Step 12-->
+    </div>
+  </main>
+  <script src="./script.js"></script><!--Step 13-->
+</body>
+
+</html>
