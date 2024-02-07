@@ -21,6 +21,8 @@ html {
   height: 180px;
   padding-left: 2px;
   border-radius: 0 0 3px 3px;
+  overflow: hidden;
+
 }
 .key {
   background-color: #ffffff;
@@ -29,7 +31,6 @@ html {
   height: 175px;
   margin: 2px;
   float: left;
-  overflow: hidden;
 }
 .key.black--key::after {
   background-color: #1d1e22;
@@ -39,6 +40,7 @@ html {
   width: 32px;
   height: 100px;
   border-radius: 0 0 3px 3px;
+  
 }
 .logo {
   width: 200px;
