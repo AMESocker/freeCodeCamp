@@ -99,3 +99,5 @@ If the function body consists of a single expression, you don't need the curly b
 const addArrow = (a, b) =>  a + b;
 */
 const renderSongs = (array) => {};
+//The map() method is used to iterate through an array and return a new array. The map() method takes a function as an argument. This is called a callback function, which is a function that is passed to another function as an argument.
+const songsHTML = array.map((song)=>{});
