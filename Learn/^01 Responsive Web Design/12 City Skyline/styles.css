@@ -134,6 +134,9 @@ border-right: 5vw solid transparent;
   width: 10%;
   height: 60%;
 }
+.fb1a{
+  border-bottom: 7vh solid var(--building-color4);
+}
 .fb1b{
   width:60%;
   height:10%;
@@ -148,7 +151,13 @@ border-right: 5vw solid transparent;
     var(--building-color4) 10%,
     transparent 10%,
     transparent 15%
-  );
+  ),
+  repeating-linear-gradient(
+    var(--building-color4) 0%,
+    var(--building-color4) 10%,
+    var(--window-color4) 10%,
+    var(--window-color4) 90%
+  )
 }
 .fb2 {
   width: 10%;
