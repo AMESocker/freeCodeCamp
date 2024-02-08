@@ -24,11 +24,11 @@ body {
 .foreground-buildings {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
+  position: absolute;
+  top: 0;
 }
 .building-wrap{
   display: flex;
@@ -136,6 +136,8 @@ border-right: 5vw solid transparent;
 }
 .fb1a{
   border-bottom: 7vh solid var(--building-color4);
+  border-left:2vw solid transparent;
+  border-right:2vw solid transparent;
 }
 .fb1b{
   width:60%;
@@ -164,7 +166,13 @@ border-right: 5vw solid transparent;
   height: 40%;
   background-color: var(--building-color3);
 }
-
+.fb2a{
+  width:100%;
+}
+.fb2b{
+  width:100%;
+  height: 75%
+}
 .fb3 {
   width: 10%;
   height: 35%;
