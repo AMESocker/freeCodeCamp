@@ -13,3 +13,20 @@ Arrow function -  		 const add = (a, b) => {return a + b;};
 Arrow function implicit return - const add = (a, b) =>         a + b;
 
 The map() method is used to iterate through an array and return a new array. The map() method takes a function as an argument. This is called a callback function, which is a function that is passed to another function as an argument.
+# Step 20 Optional chaining
+Optional chaining (?.) helps prevent errors when accessing nested properties that might be null or undefined. For example:
+
+const user = {
+  name: "Quincy",
+  address: {
+    city: "San Francisco",
+    state: "CA",
+    country: "USA",
+  },
+};
+
+// Accessing nested properties without optional chaining
+const state = user.address.state; // CA
+
+// Accessing a non-existent nested property with optional chaining
+const zipCode = user.address?.zipCode; // Returns undefined instead of throwing an error
