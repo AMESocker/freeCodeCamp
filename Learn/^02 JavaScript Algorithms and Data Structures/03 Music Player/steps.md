@@ -30,3 +30,14 @@ const state = user.address.state; // CA
 
 // Accessing a non-existent nested property with optional chaining
 const zipCode = user.address?.zipCode; // Returns undefined instead of throwing an error
+
+# Step 54 forEach
+
+The forEach method is used to loop through an array and perform a function on each element of the array. For example, suppose you have an array of numbers and you want to log each number to the console.
+
+const numbers = [1, 2, 3, 4, 5];
+
+// Using forEach to iterate through the array
+numbers.forEach((number) => {
+  console.log(number); // 1, 2, 3, 4, 5
+});
