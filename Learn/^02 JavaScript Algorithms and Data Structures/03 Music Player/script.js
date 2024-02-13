@@ -153,11 +153,21 @@ const deleteSong = (id) => {
   setPlayButtonAccessibleText();
 };
 
-if(userData?.songs.length === 0){
+if(userData?.songs.length === 0){//----reset playlist----
   const resetButton = document.createElement('button');
   const resetText = document.createTextNode('Reset Playlist');
+
   resetButton.id = 'reset';
   resetButton.ariaLabel = 'Reset playlist';
+  resetButton.appendChild(resetText);
+  playlistSongs.appendChild(resetButton);
+
+  resetButton.addEventListener('click',()=>{
+    userData.songs = [...allSongs];
+    renderSongs(userData?.songs);
+    setPlayButtonAccessibleText();
+    resetButton.remove();
+  });
 }
 
 const setPlayerDisplay = () => {
@@ -231,6 +241,11 @@ nextButton.addEventListener('click', playNextSong);
 previousButton.addEventListener('click', playPreviousSong);
 
 shuffleButton.addEventListener('click', shuffle);
+
+audio.addEventListener('ended',()=>{
+  const currentSongIndex = getCurrentSongIndex();
+  const nextSongExists = userData.songs.length == currentSongIndex ? True : false;
+});
 
 //----Sort Method----
 userData?.songs.sort((a, b) => {
