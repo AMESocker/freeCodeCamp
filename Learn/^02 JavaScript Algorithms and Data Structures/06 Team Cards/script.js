@@ -170,4 +170,21 @@ const myFavoriteFootballTeam = {
     },
   ]
 };
+//? The 'object destructuring' syntax allows you to unpack values from arrays and objects:
 Object.freeze(myFavoriteFootballTeam);
+const {sport, team, year, players} = myFavoriteFootballTeam;
+const { coachName } = myFavoriteFootballTeam.headCoach;
+//----Display object text---
+typeOfSport.textContent = sport;
+teamName.textContent = team;
+worldCupYear.textContent = year;
+headCoach.textContent = coachName;
+//? Function parameters can be initialized with default values.
+const setPlayerCards = (arr=players) => {
+
+  playerCards.innerHTML += arr.map(({name,position,number,isCaptain,nickname})=>{
+    `<div class='player-card'>
+    
+    </div>`
+  })
+};
