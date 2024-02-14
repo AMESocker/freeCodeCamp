@@ -172,7 +172,7 @@ const myFavoriteFootballTeam = {
 };
 //? The 'object destructuring' syntax allows you to unpack values from arrays and objects:
 Object.freeze(myFavoriteFootballTeam);
-const {sport, team, year, players} = myFavoriteFootballTeam;
+const { sport, team, year, players } = myFavoriteFootballTeam;
 const { coachName } = myFavoriteFootballTeam.headCoach;
 //----Display object text---
 typeOfSport.textContent = sport;
@@ -180,11 +180,27 @@ teamName.textContent = team;
 worldCupYear.textContent = year;
 headCoach.textContent = coachName;
 //? Function parameters can be initialized with default values.
-const setPlayerCards = (arr=players) => {
+const setPlayerCards = (arr = players) => {
 
-  playerCards.innerHTML += arr.map(({name,position,number,isCaptain,nickname})=>{
-    `<div class='player-card'>
-    
-    </div>`
-  })
+  playerCards.innerHTML += arr.map(
+    ({ name, position, number, isCaptain, nickname }) => 
+    `
+    <div class='player-card'>
+      <h2>${name}${isCaptain ? '(Captain)' : ''}</h2>
+      <p>Position: ${position}</p>
+      <p>Number: ${number}</p>
+      <p>Nickname: ${nickname !== null ? nickname : 'N/A'}</p>
+    </div>
+    `
+  )
+  .join('');
 };
+//? 'e' represents an object which contains the information for that event.
+playersDropdownList.addEventListener('change',(e)=>{
+  playerCards.innerHTML = '';
+  
+  switch (e.target.value) {
+    case 'nickname':
+      setPlayerCards(players.filter((player)=>player.nickname !== null))
+  }
+});
