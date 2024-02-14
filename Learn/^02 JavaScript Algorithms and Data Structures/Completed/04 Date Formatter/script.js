@@ -12,7 +12,7 @@ const formattedDate = `${day}-${month}-${year}`;
 currentDateParagraph.textContent = formattedDate;
 //? The 'change' event is used to detect when the value of an HTML element has changed.
 dateOptionsSelectElement.addEventListener('change', () => { });
-//? A 'switch' statement is used to compare an expression against multiple possible values and execute different code blocks based on the match. It's commonly used for branching logic. If your 'switch' statement is going to have multiple cases, it is best practice to include a 'break' statement.The 'break' statement will tell the JavaScript interpreter to stop executing statements. Without adding a 'break' statement at the end of each 'case' block, the program will execute the code for all matching 'cases'. The 'default' case is executed when none of the previous case conditions match the value being evaluated. It serves as a catch-all for any other possible cases.
+
 switch (dateOptionsSelectElement.value) {
   case "yyyy-mm-dd":
     currentDateParagraph.textContent = formattedDate
@@ -26,3 +26,4 @@ switch (dateOptionsSelectElement.value) {
   default:
     currentDateParagraph.textContent = formattedDate;
 }
+//? A 'switch' statement is used to compare an expression against multiple possible values and execute different code blocks based on the match. It's commonly used for branching logic. If your 'switch' statement is going to have multiple cases, it is best practice to include a 'break' statement.The 'break' statement will tell the JavaScript interpreter to stop executing statements. Without adding a 'break' statement at the end of each 'case' block, the program will execute the code for all matching 'cases'. The 'default' case is executed when none of the previous case conditions match the value being evaluated. It serves as a catch-all for any other possible cases.
