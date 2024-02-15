@@ -13,6 +13,48 @@ const descriptionInput = document.getElementById("description-input");
 const taskData = []; //? This array will store all the tasks along with their associated data, including title, due date, and description. This storage will enable you to keep track of tasks, display them on the page, and save them to 'localStorage'.
 let currentTask = {}; //? This variable will be used to track the state when editing and discarding tasks.
 
+const addOrUpdateTask = () => {
+  const dataArrIndex = taskData.findIndex((item) => item === currentTask.id); //? The 'findIndex()' array method finds and returns the index of the first element in an array that meets the criteria specified by a provided testing function. If no such element is found, the method returns '-1'.
+  const taskObj = {
+    id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
+    title: titleInput.value,
+    date: dateInput.value,
+    description: descriptionInput.value,
+  };
+
+  if (dataArrIndex === -1) {
+    taskData.unshift(taskObj); //? 'unshift()' is an array method that is used to add one or more elements to the beginning of an array.
+  }
+
+  updateTaskContainer();
+  reset();
+};
+
+const updateTaskContainer = () => {
+  tasksContainer.innerHTML = '';
+
+  taskData.forEach(
+    ({ id, title, date, description }) => {
+      (tasksContainer.innerHTML += `
+        <div class='task' id='${id}'>
+          <p><strong>Title: </strong>${title}</p>
+          <p><strong>Date: </strong>${date}</p>
+          <p><strong>Description: </strong>${description}</p>
+          <button type='button' onclick='editTask(this)' class='btn'>Edit</button>
+          <button type='button' onclick='deleteTask(this)' class='btn'>Delete</button>//? 'this' is a keyword that refers to the current context. In this case, 'this' points to the element that triggers the event - the buttons.
+        </div>
+      `);
+    }
+  );
+}
+
+const deleteTask = (buttonEl)=>{
+  const dataArrIndex = taskData.findIndex(
+    (item)=>item.id === buttonEl.parentElement.id
+  );
+
+}//? splice() is an array method that modifies arrays by removing, replacing, or adding elements at a specified index, while also returning the removed elements. It can take up to three arguments: the first one is the mandatory index at which to start, the second is the number of items to remove, and the third is an optional replacement element.
+
 const reset = ()=>{
   titleInput.value = '';
   dateInput.value = ''; 
@@ -45,29 +87,11 @@ discardBtn.addEventListener("click", () => {
 //----get the values from the input fields----
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const dataArrIndex = taskData.findIndex((item) => item === currentTask.id); //? The 'findIndex()' array method finds and returns the index of the first element in an array that meets the criteria specified by a provided testing function. If no such element is found, the method returns '-1'.
 
-  const taskObj = {
-    id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
-    title: titleInput.value,
-    date: dateInput.value,
-    description: descriptionInput.value,
-  };
+
   //---- add values 'taskData' array to keep track of each task----
-  if (dataArrIndex === -1) {
-    taskData.unshift(taskObj); //? 'unshift()' is an array method that is used to add one or more elements to the beginning of an array.
-  }
 
-  taskData.forEach(({ id, title, date, description }) => {
-    tasksContainer.innerHTML += `
-        <div class='task' id='${id}'>
-          <p><strong>Title: </strong>${title}</p>
-          <p><strong>Date: </strong>${date}</p>
-          <p><strong>Description: </strong>${description}</p>
-          <button type='button' class='btn'>Edit</button>
-          <button type='button' class='btn'>Delete</button>
-        </div>
-      `;
-  });
-  reset();
+
+
+  addOrUpdateTask();
 });
