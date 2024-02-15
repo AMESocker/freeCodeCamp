@@ -12,13 +12,26 @@ const descriptionInput = document.getElementById("description-input");
 //? 'LocalStorage' is a web storage feature of JavaScript that lets you persist data by storing the data as a key:value pair.
 const taskData = []; //? This array will store all the tasks along with their associated data, including title, due date, and description. This storage will enable you to keep track of tasks, display them on the page, and save them to 'localStorage'.
 let currentTask = {}; //? This variable will be used to track the state when editing and discarding tasks.
+
+const reset = ()=>{
+  titleInput.value = '';
+  dateInput.value = ''; 
+  descriptionInput.value = '';
+  taskForm.classList.toggle('hidden');
+  currentTask = {};
+}
 //----opening and closing the modal----
 openTaskFormBtn.addEventListener(
-  "click",
-  () => taskForm.classList.toggle("hidden") //? A method to use with the 'classList' property is the 'toggle' method.The toggle method will add the class if it is not present on the element, and remove the class if it is present on the element.
+  "click",() => taskForm.classList.toggle("hidden") //? A method to use with the 'classList' property is the 'toggle' method.The toggle method will add the class if it is not present on the element, and remove the class if it is present on the element.
 );
 //? The HTML 'dialog' element has a 'showModal()' method that can be used to display a modal dialog box on a web page.
 closeTaskFormBtn.addEventListener("click", () => {
+  const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
+  if(formInputsContainValues){
+    confirmCloseDialog.showModal()
+  }else{
+    reset()
+  }
   confirmCloseDialog.showModal();
 });
 //? The HTML dialog element has a close() method that can be used to close a modal dialog box on a web page.
@@ -26,7 +39,7 @@ cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
 
 discardBtn.addEventListener("click", () => {
   confirmCloseDialog.close();
-  taskForm.classList.toggle("hidden");
+  reset();
 });
 
 //----get the values from the input fields----
@@ -56,4 +69,5 @@ taskForm.addEventListener("submit", (e) => {
         </div>
       `;
   });
+  reset();
 });
