@@ -14,6 +14,7 @@ const taskData = []; //? This array will store all the tasks along with their as
 let currentTask = {}; //? This variable will be used to track the state when editing and discarding tasks.
 
 const addOrUpdateTask = () => {
+  addOrUpdateTaskBtn.innerText = 'Add Task'
   const dataArrIndex = taskData.findIndex((item) => item === currentTask.id); //? The 'findIndex()' array method finds and returns the index of the first element in an array that meets the criteria specified by a provided testing function. If no such element is found, the method returns '-1'.
   const taskObj = {
     id: `${titleInput.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
@@ -24,6 +25,8 @@ const addOrUpdateTask = () => {
 
   if (dataArrIndex === -1) {
     taskData.unshift(taskObj); //? 'unshift()' is an array method that is used to add one or more elements to the beginning of an array.
+  }else{
+    taskData[dataArrIndex] = taskObj;
   }
 
   updateTaskContainer();
@@ -48,12 +51,28 @@ const updateTaskContainer = () => {
   );
 }
 
+
 const deleteTask = (buttonEl)=>{
   const dataArrIndex = taskData.findIndex(
     (item)=>item.id === buttonEl.parentElement.id
   );
 
-}//? splice() is an array method that modifies arrays by removing, replacing, or adding elements at a specified index, while also returning the removed elements. It can take up to three arguments: the first one is the mandatory index at which to start, the second is the number of items to remove, and the third is an optional replacement element.
+  buttonEl.parentElement.remove()
+  taskData.splice(dataArrIndex[1]);//? 'splice()' is an array method that modifies arrays by removing, replacing, or adding elements at a specified index, while also returning the removed elements. It can take up to three arguments: the first one is the mandatory index at which to start, the second is the number of items to remove, and the third is an optional replacement element.
+}
+
+const editTask = (buttonEl) => {
+  const dataArrIndex = taskData.findIndex(
+    (item)=>item.id === buttonEl.parentElement.id
+  );
+  currentTask = taskData[dataArrIndex];
+
+  titleInput.value = currentTask.title;
+  dateInput.value = currentTask.date;
+  descriptionInput.value = currentTask.description;
+  addOrUpdateTaskBtn.innerText = 'Update Task';
+  taskForm.classList.toggle('hidden');
+}
 
 const reset = ()=>{
   titleInput.value = '';
@@ -87,11 +106,6 @@ discardBtn.addEventListener("click", () => {
 //----get the values from the input fields----
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
-
   //---- add values 'taskData' array to keep track of each task----
-
-
-
   addOrUpdateTask();
 });
