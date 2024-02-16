@@ -10,7 +10,7 @@ const titleInput = document.getElementById("title-input");
 const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 //? 'LocalStorage' is a web storage feature of JavaScript that lets you persist data by storing the data as a key:value pair.
-const taskData = []; //? This array will store all the tasks along with their associated data, including title, due date, and description. This storage will enable you to keep track of tasks, display them on the page, and save them to 'localStorage'.
+const taskData = JSON.parse(localStorage.getItem("data")) || []; //? This array will store all the tasks along with their associated data, including title, due date, and description. This storage will enable you to keep track of tasks, display them on the page, and save them to 'localStorage'.
 let currentTask = {}; //? This variable will be used to track the state when editing and discarding tasks.
 
 const addOrUpdateTask = () => {
@@ -29,6 +29,7 @@ const addOrUpdateTask = () => {
     taskData[dataArrIndex] = taskObj;
   }
 
+  localStorage.setItem('data',JSON.stringify(taskData));
   updateTaskContainer();
   reset();
 };
@@ -44,10 +45,10 @@ const updateTaskContainer = () => {
           <p><strong>Date: </strong>${date}</p>
           <p><strong>Description: </strong>${description}</p>
           <button type='button' onclick='editTask(this)' class='btn'>Edit</button>
-          <button type='button' onclick='deleteTask(this)' class='btn'>Delete</button>//? 'this' is a keyword that refers to the current context. In this case, 'this' points to the element that triggers the event - the buttons.
+          <button type='button' onclick='deleteTask(this)' class='btn'>Delete</button>
         </div>
-      `);
-    }
+      `);//? 'this' is a keyword that refers to the current context. In this case, 'this' points to the element that triggers the event - the buttons.
+    }    
   );
 }
 
@@ -59,6 +60,7 @@ const deleteTask = (buttonEl)=>{
 
   buttonEl.parentElement.remove()
   taskData.splice(dataArrIndex[1]);//? 'splice()' is an array method that modifies arrays by removing, replacing, or adding elements at a specified index, while also returning the removed elements. It can take up to three arguments: the first one is the mandatory index at which to start, the second is the number of items to remove, and the third is an optional replacement element.
+  localStorage.setItem('data',JSON.stringify(taskData));
 }
 
 const editTask = (buttonEl) => {
@@ -68,9 +70,12 @@ const editTask = (buttonEl) => {
   currentTask = taskData[dataArrIndex];
 
   titleInput.value = currentTask.title;
+
   dateInput.value = currentTask.date;
   descriptionInput.value = currentTask.description;
+
   addOrUpdateTaskBtn.innerText = 'Update Task';
+
   taskForm.classList.toggle('hidden');
 }
 
@@ -81,6 +86,9 @@ const reset = ()=>{
   taskForm.classList.toggle('hidden');
   currentTask = {};
 }
+if(taskData.length){
+  updateTaskContainer()
+}
 //----opening and closing the modal----
 openTaskFormBtn.addEventListener(
   "click",() => taskForm.classList.toggle("hidden") //? A method to use with the 'classList' property is the 'toggle' method.The toggle method will add the class if it is not present on the element, and remove the class if it is present on the element.
@@ -88,12 +96,13 @@ openTaskFormBtn.addEventListener(
 //? The HTML 'dialog' element has a 'showModal()' method that can be used to display a modal dialog box on a web page.
 closeTaskFormBtn.addEventListener("click", () => {
   const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
-  if(formInputsContainValues){
+  const formInputValuesUpdated = titleInput.value !== currentTask.title||dateInput.value !== currentTask.date||descriptionInput.value !== currentTask.description;
+  
+  if(formInputsContainValues && formInputValuesUpdated){
     confirmCloseDialog.showModal()
   }else{
     reset()
   }
-  confirmCloseDialog.showModal();
 });
 //? The HTML dialog element has a close() method that can be used to close a modal dialog box on a web page.
 cancelBtn.addEventListener("click", () => confirmCloseDialog.close());
@@ -102,10 +111,28 @@ discardBtn.addEventListener("click", () => {
   confirmCloseDialog.close();
   reset();
 });
-
 //----get the values from the input fields----
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
   //---- add values 'taskData' array to keep track of each task----
   addOrUpdateTask();
 });
+
+
+//? 'localStorage' offers methods for saving, retrieving, and deleting items. The items saved can be of any JavaScript data type. For instance, the 'setItem()' method is used to save an item, and the 'getItem()' method retrieves the item. To delete a specific item, one can utilize the 'removeItem()' method, or if one wants to delete all items in the storage, you can use 'clear()'. Everything saved in localStorage needs to be in string format.
+/*
+!const myTaskArr = [
+!  { task: "Walk the Dog", date: "22-04-2022" },
+!  { task: "Read some books", date: "02-11-2023" },
+!  { task: "Watch football", date: "10-08-2021" },
+!];
+!localStorage.setItem("data", JSON.stringify(myTaskArr));
+
+!localStorage.clear()
+
+!const getTaskArr = localStorage.getItem("data");
+!console.log(getTaskArr);
+
+!const getTaskArrObj = JSON.parse(localStorage.getItem("data"));
+!console.log(getTaskArrObj)
+*/
