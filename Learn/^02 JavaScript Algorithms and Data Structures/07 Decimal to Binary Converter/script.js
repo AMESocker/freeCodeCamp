@@ -1,11 +1,32 @@
+const callStack = []//? In computer science, a stack is a data structure where items are stored in a LIFO (last-in-first-out) manner. If you imagine a stack of books, the last book you add to the stack is the first book you can take off the stack. Or an array where you can only .push() and .pop() elements.The call stack is a collection of function calls stored in a stack structure. When you call a function, it is added to the top or of the stack, and when it returns, it is removed from the top / end of the stack. You'll see this in action by creating mock call stack.
+
+
+
+
+
+
+
+
+
+const a = () => { return "freeCodeCamp " + b() }
+const b = () => { return "is "           + c() }
+const c = () => { return "awesome!"            }
+
+console.log(a())
+
 const numberInput = document.getElementById('number-input');
 const convertBtn = document.getElementById('convert-btn');
 const result = document.getElementById('result');
-//? Recursion is a programming concept where a function calls itself. This can reduce a complex problem into simpler sub-problems, until they become straightforward to solve. In this project, you’ll build a decimal-to-binary converter using JavaScript. You’ll learn the fundamental concepts of recursion, explore the call stack, and build out a visual representation of the recursion process through an animation.
-const decimalToBinary = (input) => {
+
+const decimalToBinary = (input) => {//? Awesome. This is a more efficient way to convert decimal numbers into binary. After learning a bit about the call stack and recursion, the 'decimalToBinary' function will be refactored to use recursion instead of a 'while' loop.
   let binary = '';
 
+  if(input===0){
+    binary = '0'
+  }
+
   while (input > 0) {
+    binary = (input % 2) + binary;
     input = Math.floor(input/2);
   }
 
@@ -57,3 +78,4 @@ numberInput.addEventListener('keydown',(event)=>{
   ^result.innerText = remainders.reverse().join('')
 ^};
 */
+//? Recursion is a programming concept where a function calls itself. This can reduce a complex problem into simpler sub-problems, until they become straightforward to solve. In this project, you’ll build a decimal-to-binary converter using JavaScript. You’ll learn the fundamental concepts of recursion, explore the call stack, and build out a visual representation of the recursion process through an animation.
