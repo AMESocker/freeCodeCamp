@@ -1,28 +1,46 @@
 const numberInput = document.getElementById('number-input');
 const convertBtn = document.getElementById('convert-btn');
 const result = document.getElementById('result');
+const animationData = [
+  {
+    inputVal: 5,
+    marginTop: 300,
+    addElDelay: 1000
+  },
+  {
+    inputVal: 2,
+    marginTop: -200,
+    addElDelay: 1500
+  }
+
+]
 //?A recursive function is a function that calls itself over and over. But you have to be careful because you can easily create an infinite loop. That's where the base case comes in. The base case is when the function stops calling itself, and it is a good idea to write it first. When writing the recursive case, you need to remember two things: 1. What is the base case? 2. What is the least amount of work you need to do to get closer to the base case?
 const decimalToBinary = (input) => {
-  if (input === 0||input === 1) {
+  if (input === 0 || input === 1) {
     return String(input)
   } else {
     return decimalToBinary(Math.floor(input / 2)) + (input % 2)
   }
 };
-const showAnimation = () => {}
+const showAnimation = () => {
+  setTimeout(() => { console.log('free') }, 500)
+  setTimeout(() => { console.log('Code') }, 1000)
+  setTimeout(() => { console.log('Camp') }, 1500)
+}
 const checkUserInput = () => {
-  if (!numberInput.value || isNaN(parseInt(numberInput.value))) {
+  const inputInt = parseInt(numberInput.value)
+  if (!numberInput.value || isNaN(inputInt)) {
     alert('Please provide a decimal number');
     numberInput.value = '';
     return
   }
 
-  if (parseInt(numberInput.value) === 5){
+  if (inputInt === 5) {
     showAnimation()
     return
   }
 
-  result.textContent = decimalToBinary(parseInt(numberInput.value));
+  result.textContent = decimalToBinary(inputInt);
   numberInput.value = '';
 };
 
