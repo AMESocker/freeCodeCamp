@@ -7,11 +7,22 @@ const decimalToBinary = (input) => {console.log(numberInput.value);
   const inputs = [];
   const quotients = [];
   const remainders = [];
-  
+  //? The tricky part about 'while' loops is that, if you're not careful, they can run forever. This is called an infinite loop, and can cause your browser to crash.To avoid infinite loops, you need to make sure that the condition for the 'while' loop eventually becomes false. const quotient = 5 / 2; // 2.5 In the example above, 5 is the dividend, or the number to be divided, and 2 is the divisor, or the number to divide by. The result, 2.5, is called the quotient.
   while(input>0){
-    input = 0;
+    const quotient = Math.floor(input/2);
+    const remainder = input % 2;
+
+    inputs.push(input);
+    quotients.push(quotient)
+    remainders.push(remainder)
+    input = quotient;
   }
-}
+  console.log('Inputs: ',inputs)
+  console.log('Quotients: ',quotients)
+  console.log('Remainders: ',remainders)
+
+  result.innerText = remainders.reverse().join('')
+};
 
 const checkUserInput = () => {  
   if (!numberInput.value || isNaN(parseInt(numberInput.value))) {
