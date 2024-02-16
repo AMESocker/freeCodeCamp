@@ -2,28 +2,13 @@ const numberInput = document.getElementById('number-input');
 const convertBtn = document.getElementById('convert-btn');
 const result = document.getElementById('result');
 
-const countdown = (number) => {
-  console.log(number)
-  if(number===0){
-    return
-  }else{
-
-  }
-}
 //?A recursive function is a function that calls itself over and over. But you have to be careful because you can easily create an infinite loop. That's where the base case comes in. The base case is when the function stops calling itself, and it is a good idea to write it first. When writing the recursive case, you need to remember two things: 1. What is the base case? 2. What is the least amount of work you need to do to get closer to the base case?
-const decimalToBinary = (input) => {//? Awesome. This is a more efficient way to convert decimal numbers into binary. After learning a bit about the call stack and recursion, the 'decimalToBinary' function will be refactored to use recursion instead of a 'while' loop.
-  let binary = '';
-
+const decimalToBinary = (input) => {
   if(input===0){
-    binary = '0'
+    return '';
+  }else{
+    return decimalToBinary(input/2)
   }
-
-  while (input > 0) {
-    binary = (input % 2) + binary;
-    input = Math.floor(input/2);
-  }
-
-  result.innerText = binary;
 };
 
 const checkUserInput = () => {  
@@ -70,7 +55,37 @@ numberInput.addEventListener('keydown',(event)=>{
 
   ^result.innerText = remainders.reverse().join('')
 ^};
+!const decimalToBinary = (input) => {
+  ? Awesome. This is a more efficient way to convert decimal numbers into binary. After learning a bit about the call stack and recursion, the 'decimalToBinary' function will be refactored to use recursion instead of a 'while' loop.
+  ^let binary = '';
+
+  ^if(input===0){
+  ^  binary = '0'
+  ^}
+
+  ^while (input > 0) {
+  ^  binary = (input % 2) + binary;
+  ^  input = Math.floor(input/2);
+  ^}
+
+ ^ result.innerText = binary;
+^};
 */
 //? In computer science, a stack is a data structure where items are stored in a LIFO (last-in-first-out) manner. If you imagine a stack of books, the last book you add to the stack is the first book you can take off the stack. Or an array where you can only .push() and .pop() elements.The call stack is a collection of function calls stored in a stack structure. When you call a function, it is added to the top or of the stack, and when it returns, it is removed from the top / end of the stack. You'll see this in action by creating mock call stack.
 
 //? Recursion is a programming concept where a function calls itself. This can reduce a complex problem into simpler sub-problems, until they become straightforward to solve. In this project, you’ll build a decimal-to-binary converter using JavaScript. You’ll learn the fundamental concepts of recursion, explore the call stack, and build out a visual representation of the recursion process through an animation.
+/*
+const countDownAndUp = (number) => {
+  console.log(number);
+
+  if (number === 0) {
+    console.log('Reached base case')
+    return;
+  } else {
+    countDownAndUp(number - 1);
+    console.log(number)
+  }
+};
+
+countDownAndUp(3);
+*/
