@@ -1,30 +1,35 @@
 const numberInput = document.getElementById('number-input');
 const convertBtn = document.getElementById('convert-btn');
 const result = document.getElementById('result');
-
 //?A recursive function is a function that calls itself over and over. But you have to be careful because you can easily create an infinite loop. That's where the base case comes in. The base case is when the function stops calling itself, and it is a good idea to write it first. When writing the recursive case, you need to remember two things: 1. What is the base case? 2. What is the least amount of work you need to do to get closer to the base case?
 const decimalToBinary = (input) => {
-  if(input===0){
-    return '';
-  }else{
-    return decimalToBinary(input/2)
+  if (input === 0||input === 1) {
+    return String(input)
+  } else {
+    return decimalToBinary(Math.floor(input / 2)) + (input % 2)
   }
 };
-
-const checkUserInput = () => {  
+const showAnimation = () => {}
+const checkUserInput = () => {
   if (!numberInput.value || isNaN(parseInt(numberInput.value))) {
     alert('Please provide a decimal number');
     numberInput.value = '';
     return
   }
-  decimalToBinary(parseInt(numberInput.value));
+
+  if (parseInt(numberInput.value) === 5){
+    showAnimation()
+    return
+  }
+
+  result.textContent = decimalToBinary(parseInt(numberInput.value));
   numberInput.value = '';
 };
 
-convertBtn.addEventListener('click',checkUserInput);
+convertBtn.addEventListener('click', checkUserInput);
 
-numberInput.addEventListener('keydown',(event)=>{
-  if(event.key === 'Enter'){
+numberInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
     checkUserInput()
   }
 });
@@ -34,7 +39,7 @@ numberInput.addEventListener('keydown',(event)=>{
   ^const inputs = [];
   ^const quotients = [];
   ^const remainders = [];
-  ? Binary numbers are a base-2 number system. Unlike the base-10 or decimal number system we use every day that uses 10 digits ('0-9') to form numbers, the binary number system only has two digits, '0' and '1'. In computer science, these binary digits are called bits, and are the smallest unit of data computers can process. For computers, 0 represents 'false' or "off", and 1 represents 'true' or "on". Bits are often grouped into an octet, which is an 8-bit set known as a byte. A byte can represent any number between 0 and 255. Here are the placement values for each bit in a byte: 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 Because bits are often grouped into bytes, it's common to see binary numbers represented in groups of eight, sometimes with leading zeros. For example, the number 52 can be represented as 110100, or 00110100 with leading zeros. 
+  ? Binary numbers are a base-2 number system. Unlike the base-10 or decimal number system we use every day that uses 10 digits ('0-9') to form numbers, the binary number system only has two digits, '0' and '1'. In computer science, these binary digits are called bits, and are the smallest unit of data computers can process. For computers, 0 represents 'false' or "off", and 1 represents 'true' or "on". Bits are often grouped into an octet, which is an 8-bit set known as a byte. A byte can represent any number between 0 and 255. Here are the placement values for each bit in a byte: 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 Because bits are often grouped into bytes, it's common to see binary numbers represented in groups of eight, sometimes with leading zeros. For example, the number 52 can be represented as 110100, or 00110100 with leading zeros.
   ^if(input===0){
   ^  result.innerText = '0';
   ^  return
@@ -42,7 +47,7 @@ numberInput.addEventListener('keydown',(event)=>{
   ^while(input>0){
   ^  const quotient = Math.floor(input/2);
   ^  const remainder = input % 2;
-    
+
   ^  inputs.push(input);
   ^  quotients.push(quotient)
   ^  remainders.push(remainder)
