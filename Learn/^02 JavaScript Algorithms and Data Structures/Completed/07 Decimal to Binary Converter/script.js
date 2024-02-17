@@ -40,19 +40,28 @@ const decimalToBinary = (input) => {
 const showAnimation = () => {
   result.innerText = 'Call Stack Animation';
 
-  animationData.forEach((obj)=>{
-    setTimeout(()=>{
+  animationData.forEach((obj) => {
+    setTimeout(() => {
       animationContainer.innerHTML += `
       <p id="${obj.inputVal}" style="margin-top: ${obj.marginTop}px;" class="animation-frame">
       decimalToBinary(${obj.inputVal})
       </p>
       `;
-    },obj.addElDelay);
-    setTimeout(()=>{
+    }, obj.addElDelay);
+
+    setTimeout(() => {
       document.getElementById(obj.inputVal).textContent = obj.msg
-    },obj.showMsgDelay)
+    }, obj.showMsgDelay)
+
+    setTimeout(()=>{
+      document.getElementById(obj.inputVal).remove()
+    },obj.removeElDelay)
   });
+  setTimeout(()=>{
+    result.textContent = decimalToBinary(5)
+  },20000)
 };
+
 const checkUserInput = () => {
   const inputInt = parseInt(numberInput.value)
   if (!numberInput.value || isNaN(inputInt)) {
