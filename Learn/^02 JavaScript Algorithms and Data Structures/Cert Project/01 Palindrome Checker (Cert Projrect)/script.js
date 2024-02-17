@@ -1,6 +1,6 @@
 const textInput = document.getElementById('text-input');
 const checkButton = document.getElementById('check-btn');
-const resultDiv = document.getElementById('result');
+const result = document.getElementById('result');
 /*
 const checkPalindrome = () => {
   const checkWord = textInput.value
@@ -17,16 +17,15 @@ const checkPalindrome = () => {
   console.log(checkWord)
 }
 */
-checkButton.addEventListener('click',() => {
-  const checkWord = textInput.value
-  
-  switch (checkWord) {
-    case "":
-      alert('Please input a value')
-      break;
-  
-    default:
-      console.log(checkWord)
-      break;
+checkButton.addEventListener('click', () => {
+  const checkWord = textInput.value;
+  if (checkWord === "") {
+    alert('Please input a value')
+  } else {
+    palCheck(checkWord)
   }
 });
+
+const palCheck = (input) => {
+  result.innerText = `${input} is a palindrome`
+}

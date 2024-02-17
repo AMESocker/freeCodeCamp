@@ -1,3 +1,11 @@
 main{
   text-align: center;
 }
+body{
+  background-color:#100039;
+  color:white;
+}
+#result{
+  padding:30px;
+  font-size: x-large;
+}
