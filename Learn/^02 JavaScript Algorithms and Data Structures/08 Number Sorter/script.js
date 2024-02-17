@@ -35,11 +35,18 @@ const bubbleSort = (array) => {
 
 const selectionSort = (array) => {
   for (let i = 0; i < array.length; i++) {
-    let minIndex
-    for (let j = 0; j < array.length; j++) {
-      
+    let minIndex = i
+
+    for (let j = i + 1; j < array.length; j++) {console.log(array,'j: '+array[j],'minIndex: '+ array[minIndex])
+      if(array[j]<array[minIndex]){console.log('j < minIndex')
+        minIndex=j
+      }
     }
+    const temp = array[i];
+    array[i] = array[minIndex]
+    array[minIndex] = temp
   }
+  return array
 }//? Selection sort works by finding the smallest value in the array, then swapping it with the first value in the array. Then, it finds the next smallest value in the array, and swaps it with the second value in the array. It continues iterating through the array until it is completely sorted.
 
 sortButton.addEventListener('click',sortInputArray);
