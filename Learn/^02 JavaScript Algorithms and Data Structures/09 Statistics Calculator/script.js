@@ -8,11 +8,25 @@ const getMedian = (array) => {
   return median;//?23
 }
 
+const getMode = (array) => {
+  const counts = {}
+  array.forEach((el) => { 
+    counts[el]++ 
+  })
+  if  (new Set(Object.values(counts)).size===1) {
+    return null
+  }//?28
 
-const getMode = (array)=>{
-  
+  const highest = Object.keys(counts)
+    .sort((a,b)=>counts[b]-counts[a])[0];
+  const mode = Object.keys(counts)
+    .filter((el)=>counts[el] === counts[highest])
+    return mode.join(', ')
 }
 
+const getRange = (array) => {
+  return  Math.max(...array) - Math.min(...array);
+}//?35
 
 const calculate = () => {
   const value = document.querySelector('#numbers').value
@@ -23,9 +37,13 @@ const calculate = () => {
 
   const mean = getMean(numbers)
   const median = getMedian(numbers)
+  const mode = getMode(numbers)
+  const range = getRange(numbers)
 
-  document.querySelector('#mean').textContent = mean
-  document.querySelector('#median').textContent = median
+  document.querySelector('#mean').textContent = mean;
+  document.querySelector('#median').textContent = median;
+  document.querySelector('#mode').textContent = mode;
+  document.querySelector('#range').textContent = range;
 };
 
 
@@ -79,3 +97,14 @@ const calculate = () => {
 //?23Like the getMean function, you could condense this code into one line and reduce the number of variables you instantiate. However, it is important to remember that shorter code is not always better code. In this case, reducing the lines of code would make the code harder to read and understand, impacting future maintainability.
 
 //?25 Your next calculation is the mode, which is the number that appears most often in the list.
+
+//?28 There are a few edge cases to account for when calculating the mode of a dataset. First, if every value appears the same number of times, there is no mode.
+
+//?28 To calculate this, you will use a Set. A Set is a data structure that only allows unique values. If you pass an array into the Set constructor, it will remove any duplicate values.
+
+//?35 Your next calculation is the range, which is the difference between the largest and smallest numbers in the list.
+
+//?35 You previously learned about the global Math object. Math has a .min() method to get the smallest number from a series of numbers, and the .max() method to get the largest number. Here's an example that gets the smallest number from an array:
+// const numbersArr = [2, 3, 1];
+// console.log(Math.min(...numbersArr));
+// Expected output: 1
