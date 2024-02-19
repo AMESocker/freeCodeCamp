@@ -1,13 +1,24 @@
-const getMean = (array) => {
-  const sum = array.reduce((acc, el) => {acc+el})
+const getMean = (array) => array.reduce((acc, el) => acc + el, 0)/ array.length;
+
+const getMedian = (array) => {
+  
 }
 
-const calculate = () => {
+
+const calculate = () => {console.log('calculate')
   const value = document.querySelector('#numbers').value
   const array = value.split(/,\s*/g); //?3
-  const numbers = array.map((el) => { Number(el) }) //?4
-    .filter((el) => { !isNaN(el) }); //?7
+  const numbers = array
+    .map((el) => Number(el)) //?4
+    .filter((el) =>  !isNaN(el) ); //?7
 
+  const mean = getMean(numbers)
+  document.querySelector('#mean').textContent = mean
+ 
+  console.log('value:',value)
+  console.log('array:',array)
+  console.log('number:',numbers)
+  console.log('mean:',mean)
 };
 
 
@@ -42,3 +53,11 @@ const calculate = () => {
 //array.reduce((acc, el) => {}); 
 
 //?12 The .reduce() method takes a second argument that is used as the initial value of the accumulator. Without a second argument, the .reduce() method uses the first element of the array as the accumulator, which can lead to unexpected results.
+//?12 To be safe, it's best to set an initial value. Here is an example of setting the initial value to an empty string:
+// array.reduce((acc, el) => acc + el.toLowerCase(), "");
+/* 15
+?{ getMean function
+?  const sum = array.reduce((acc, el) =>  acc + el,0 );//?12
+?  const mean = sum/array.length;
+?  return mean;
+}*/
