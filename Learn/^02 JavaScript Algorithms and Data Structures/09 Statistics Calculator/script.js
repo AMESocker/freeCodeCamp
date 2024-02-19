@@ -1,11 +1,20 @@
-const getMean = (array) => array.reduce((acc, el) => acc + el, 0)/ array.length;
+const getMean = (array) => array.reduce((acc, el) => acc + el, 0) / array.length;//?12
 
 const getMedian = (array) => {
+  const sorted = array.sort((a, b) => { a - b })//?21
+  const median = array.length % 2 === 0 
+    ? getMean([sorted[array.length / 2], sorted[array.length / 2 - 1]]) 
+    : sorted[Math.floor(array.length / 2)];//?22
+  return median;//?23
+}
+
+
+const getMode = (array)=>{
   
 }
 
 
-const calculate = () => {console.log('calculate')
+const calculate = () => {
   const value = document.querySelector('#numbers').value
   const array = value.split(/,\s*/g); //?3
   const numbers = array
@@ -13,12 +22,10 @@ const calculate = () => {console.log('calculate')
     .filter((el) =>  !isNaN(el) ); //?7
 
   const mean = getMean(numbers)
+  const median = getMedian(numbers)
+
   document.querySelector('#mean').textContent = mean
- 
-  console.log('value:',value)
-  console.log('array:',array)
-  console.log('number:',numbers)
-  console.log('mean:',mean)
+  document.querySelector('#median').textContent = median
 };
 
 
@@ -55,9 +62,20 @@ const calculate = () => {console.log('calculate')
 //?12 The .reduce() method takes a second argument that is used as the initial value of the accumulator. Without a second argument, the .reduce() method uses the first element of the array as the accumulator, which can lead to unexpected results.
 //?12 To be safe, it's best to set an initial value. Here is an example of setting the initial value to an empty string:
 // array.reduce((acc, el) => acc + el.toLowerCase(), "");
-/* 15
-?{ getMean function
-?  const sum = array.reduce((acc, el) =>  acc + el,0 );//?12
-?  const mean = sum/array.length;
-?  return mean;
+/* 15 getMean function
+{ 
+  const sum = array.reduce((acc, el) =>  acc + el,0 );
+  const mean = sum/array.length;
+  return mean;
 }*/
+//?21 By default, the .sort() method converts the elements of an array into strings, then sorts them alphabetically. This works well for strings, but not so well for numbers. For example, 10 comes before 2 when sorted as strings, but 2 comes before 10 when sorted as numbers.
+
+//?21 To fix this, you can pass in a callback function to the .sort() method. This function takes two arguments, which represent the two elements being compared. The function should return a value less than 0 if the first element should come before the second element, a value greater than 0 if the first element should come after the second element, and 0 if the two elements should remain in their current positions.
+
+//?22The next step is to find the number in the middle of the list. If the list has an odd number of numbers, the middle number is the median. If the list has an even number of numbers, the median is the average of the two middle numbers.
+
+//?22 You can check if a number is even or odd with the modulus operator, which is represented by the % symbol. This operator returns the remainder of the division of two numbers. If the remainder is 0, the number is even. If the remainder is 1, the number is odd:
+
+//?23Like the getMean function, you could condense this code into one line and reduce the number of variables you instantiate. However, it is important to remember that shorter code is not always better code. In this case, reducing the lines of code would make the code harder to read and understand, impacting future maintainability.
+
+//?25 Your next calculation is the mode, which is the number that appears most often in the list.
