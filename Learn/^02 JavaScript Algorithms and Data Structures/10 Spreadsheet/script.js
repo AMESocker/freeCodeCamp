@@ -1,4 +1,5 @@
-const range = (start, end) => Array(end-start+1).fill(start)
+const range = (start, end) => Array(end-start+1).fill(start).map((element,index)=>element+index)
+const charRange = (start, end) => range(start.charCodeAt(0), end.charCodeAt(0)).map((code)=>String.fromCharCode(code));
 
 window.onload = () => {
   const container = document.getElementById('container');
@@ -8,6 +9,18 @@ window.onload = () => {
     label.textContent = name;
     container.appendChild(label)
   }
+  const letters = charRange('A','J');
+  letters.forEach(createLabel);
+  range(1,99).forEach((number)=>{
+    createLabel(number)
+    letters.forEach((letter)=>{
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.id = letter + number;
+      input.ariaLabel = letter + number;
+      container.appendChild(input);
+    })
+  })
 }
 
 //^ Functional Programming is a popular approach to software development. In Functional Programming, developers organize code into smaller functions, then combine those functions to build complex programs.
