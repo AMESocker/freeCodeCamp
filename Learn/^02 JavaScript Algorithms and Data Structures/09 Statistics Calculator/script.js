@@ -2,38 +2,46 @@ const getMean = (array) => array.reduce((acc, el) => acc + el, 0) / array.length
 
 const getMedian = (array) => {
   const sorted = array.sort((a, b) => { a - b })//?21
-  const median = array.length % 2 === 0 
-    ? getMean([sorted[array.length / 2], sorted[array.length / 2 - 1]]) 
+  const median = array.length % 2 === 0
+    ? getMean([sorted[array.length / 2], sorted[array.length / 2 - 1]])
     : sorted[Math.floor(array.length / 2)];//?22
   return median;//?23
 }
 
 const getMode = (array) => {
   const counts = {}
-  array.forEach((el) => { 
-    counts[el]++ 
+  array.forEach((el) => {
+    counts[el]++
   })
-  if  (new Set(Object.values(counts)).size===1) {
+  if (new Set(Object.values(counts)).size === 1) {
     return null
   }//?28
 
   const highest = Object.keys(counts)
-    .sort((a,b)=>counts[b]-counts[a])[0];
+    .sort((a, b) => counts[b] - counts[a])[0];
   const mode = Object.keys(counts)
-    .filter((el)=>counts[el] === counts[highest])
-    return mode.join(', ')
+    .filter((el) => counts[el] === counts[highest])
+  return mode.join(', ')
 }
 
 const getRange = (array) => {
-  return  Math.max(...array) - Math.min(...array);
+  return Math.max(...array) - Math.min(...array);
 }//?35
+
+const getVariance = (array) => {
+  const mean = getMean(array);
+  const differences = array.map(el => el - mean);
+  const squaredDifferences = differences.map(el=>el**2);
+  const sumSquaredDifferences = squaredDifferences.reduce((acc, el)=>acc + el, 0)
+  const variance = array.reduce((acc, el)=>{},0)
+}
 
 const calculate = () => {
   const value = document.querySelector('#numbers').value
   const array = value.split(/,\s*/g); //?3
   const numbers = array
     .map((el) => Number(el)) //?4
-    .filter((el) =>  !isNaN(el) ); //?7
+    .filter((el) => !isNaN(el)); //?7
 
   const mean = getMean(numbers)
   const median = getMedian(numbers)
@@ -75,13 +83,13 @@ const calculate = () => {
 //?10 The mean is the average value of all numbers in a list. The first step in calculating the mean is to take the sum of all numbers in the list. Arrays have another method, called .reduce(), which is perfect for this situation. The .reduce() method takes an array and applies a callback function to condense the array into a single value.
 
 //?11 Like the other methods, .reduce() takes a callback. This callback, however, takes at least two parameters. The first is the accumulator, and the second is the current element in the array. The return value for the callback becomes the value of the accumulator on the next iteration.
-//array.reduce((acc, el) => {}); 
+//array.reduce((acc, el) => {});
 
 //?12 The .reduce() method takes a second argument that is used as the initial value of the accumulator. Without a second argument, the .reduce() method uses the first element of the array as the accumulator, which can lead to unexpected results.
 //?12 To be safe, it's best to set an initial value. Here is an example of setting the initial value to an empty string:
 // array.reduce((acc, el) => acc + el.toLowerCase(), "");
 /* 15 getMean function
-{ 
+{
   const sum = array.reduce((acc, el) =>  acc + el,0 );
   const mean = sum/array.length;
   return mean;
@@ -108,3 +116,4 @@ const calculate = () => {
 // const numbersArr = [2, 3, 1];
 // console.log(Math.min(...numbersArr));
 // Expected output: 1
+//? The variance of a series represents how much the data deviates from the mean, and can be used to determine how spread out the data are. The variance is calculated in a few steps.
