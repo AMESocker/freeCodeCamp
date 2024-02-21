@@ -5,6 +5,16 @@ const median = (nums)=>{
   const sorted = nums.slice().sort((a, b) => a - b);//?23
   const length = sorted.length;
   const middle = length/2-1
+  return isEven(length)
+  ? average([sorted[middle],sorted[middle+1]])
+  : sorted[Math.ceil(middle)] ;
+}
+
+
+const spreadsheetFunctions = {
+  sum,
+  average,
+  median,
 }
 
 const range = (start, end) => Array(end-start+1).fill(start).map((element,index)=>element+index)
@@ -32,6 +42,8 @@ window.onload = () => {
   })
 }
 
+
+
 //^ Functional Programming is a popular approach to software development. In Functional Programming, developers organize code into smaller functions, then combine those functions to build complex programs.
 
 //^In this spreadsheet application project, you'll learn about parsing and evaluating mathematical expressions, implementing spreadsheet functions, handling cell references, and creating interactive web interfaces. You'll learn how to dynamically update the page based on user input.
@@ -50,6 +62,23 @@ const outer = () => {
 };
 */
 //?23 In the function, declare a 'sorted' variable and assign it the value of sorting a copy of the 'nums' array.You should use the 'slice()' method for creating a shallow copy of the array.
+
+//?26 Object properties consist of key/value pairs. You can use shorthand property names when declaring an object literal. When using the shorthand property name syntax, the name of the variable becomes the property key and its value the property value.
+
+//?26 The following example declares a user object with the properties userId, firstName, and loggedIn.
+/*
+const userId = 1;
+const firstName = "John";
+const loggedIn = true;
+
+const user = {
+  userId,
+  firstName,
+  loggedIn,
+};
+
+console.log(user); // { userId: 1, firstName: 'John', loggedIn: true }
+*/
 //
 //!
 //?
