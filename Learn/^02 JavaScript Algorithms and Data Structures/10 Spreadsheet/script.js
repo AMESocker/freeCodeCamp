@@ -20,6 +20,10 @@ const spreadsheetFunctions = {
 const range = (start, end) => Array(end-start+1).fill(start).map((element,index)=>element+index)
 const charRange = (start, end) => range(start.charCodeAt(0), end.charCodeAt(0)).map((code)=>String.fromCharCode(code));
 
+const evalFormula = (x, cells)=>{
+  
+}
+
 window.onload = () => {
   const container = document.getElementById('container');
   const createLabel = (name) => {
@@ -37,12 +41,19 @@ window.onload = () => {
       input.type = 'text';
       input.id = letter + number;
       input.ariaLabel = letter + number;
+      input.onchange = update
       container.appendChild(input);
     })
   })
 }
 
+const update = (event)=>{
+  const element = event.target;
+  const value = element.value.replace(/\s/g,'');
+  if (!value.includes(element.id) && value.startsWith('=')) {
 
+  }
+}
 
 //^ Functional Programming is a popular approach to software development. In Functional Programming, developers organize code into smaller functions, then combine those functions to build complex programs.
 
