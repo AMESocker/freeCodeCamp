@@ -1,0 +1,11 @@
+main{
+  text-align: center;
+}
+body{
+  background-color:#100039;
+  color:white;
+}
+#output{
+  padding:30px;
+  font-size: x-large;
+}
