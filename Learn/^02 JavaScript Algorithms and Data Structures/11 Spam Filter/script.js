@@ -3,7 +3,8 @@ const result = document.getElementById('result');
 const checkMessageButton = document.getElementById('check-message-btn');
 
 const helpRegex = /please help|assist me/i;
-const dollarRegex = /dollars/i;
+const dollarRegex = /[0-9]+ (?:hundred|thousand|million|billion)? dollars/i; //?15,16,18
+const freeRegex = /free money/
 
 const denyList = [helpRegex, dollarRegex]
 
@@ -24,3 +25,9 @@ checkMessageButton.addEventListener('click', () => {
 
 //?9  const isSpam = (msg) => msg.match(helpRegex)
 //?12 const isSpam = (msg) => helpRegex.test(msg)
+
+//?15 A character class is defined by square brackets, and matches any character within the brackets. For example, [aeiou] matches any character in the list aeiou. You can also define a range of characters to match using a hyphen. For example, [a-z] matches any character from a to z.
+
+//?16 The dollar value may be more than one digit. To match this, the '+' quantifier can be used - this matches one or more consecutive occurrence. For example, the regular expression '/a+/' matches one or more consecutive 'a' characters.
+
+//?18 A capture group is a way to define a part of the expression that should be captured and saved for later reference. You can define a capture group by wrapping a part of your expression in parentheses. For example, '/h(i|ey) camper/' would match either 'hi camper' or 'hey camper', and would capture 'i' or 'ey' in a group.
