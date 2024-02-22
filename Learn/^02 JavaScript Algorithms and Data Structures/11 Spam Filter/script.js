@@ -4,9 +4,10 @@ const checkMessageButton = document.getElementById('check-message-btn');
 
 const helpRegex = /please help|assist me/i;
 const dollarRegex = /[0-9]+ (?:hundred|thousand|million|billion)? dollars/i; //?15,16,18
-const freeRegex = /free money/
+const freeRegex = /(?:^|\s)fr[e3][e3] m[o0]n[e3]y(?:\s|$)/i;
+const stockRegex = /[s5][t7][o0]ck [a@4]l[e3]r[t7]/i
 
-const denyList = [helpRegex, dollarRegex]
+const denyList = [helpRegex, dollarRegex, freeRegex, stockRegex]
 
 const isSpam = (msg) => denyList.some((regex) => regex.test(msg)); //?9,12
 
