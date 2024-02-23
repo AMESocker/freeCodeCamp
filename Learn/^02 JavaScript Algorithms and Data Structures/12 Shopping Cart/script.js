@@ -85,5 +85,44 @@ const products = [
   },
 ];
 
-products.forEach(()=>{})
+products.forEach(
+  ({ name, id, price, category }) => {
+    dessertCards.innerHTML += `
+      <div class="dessert-card">
+        <h2>${name}</h2>
+        <p class="dessert-price">$${price}</p>
+        <p class="product-category">Category: ${category}</p>
+        <button 
+          id="${id}" 
+          class="btn add-to-cart-btn">Add to cart
+        </button>
+      </div>
+    `;
+  }
+);
+
+class ShoppingCart {
+  constructor() {
+  }
+};//?14,15,16
+
+
 //?6 You now need to start adding products. Before you do that, you need to consider the structure of your product data. A product will need a unique identifier to distinguish it from other products, a price so people know how much it costs, and a name so people know what they are buying. You should also add a category to each product.
+
+//?14 You are already familiar with an HTML class, but JavaScript also has a class. In JavaScript, a class is like a blueprint for creating objects. It allows you to define a set of properties and methods, and instantiate (or create) new objects with those properties and methods.The class keyword is used to declare a class. Here is an example of declaring a Computer class:
+//class Computer {};
+
+//?15 Classes have a special constructor method, which is called when a new instance of the class is created. The constructor method is a great place to initialize properties of the class. Here is an example of a class with a constructor method:
+/*
+class Computer {
+  constructor() {
+  }
+} */
+
+//?16 The this keyword in JavaScript is used to refer to the current object. Depending on where this is used, what it references changes. In the case of a class, it refers to the instance of the object being constructed. You can use the this keyword to set the properties of the object being instantiated. Here is an example:
+/*
+class Computer {
+  constructor() {
+    this.ram = 16;
+  }
+} */
