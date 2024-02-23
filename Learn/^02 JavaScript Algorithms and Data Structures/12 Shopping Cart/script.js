@@ -109,10 +109,9 @@ class ShoppingCart {
   }
 
   addItem(id,products){
-    const product = products.find((item)=>item.id === addItem.id);
+    const product = products.find((item)=>item.id === id);
     const { name, price } = product;
     this.items.push(product);
-
     const totalCountPerProduct = {}
     this.items.forEach((dessert)=>{
       totalCountPerProduct[dessert.id] = (totalCountPerProduct[dessert.id]||0) + 1;
@@ -132,15 +131,44 @@ class ShoppingCart {
     </div>
     `; //?27
   }
+
+  getCounts(){
+    return this.items.length
+  }
+
+  calculateTaxes(amount){
+    return parseFloat(((this.taxRate / 100) * amount).toFixed(2));
+  }
+
+  calculateTotal(){
+    const subTotal = this.items.reduce((total,item)=>total + item.price,0);
+    const tax = this.calculateTaxes(subTotal);
+    this.total = subTotal + tax;
+    cartSubTotal.textContent = subTotal.toFixed(2)
+  }
 };//?14,15,16
 
 const cart = new ShoppingCart(); //?32
 const addToCartBtns = document.getElementsByClassName('add-to-cart-btn');
+
 [...addToCartBtns].forEach(
-  (btn)=>{btn.addEventListener('click',(event)=>{
-    cart.addItem()
-  })}
-  )
+  (btn) => {
+    btn.addEventListener('click', (event) => {
+      cart.addItem(Number(event.target.id),products);
+      totalNumberOfItems.textContent = cart.getCounts()
+    })
+  }
+);
+
+cartBtn.addEventListener('click',()=>{
+  isCartShowing = !isCartShowing;
+  showHideCartSpan.textContent = isCartShowing ? "Hide" : "Show";
+  cartContainer.style.display = isCartShowing ? "block" : "none"
+});
+
+//? OOP, or Object Oriented Programming, is one of the major approaches to the software development process. In OOP, developers use objects and classes to structure their code.
+//? In this shopping cart project, you'll learn how to define classes and use them. You'll create class instances and implement methods for data manipulation.
+//? This project will cover concepts like the ternary operator, the spread operator, the this keyword, and more.
 
 //?6 You now need to start adding products. Before you do that, you need to consider the structure of your product data. A product will need a unique identifier to distinguish it from other products, a price so people know how much it costs, and a name so people know what they are buying. You should also add a category to each product.
 
