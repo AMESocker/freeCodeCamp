@@ -117,11 +117,30 @@ class ShoppingCart {
     this.items.forEach((dessert)=>{
       totalCountPerProduct[dessert.id] = (totalCountPerProduct[dessert.id]||0) + 1;
     })
-
     
+    const currentProductCount = totalCountPerProduct[product.id]
+    const currentProductCountSpan = document.getElementById(`product-count-for-id${id}`);
+    
+    currentProductCount > 1 
+    ? currentProductCountSpan.textContent = `${currentProductCount}x` 
+    : productsContainer.innerHTML += `
+    <div class="product" id="dessert${id}">
+      <p>
+        <span class="product-count" id="product-count-for-id${id}"></span>${name}
+      </p>  
+      <p>${price}</p>  
+    </div>
+    `; //?27
   }
 };//?14,15,16
 
+const cart = new ShoppingCart(); //?32
+const addToCartBtns = document.getElementsByClassName('add-to-cart-btn');
+[...addToCartBtns].forEach(
+  (btn)=>{btn.addEventListener('click',(event)=>{
+    cart.addItem()
+  })}
+  )
 
 //?6 You now need to start adding products. Before you do that, you need to consider the structure of your product data. A product will need a unique identifier to distinguish it from other products, a price so people know how much it costs, and a name so people know what they are buying. You should also add a category to each product.
 
@@ -142,3 +161,8 @@ class Computer {
     this.ram = 16;
   }
 } */
+
+//? 27 The behavior of the 'addItem' method needs to change if the product is already in the cart or not. Create a ternary that checks if the current product is already in the cart. Use 'undefined' for both the truthy and falsy expressions to avoid a syntax error.
+
+//? 32 There is still more functionality that your ShoppingCart class needs, but first you need to be able to test the code you have currently written. You'll need to instantiate a new ShoppingCart object and assign it to a variable. Here is an example of instantiating the Computer class from earlier examples:
+//const myComputer = new Computer();
