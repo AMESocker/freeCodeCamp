@@ -111,7 +111,14 @@ class ShoppingCart {
   addItem(id,products){
     const product = products.find((item)=>item.id === addItem.id);
     const { name, price } = product;
-    this.items.push(product)
+    this.items.push(product);
+
+    const totalCountPerProduct = {}
+    this.items.forEach((dessert)=>{
+      totalCountPerProduct[dessert.id] = (totalCountPerProduct[dessert.id]||0) + 1;
+    })
+
+    
   }
 };//?14,15,16
 
