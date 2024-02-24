@@ -108,21 +108,22 @@ class ShoppingCart {
     this.taxRate = 8.25;
   }
 
-  addItem(id,products){
-    const product = products.find((item)=>item.id === id);
+  addItem(id, products) {
+    const product = products.find((item) => item.id === id);
     const { name, price } = product;
     this.items.push(product);
+
     const totalCountPerProduct = {}
-    this.items.forEach((dessert)=>{
-      totalCountPerProduct[dessert.id] = (totalCountPerProduct[dessert.id]||0) + 1;
+    this.items.forEach((dessert) => {
+      totalCountPerProduct[dessert.id] = (totalCountPerProduct[dessert.id] || 0) + 1;
     })
-    
+
     const currentProductCount = totalCountPerProduct[product.id]
     const currentProductCountSpan = document.getElementById(`product-count-for-id${id}`);
-    
-    currentProductCount > 1 
-    ? currentProductCountSpan.textContent = `${currentProductCount}x` 
-    : productsContainer.innerHTML += `
+
+    currentProductCount > 1
+      ? currentProductCountSpan.textContent = `${currentProductCount}x`
+      : productsContainer.innerHTML += `
     <div class="product" id="dessert${id}">
       <p>
         <span class="product-count" id="product-count-for-id${id}"></span>${name}
@@ -132,19 +133,32 @@ class ShoppingCart {
     `; //?27
   }
 
-  getCounts(){
+  getCounts() {
     return this.items.length
   }
 
-  calculateTaxes(amount){
+  clearCart() {
+    if (!this.items.length) {
+      alert("Your shopping cart is already empty");
+      return;
+    }
+    const isCartCleared = confirm(
+      "Are you sure you want to clear all items from your shopping cart?"
+    );
+  } //? 56
+
+  calculateTaxes(amount) {
     return parseFloat(((this.taxRate / 100) * amount).toFixed(2));
   }
 
-  calculateTotal(){
-    const subTotal = this.items.reduce((total,item)=>total + item.price,0);
+  calculateTotal() {
+    const subTotal = this.items.reduce((total, item) => total + item.price, 0);
     const tax = this.calculateTaxes(subTotal);
     this.total = subTotal + tax;
-    cartSubTotal.textContent = subTotal.toFixed(2)
+    cartSubTotal.textContent = `$${subTotal.toFixed(2)}`
+    cartTaxes.textContent = `$${tax.toFixed(2)}`;
+    cartTotal.textContent = `$${this.total.toFixed(2)}`
+    return this.total;
   }
 };//?14,15,16
 
@@ -154,13 +168,14 @@ const addToCartBtns = document.getElementsByClassName('add-to-cart-btn');
 [...addToCartBtns].forEach(
   (btn) => {
     btn.addEventListener('click', (event) => {
-      cart.addItem(Number(event.target.id),products);
+      cart.addItem(Number(event.target.id), products);
       totalNumberOfItems.textContent = cart.getCounts()
+      cart.calculateTotal()
     })
   }
 );
 
-cartBtn.addEventListener('click',()=>{
+cartBtn.addEventListener('click', () => {
   isCartShowing = !isCartShowing;
   showHideCartSpan.textContent = isCartShowing ? "Hide" : "Show";
   cartContainer.style.display = isCartShowing ? "block" : "none"
@@ -194,3 +209,5 @@ class Computer {
 
 //? 32 There is still more functionality that your ShoppingCart class needs, but first you need to be able to test the code you have currently written. You'll need to instantiate a new ShoppingCart object and assign it to a variable. Here is an example of instantiating the Computer class from earlier examples:
 //const myComputer = new Computer();
+
+//? 56 Browsers have a built-in confirm() function which displays a confirmation prompt to the user. confirm() accepts a string, which is the message displayed to the user. It returns 'true' if the user confirms, and 'false' if the user cancels.
