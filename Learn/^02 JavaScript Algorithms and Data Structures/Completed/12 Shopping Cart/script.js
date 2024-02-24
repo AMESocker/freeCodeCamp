@@ -142,10 +142,21 @@ class ShoppingCart {
       alert("Your shopping cart is already empty");
       return;
     }
+
     const isCartCleared = confirm(
       "Are you sure you want to clear all items from your shopping cart?"
     );
-  } //? 56
+
+    if (isCartCleared) {
+      this.items = [];
+      this.total = 0;
+      productsContainer.innerHTML = '';
+      totalNumberOfItems.textContent = 0;
+      cartSubTotal.textContent = 0;
+      cartTaxes.textContent = 0;
+      cartTotal.textContent = 0;
+    } //? 56
+  }
 
   calculateTaxes(amount) {
     return parseFloat(((this.taxRate / 100) * amount).toFixed(2));
@@ -181,6 +192,8 @@ cartBtn.addEventListener('click', () => {
   cartContainer.style.display = isCartShowing ? "block" : "none"
 });
 
+clearCartBtn.addEventListener('click',cart.clearCart.bind(cart)); //? 60 
+
 //? OOP, or Object Oriented Programming, is one of the major approaches to the software development process. In OOP, developers use objects and classes to structure their code.
 //? In this shopping cart project, you'll learn how to define classes and use them. You'll create class instances and implement methods for data manipulation.
 //? This project will cover concepts like the ternary operator, the spread operator, the this keyword, and more.
@@ -211,3 +224,9 @@ class Computer {
 //const myComputer = new Computer();
 
 //? 56 Browsers have a built-in confirm() function which displays a confirmation prompt to the user. confirm() accepts a string, which is the message displayed to the user. It returns 'true' if the user confirms, and 'false' if the user cancels.
+
+//?60 Your final step is to make your clear button functional. Add a click event listener to the clearCartBtn. For the callback, you can pass in cart.clearCart directly.
+
+//?60 However, doing so will not work, because the context of this will be the clearCartBtn element. You need to bind the clearCart method to the cart object.
+
+//?60 You can do this by passing cart.clearCart.bind(cart) as the callback.
