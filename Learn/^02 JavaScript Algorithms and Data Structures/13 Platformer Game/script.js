@@ -14,43 +14,63 @@ const proportionalSize = (size) => {
     ? Math.ceil((size / 500) * innerHeight)
     : size
 }
-
 class Player {
   constructor() {
     this.position = {
-      x: 10,
-      y: 400
+      x: proportionalSize(10),
+      y: proportionalSize(400),
     };
     this.velocity = {
       x: 0,
       y: 0
     };
-    this.width = 40;
-    this.height = 40;
+    this.width = proportionalSize(40);
+    this.height = proportionalSize(40);
   }
   draw() {
     ctx.fillStyle = '#99c9ff';
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    // ctx.drawImage('.//2204_w053_n004_24_medicharacters_p1_24.jpg',this.position.x, this.position.y);
+    //<a href="https://www.freepik.com/free-vector/viking-cartoon-character-animation-2d-barbarian_29222691.htm#query=game%20character&position=10&from_view=keyword&track=ais&uuid=24cc6391-2d24-48d3-a416-dcbebd53de61">Image by upklyak</a> on Freepik
+
   }
-
-
   update() {
     this.draw();
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
+
     if (this.position.y + this.height + this.velocity.y <= canvas.height) {
       if (this.position.y < 0) {
         this.position.y = 0;
         this.velocity.y = gravity;
       }
       this.velocity.y += gravity;
-    }else{
+    } else {
       this.velocity.y = 0
     }
+
+    if (this.position.x < this.width) {
+      this.position.x = this.width;
+    }
+
+    if(this.position.x >= canvas.width - 2 * this.width){
+      this.position.x = canvas.width - 2 * this.width
+    }
   }
-
-
 }
+
+const player = new Player();
+
+const animate = () => {}
+
+const startGame = ()=>{
+  canvas.style.display = 'block';
+  startScreen.style.display = 'none'
+  player.draw()
+}
+
+startBtn.addEventListener('click',startGame)
+
 //?Coding a game is a great way to grasp fundamental programming principles, while also creating an interactive gaming experience.
 
 //?In this platformer game project, you'll continue to learn about classes, objects, inheritance, and encapsulation. You'll also learn how to design and organize game elements efficiently and gain insights into problem-solving and code reusability.
