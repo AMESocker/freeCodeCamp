@@ -53,7 +53,7 @@ class Player {
       this.position.x = this.width;
     }
 
-    if(this.position.x >= canvas.width - 2 * this.width){
+    if (this.position.x >= canvas.width - 2 * this.width) {
       this.position.x = canvas.width - 2 * this.width
     }
   }
@@ -61,15 +61,58 @@ class Player {
 
 const player = new Player();
 
-const animate = () => {}
+const animate = () => {
+  requestAnimationFrame(animate)
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+  player.update();
+  if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {
+    player.velocity.x = 5
+  } else if (keys.leftKey.pressed && player.position.x > proportionalSize(100)) {
+    player.velocity.x = -5
+  } else {
+    player.velocity.x = 0
+  }
+}//? 41
 
-const startGame = ()=>{
+const keys = {
+  rightKey: {
+    pressed: false
+  },
+  leftKey: {
+    pressed: false
+  }
+}
+
+const movePlayer = (key, xVelocity, isPressed) => {
+  if (!isCheckpointCollisionDetectionActive) {
+    player.velocity.x = 0;
+    player.velocity.y = 0;
+    return
+  }
+
+  switch (key) {
+    case "ArrowLeft":
+      keys.leftKey.pressed = isPressed;
+      if (xVelocity === 0) {
+        player.velocity.x = xVelocity;
+      }
+      player.velocity.x -= xVelocity
+      break;
+    case "ArrowUp", " ", "Spacebar":
+      player.velocity.y -= 8
+      break;
+    default:
+      break;
+  }
+}
+
+const startGame = () => {
   canvas.style.display = 'block';
   startScreen.style.display = 'none'
   player.draw()
 }
 
-startBtn.addEventListener('click',startGame)
+startBtn.addEventListener('click', startGame)
 
 //?Coding a game is a great way to grasp fundamental programming principles, while also creating an interactive gaming experience.
 
@@ -80,5 +123,6 @@ startBtn.addEventListener('click',startGame)
 //?4 The Canvas API can be used to create graphics in games using JavaScript and the HTML canvas element.
 
 //?4 You will need to use the getContext method which will provide the context for where the graphics will be rendered.
-
 //canvas.getContext("2d");
+
+//? 41 The 'requestAnimationFrame()' web API, takes in a callback and is used to update the animation on the screen. The 'animate' function will be responsible for updating the player's position and continually drawing it on the canvas.
