@@ -6,7 +6,7 @@ const checkpointMessage = document.querySelector('.checkpoint-screen > p');
 const ctx = canvas.getContext("2d");
 canvas.width = innerWidth;
 canvas.height = innerHeight;
-const gravity = 0.5
+const gravity = 0.75
 let isCheckpointCollisionDetectionActive = true
 
 const proportionalSize = (size) => {
@@ -18,7 +18,8 @@ class Player {
   constructor() {
     this.position = {
       x: proportionalSize(10),
-      y: proportionalSize(400),
+      // y: proportionalSize(400),
+      y: proportionalSize(10),
     };
     this.velocity = {
       x: 0,
@@ -59,7 +60,26 @@ class Player {
   }
 }
 
+class Platform {
+  constructor(x, y) {
+    this.position = { x, y };
+    this.width = 200;
+    this.height = proportionalSize(40)
+  };
+  draw(){
+    ctx.fillStyle = '#acd157';
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+  }
+}
+
 const player = new Player();
+
+const platformPositions = [
+  {
+    x:500,
+    y:proportionalSize(450)
+  }
+];
 
 const animate = () => {
   requestAnimationFrame(animate)
@@ -98,21 +118,37 @@ const movePlayer = (key, xVelocity, isPressed) => {
       }
       player.velocity.x -= xVelocity
       break;
-    case "ArrowUp", " ", "Spacebar":
-      player.velocity.y -= 8
+    case "ArrowUp":
+    case " ":
+    case "Spacebar":
+      player.velocity.y -= 6;
       break;
-    default:
+    case "ArrowRight":
+      keys.rightKey.pressed = isPressed;
+      if (xVelocity === 0) {
+        player.velocity.x = xVelocity;
+      }
+      player.velocity.x += xVelocity 
       break;
   }
 }
 
 const startGame = () => {
   canvas.style.display = 'block';
-  startScreen.style.display = 'none'
-  player.draw()
+  startScreen.style.display = 'none';
+  animate()
 }
 
 startBtn.addEventListener('click', startGame)
+startGame()
+
+window.addEventListener('keydown',({key})=>{
+  movePlayer(key,8,true)
+});
+
+window.addEventListener('keyup',({key})=>{
+  movePlayer(key,0,false)
+})
 
 //?Coding a game is a great way to grasp fundamental programming principles, while also creating an interactive gaming experience.
 
