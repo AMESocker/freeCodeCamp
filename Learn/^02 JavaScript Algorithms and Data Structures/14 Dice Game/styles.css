@@ -69,7 +69,11 @@ main {
   justify-content: space-around;
   margin-bottom: 15px;
 }
-
+#dice-big {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
 .die {
   width: 40px;
   height: 40px;
