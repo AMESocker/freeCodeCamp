@@ -66,7 +66,7 @@ class Platform {
     this.width = 200;
     this.height = proportionalSize(40)
   };
-  draw(){
+  draw() {
     ctx.fillStyle = '#acd157';
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
@@ -75,10 +75,10 @@ class Platform {
 const player = new Player();
 
 const platformPositions = [
-  { x:  500, y: proportionalSize(450) },
-  { x:  700, y: proportionalSize(400) },
-  { x:  850, y: proportionalSize(350) },
-  { x:  900, y: proportionalSize(350) },
+  { x: 500, y: proportionalSize(450) },
+  { x: 700, y: proportionalSize(400) },
+  { x: 850, y: proportionalSize(350) },
+  { x: 900, y: proportionalSize(350) },
   { x: 1050, y: proportionalSize(150) },
   { x: 2500, y: proportionalSize(450) },
   { x: 2900, y: proportionalSize(400) },
@@ -90,16 +90,17 @@ const platformPositions = [
 ];
 
 const platforms = platformPositions.map(
-  (platform)=>new Platform(platform.x,platform.y)
+  (platform) => new Platform(platform.x, platform.y)
 );
 
 const animate = () => {
   requestAnimationFrame(animate)
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  platforms.forEach((platform)=>platform.draw())
+  platforms.forEach((platform) => platform.draw())
 
   player.update();
+
   if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {
     player.velocity.x = 5
   } else if (keys.leftKey.pressed && player.position.x > proportionalSize(100)) {
@@ -110,15 +111,31 @@ const animate = () => {
       platforms.forEach((platform) => {
         platform.position.x -= 5;
       });
-    }else if(keys.leftKey.pressed && isCheckpointCollisionDetectionActive){
+    } else if (keys.leftKey.pressed && isCheckpointCollisionDetectionActive) {
       platforms.forEach((platform) => {
         platform.position.x += 5;
       });
     }
   }
 
-}//? 41
+  platforms.forEach((platform)=>{
+    const collisionDetectionRules = [
+      player.position.y + player.height <= platform.position.y,
+      player.position.y + player.height + player.velocity.y >= platform.position.y,
+      player.position.x >= platform.position.x - player.width/2,
+      player.position.x <= platform.position.x + platform.width - player.width/3,
+    ]
+    if(collisionDetectionRules.every((rule) => rule)){
+      player.velocity.y = 0
+      return
+    }
+    const platformDetectionRules = [
+      player.position.x >= platform.position.x - player.width/2,
+      player.position.x <= platform.position.x + platform.width - player.width/3
+    ]
+  })
 
+}//? 41
 const keys = {
   rightKey: {
     pressed: false
@@ -146,14 +163,14 @@ const movePlayer = (key, xVelocity, isPressed) => {
     case "ArrowUp":
     case " ":
     case "Spacebar":
-      player.velocity.y -= 6 ;
+      player.velocity.y -= 6;
       break;
     case "ArrowRight":
       keys.rightKey.pressed = isPressed;
       if (xVelocity === 0) {
         player.velocity.x = xVelocity;
       }
-      player.velocity.x += xVelocity 
+      player.velocity.x += xVelocity
       break;
   }
 }
@@ -167,12 +184,12 @@ const startGame = () => {
 startBtn.addEventListener('click', startGame)
 startGame()
 
-window.addEventListener('keydown',({key})=>{
-  movePlayer(key,8,true)
+window.addEventListener('keydown', ({ key }) => {
+  movePlayer(key, 8, true)
 });
 
-window.addEventListener('keyup',({key})=>{
-  movePlayer(key,0,false)
+window.addEventListener('keyup', ({ key }) => {
+  movePlayer(key, 0, false)
 })
 
 //?Coding a game is a great way to grasp fundamental programming principles, while also creating an interactive gaming experience.
