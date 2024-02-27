@@ -14,6 +14,7 @@ const proportionalSize = (size) => {
     ? Math.ceil((size / 500) * innerHeight)
     : size
 }
+
 class Player {
   constructor() {
     this.position = {
@@ -31,7 +32,8 @@ class Player {
   draw() {
     ctx.fillStyle = '#99c9ff';
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    // ctx.drawImage('.//2204_w053_n004_24_medicharacters_p1_24.jpg',this.position.x, this.position.y);
+
+    // ctx.drawImage(imageIcon,this.position.x, this.position.y,this.width, this.height);
     //<a href="https://www.freepik.com/free-vector/viking-cartoon-character-animation-2d-barbarian_29222691.htm#query=game%20character&position=10&from_view=keyword&track=ais&uuid=24cc6391-2d24-48d3-a416-dcbebd53de61">Image by upklyak</a> on Freepik
 
   }
@@ -131,8 +133,16 @@ const animate = () => {
     }
     const platformDetectionRules = [
       player.position.x >= platform.position.x - player.width/2,
-      player.position.x <= platform.position.x + platform.width - player.width/3
+      player.position.x <= platform.position.x + platform.width - player.width/3,
+      player.position.y + player.height >= platform.position.y,
+      player.position.y <= platform.position.y + platform.height
     ]
+
+    if(platformDetectionRules.every((rule) => rule)){
+      player.position.y = platform.position.y + player.height;
+      player.velocity.y = gravity
+
+    }
   })
 
 }//? 41
