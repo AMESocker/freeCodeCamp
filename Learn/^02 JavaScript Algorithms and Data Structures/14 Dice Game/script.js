@@ -22,12 +22,12 @@ const rollDice = () => {
   diceValuesArr = [];
   //!--added--
   diceImages = {
-    1:'<img src="1.jpg">',
-    2:'<img src="2.jpg">',
-    3:'<img src="3.jpg">',
-    4:'<img src="4.jpg">',
-    5:'<img src="5.jpg">',
-    6:'<img src="6.jpg">',
+    1: '<img src="1.jpg">',
+    2: '<img src="2.jpg">',
+    3: '<img src="3.jpg">',
+    4: '<img src="4.jpg">',
+    5: '<img src="5.jpg">',
+    6: '<img src="6.jpg">',
   }
 
   for (let i = 0; i < 5; i++) {
@@ -35,10 +35,11 @@ const rollDice = () => {
     diceValuesArr.push(randomDice)
   }
 
-  listOfAllDice.forEach((dice,index)=>{
-    dice.textContent= diceValuesArr[index]
+  listOfAllDice.forEach((dice, index) => {
+    dice.textContent = diceValuesArr[index]
   })
-  listOfAllBigDice.forEach((dice,index)=>{
+  //!--added--
+  listOfAllBigDice.forEach((dice, index) => {
     dice.innerHTML = diceImages[diceValuesArr[index]]
   })
 };
@@ -48,12 +49,35 @@ const updateStats = () => {
   currentRoundText.textContent = round;
 }
 
-rollDiceBtn.addEventListener('click',()=>{
-  if(rolls === 3){
+const updateRadioOption = (optionNode, score) => {
+  scoreInputs[optionNode].disabled = false;
+  scoreInputs[optionNode].value = score;
+  scoreSpans[optionNode].textContent = `, score = ${score}`
+}
+
+const getHighestDuplicates = (arr) => {
+  const counts = {}
+  for (const num of arr) {
+    if (counts[num]) {
+      counts[num]++
+    } else {
+      counts[num] = 1
+    }
+  }
+  let highestCount = 0
+  for(const num of arr){
+    const count = counts[num]
+  }
+};
+
+rollDiceBtn.addEventListener('click', () => {
+  if (rolls === 3) {
     alert('You have made three rolls this round. Please select a score.')
-  }else{
+  } else {
     rolls++
-    rollDice()
+    rollDice();
+    updateStats();
+    updateRadioOption(0, 10)
   }
 })
 
