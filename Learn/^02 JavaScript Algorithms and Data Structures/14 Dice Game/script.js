@@ -99,6 +99,13 @@ const getHighestDuplicates = (arr) => {
   updateRadioOption(5,0)
 };
 
+const detectFullHouse = (arr)=>{
+  const counts = {}
+  for (const num of arr) {
+    
+  }
+}
+
 const resetRadioOption = ()=>{
   scoreInputs.forEach((input)=>{
     input.disabled = true
@@ -109,9 +116,28 @@ scoreSpans.forEach((span)=>{
 })
 };
 
+const resetGame = ()=>{
+  diceValuesArr = [0,0,0,0,0];
+  score = 0
+  totalScore = 0
+  rolls = 0
+  round = 1
+  listOfAllDice.forEach((dice, index)=>{
+    dice.textContent = diceValuesArr[index] 
+  });
+
+  totalScoreText.textContent = totalScore;
+  scoreHistory.innerHTML = "";
+
+  currentRoundRollsText.textContent = rolls;
+  currentRoundText.textContent = round;
+
+  resetRadioOption()
+}
+
 rollDiceBtn.addEventListener('click', () => {
   //!--Default: 3
-  if (rolls === 300) {
+  if (rolls === 3) {
     alert('You have made three rolls this round. Please select a score.')
   } else {
     rolls++
@@ -139,9 +165,24 @@ keepScoreBtn.addEventListener('click',()=>{
   let achieved
   for (const radioButton of scoreInputs) {
     if(radioButton.checked){
-      radioButton.value = selectedValue
-      radioButton.id = achieved
+      selectedValue = radioButton.value
+      achieved = radioButton.id
       break
     }
+  }
+  if(selectedValue){
+    rolls = 0;
+    round++;
+    updateStats();
+    resetRadioOption();
+    updateScore(selectedValue,achieved);
+    if(round>6){
+      setTimeout(()=>{alert(`Game Over! Your total score is ${totalScore}`);
+    resetGame()
+    },500)
+    }
+  }else{
+      alert("Please select an option or roll the dice")
+    
   }
 })
