@@ -80,10 +80,17 @@ main {
   text-align: center;
   margin-right: 15px;
   border: 4px solid var(--black);
+  border-radius: 7px;
   padding: 10px;
 }
 .die-big {
-  padding:5px;
+  /* width: 40px; */
+  height: 40px;
+  /* text-align: center; */
+  margin-right: 15px;
+  /* border: 4px solid var(--black); */
+  border-radius: 7px;
+  padding: 10px;
 }
 .rounds-text {
   text-align: center;

@@ -22,12 +22,12 @@ const rollDice = () => {
   diceValuesArr = [];
   //!--added--
   diceImages = {
-    1: '<img src="1.jpg">',
-    2: '<img src="2.jpg">',
-    3: '<img src="3.jpg">',
-    4: '<img src="4.jpg">',
-    5: '<img src="5.jpg">',
-    6: '<img src="6.jpg">',
+    1: '<img height="40" width="40" src="1.jpg">',
+    2: '<img height="40" width="40" src="2.jpg">',
+    3: '<img height="40" width="40" src="3.jpg">',
+    4: '<img height="40" width="40" src="4.jpg">',
+    5: '<img height="40" width="40" src="5.jpg">',
+    6: '<img height="40" width="40" src="6.jpg">',
   }
 
   for (let i = 0; i < 5; i++) {
@@ -53,6 +53,12 @@ const updateRadioOption = (optionNode, score) => {
   scoreInputs[optionNode].disabled = false;
   scoreInputs[optionNode].value = score;
   scoreSpans[optionNode].textContent = `, score = ${score}`
+}
+
+const updateScore = (selectedValue, achieved) => {
+  totalScore += parseInt(selectedValue)
+  totalScoreText.textContent = totalScore
+  scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`
 }
 
 const getHighestDuplicates = (arr) => {
@@ -83,16 +89,14 @@ const getHighestDuplicates = (arr) => {
 
   const sumOfAllDice = diceValuesArr.reduce((a,b)=> a+b,0);
   
-  if(highestCount >= 5){
-    updateRadioOption(0, sumOfAllDice)
-  }
+
   if(highestCount >= 4){
     updateRadioOption(1, sumOfAllDice)
   }
   if(highestCount >= 3){
     updateRadioOption(0, sumOfAllDice)
   }
-  updateRadioOption(6,0)
+  updateRadioOption(5,0)
 };
 
 const resetRadioOption = ()=>{
@@ -106,7 +110,8 @@ scoreSpans.forEach((span)=>{
 };
 
 rollDiceBtn.addEventListener('click', () => {
-  if (rolls === 30) {
+  //!--Default: 3
+  if (rolls === 300) {
     alert('You have made three rolls this round. Please select a score.')
   } else {
     rolls++
@@ -128,3 +133,15 @@ rulesBtn.addEventListener("click", () => {
     rulesContainer.style.display = "none";
   }
 });
+
+keepScoreBtn.addEventListener('click',()=>{
+  let selectedValue
+  let achieved
+  for (const radioButton of scoreInputs) {
+    if(radioButton.checked){
+      radioButton.value = selectedValue
+      radioButton.id = achieved
+      break
+    }
+  }
+})

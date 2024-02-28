@@ -46,6 +46,13 @@
 
   <main>
     <form id="game">
+      <div id="dice-big">
+        <div class="die-big"></div>
+        <div class="die-big"></div>
+        <div class="die-big"></div>
+        <div class="die-big"></div>
+        <div class="die-big"></div>
+      </div>
       <div id="dice">
         <div class="die"></div>
         <div class="die"></div>
@@ -81,10 +88,6 @@
           <label for="large-straight">Large straight<span></span></label>
         </div>
         <div>
-          <input type="radio" name="score-options" id="five-of-a-kind" value="five-of-a-kind" disabled />
-          <label for="five-of-a-kind">Five of a kind<span></span></label>
-        </div>
-        <div>
           <input type="radio" name="score-options" id="none" value="none" disabled />
           <label for="none">None of the above<span></span></label>
         </div>
@@ -102,13 +105,7 @@
       <h3>Score history (Total score: <span id="total-score">0</span>)</h3>
       <ol id="score-history"></ol>
     </div>
-    <div id="dice-big">
-      <div class="die-big"></div>
-      <div class="die-big"></div>
-      <div class="die-big"></div>
-      <div class="die-big"></div>
-      <div class="die-big"></div>
-    </div>
+
   </main>
   <script src="./script.js"></script>
 </body>
