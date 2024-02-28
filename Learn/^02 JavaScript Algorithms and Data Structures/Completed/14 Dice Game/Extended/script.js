@@ -61,6 +61,12 @@ const updateScore = (selectedValue, achieved) => {
   scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`
 }
 
+const chance = (arr)=>{
+  const sumOfAllDice = diceValuesArr.reduce((a,b)=> a+b,0);
+  console.log(sumOfAllDice)
+  updateRadioOption(5,sumOfAllDice)
+}
+
 const getHighestDuplicates = (arr) => {
   const counts = {}
 
@@ -80,9 +86,6 @@ const getHighestDuplicates = (arr) => {
       highestCount = count
     }
     if(count >= 4 && count > highestCount){
-      highestCount = count
-    }
-    if(count >= 5 && count > highestCount){
       highestCount = count
     }
   }
@@ -171,6 +174,7 @@ rollDiceBtn.addEventListener('click', () => {
     getHighestDuplicates(diceValuesArr)
     detectFullHouse(diceValuesArr)
     checkForStraights(diceValuesArr)
+    chance(diceValuesArr)
   }
 })
 
