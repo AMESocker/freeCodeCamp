@@ -3,7 +3,6 @@ const convertBtn = document.getElementById('convert-btn');
 const output = document.getElementById('output');
 
 
-
 const romanNumberConvert = (arabic) => {
 
   let roman = []
@@ -25,14 +24,26 @@ const romanNumberConvert = (arabic) => {
   ];
 
   let arabicNum = arabic
+  
   for (let i = 0; i < romanObj.length; i++) {
-        // console.log(arabicNum,romanObj[i].subArabic)
-    // if(arabicNum >= romanObj[i].arabic && 
-    //   romanObj[i].arabic){
+        // console.log(arabicNum,2*romanObj[i].arabic)
+    if(arabicNum >=3*romanObj[i].arabic){
+      console.log('3x',arabicNum, romanObj[i])
+      roman.push(romanObj[i].roman)
+      arabicNum -= romanObj[i].arabic
+      roman.push(romanObj[i].roman)
+      arabicNum -= romanObj[i].arabic
+      roman.push(romanObj[i].roman)
+      arabicNum -= romanObj[i].arabic
 
-    // }
+    }else if(arabicNum >=2*romanObj[i].arabic){
+      console.log('2x',arabicNum, romanObj[i])
+      roman.push(romanObj[i].roman)
+      arabicNum -= romanObj[i].arabic
+      roman.push(romanObj[i].roman)
+      arabicNum -= romanObj[i].arabic
 
-     if (Math.floor(arabicNum >= romanObj[i].subArabic && arabicNum / romanObj[i].subArabic) == 1) {
+    }else if (Math.floor(arabicNum >= romanObj[i].subArabic && arabicNum / romanObj[i].subArabic) == 1) {
       console.log(arabicNum, romanObj[i])
 
       roman.push(romanObj[i].roman)
@@ -58,6 +69,7 @@ const romanNumberConvert = (arabic) => {
     }
   }
   console.log(arabic, roman.join(''))
+  output.textContent = roman.join('')
 }
 
 
@@ -84,7 +96,7 @@ const tests = [
   // 16,
   // 649,
   1023,
-  // 3999
+  3999
   //IX,XVI,DCXLIX,MXXIII,MMMCMXCIX
 ]
 for (let i = 0; i < tests.length; i++) {
