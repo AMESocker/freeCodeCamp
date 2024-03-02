@@ -1,0 +1,11 @@
+main{
+  text-align: center;
+}
+body{
+  background-color:#252850;
+  color:white;
+}
+#result{
+  padding:30px;
+  font-size: x-large;
+}

@@ -1,0 +1,9 @@
+body{
+  text-align: center;
+  background-color:#EA899A;
+  color:white;
+}
+#output{
+  padding:30px;
+  font-size: x-large;
+}

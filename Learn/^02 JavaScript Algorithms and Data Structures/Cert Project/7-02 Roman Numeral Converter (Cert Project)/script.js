@@ -25,34 +25,43 @@ const romanNumberConvert = (arabic) => {
   ];
 
   let arabicNum = arabic
-  // for (let i = 0; i < romanObj.length; i++) {
-  //   if (Math.floor(arabicNum / romanObj[i].subArabic) == 1) {
-  //     console.log(arabicNum, romanObj[i])
+  for (let i = 0; i < romanObj.length; i++) {
+        // console.log(arabicNum,romanObj[i].subArabic)
+    // if(arabicNum >= romanObj[i].arabic && 
+    //   romanObj[i].arabic){
 
-  //     roman.push(romanObj[i].roman)
-  //     arabicNum -= romanObj[i].subArabic
+    // }
 
-  //   } else if (arabicNum >= romanObj[i].arabic) {
-  //     console.log(arabicNum, romanObj[i])
+     if (Math.floor(arabicNum >= romanObj[i].subArabic && arabicNum / romanObj[i].subArabic) == 1) {
+      console.log(arabicNum, romanObj[i])
 
-  //     roman.push(romanObj[i].roman)
-  //     arabicNum -= romanObj[i].arabic
+      roman.push(romanObj[i].roman)
+      arabicNum -= romanObj[i].subArabic
 
-  //     if (arabicNum >= romanObj[i].arabic) {
-  //       console.log('again')
-  //       for (let j = 0; j < romanObj.length; j++) {
-  //         if (arabicNum >= romanObj[j].arabic){
-            
-  //           console.log(arabicNum, romanObj[j])
-  //           roman.push(romanObj[j].roman)
-  //           arabicNum -= romanObj[j].arabic
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+    } else if (arabicNum >= romanObj[i].arabic) {
+      console.log(arabicNum, romanObj[i])
+
+      roman.push(romanObj[i].roman)
+      arabicNum -= romanObj[i].arabic
+
+      // if (arabicNum >= romanObj[i].arabic) {
+      //   console.log('again')
+      //   for (let j = 0; j < romanObj.length; j++) {
+      //     if (arabicNum >= romanObj[j].arabic){
+
+      //       console.log(arabicNum, romanObj[j])
+      //       roman.push(romanObj[j].roman)
+      //       arabicNum -= romanObj[j].arabic
+      //     }
+      //   }
+      // }
+    }
+  }
   console.log(arabic, roman.join(''))
 }
+
+
+
 convertBtn.addEventListener('click', () => {
   if (number.value === '') {
     output.textContent = 'Please enter a valid number'
@@ -72,10 +81,10 @@ convertBtn.addEventListener('click', () => {
 //^----Tests----
 const tests = [
   // 9,
-  //  16, 
+  // 16,
   // 649,
-  // 1023,
-  //  3999
+  1023,
+  // 3999
   //IX,XVI,DCXLIX,MXXIII,MMMCMXCIX
 ]
 for (let i = 0; i < tests.length; i++) {

@@ -2,10 +2,10 @@ main{
   text-align: center;
 }
 body{
-  background-color:#100039;
+  background-color:#212121;
   color:white;
 }
-#result{
+#output{
   padding:30px;
   font-size: x-large;
 }
