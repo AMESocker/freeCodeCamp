@@ -19,4 +19,4 @@ const testPrice = [
   3.26
 ]
 
-const 
+// const 
