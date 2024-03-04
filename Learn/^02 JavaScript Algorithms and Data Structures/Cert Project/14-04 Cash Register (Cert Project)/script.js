@@ -2,7 +2,7 @@ const cashInput = document.getElementById('cash');
 const purchaseBtn = document.getElementById('purchase-btn')
 const changeDue = document.getElementById('change-due')
 
-let price = 1.87;
+let price = 11;
 let cid = [
   ["PENNY", 1.01],
   ["NICKEL", 2.05],
@@ -16,13 +16,32 @@ let cid = [
 ];
 let cash = cashInput.value
 
-purchaseBtn.addEventListener('click', () => {
-  if (cash == price) {
+const registerTests = (cash,price) => {
+  if (cash === price) {
+    console.log('No change due')
     changeDue.textContent = 'No change due - customer paid with exact cash'
   } else if (cash < price) {
-    alert('Customer does not have enough money to purchase the item')
+    console.log('Not enough money')
+    // alert('Customer does not have enough money to purchase the item')
   }
-})
+}
+
+// purchaseBtn.addEventListener('click', () => {
+//   if (cash === price) {
+//     changeDue.textContent = 'No change due - customer paid with exact cash'
+//   } else if (cash < price) {
+//     alert('Customer does not have enough money to purchase the item')
+//   }
+// })
+
+const tests = [//(cash,price)
+  registerTests(1,1),
+  registerTests(1,11)
+
+]
+for(let i = 0;i<tests.length;i++){
+  tests[i]
+}
 
 //^----Tests----
 //cash < price, textContent = 'Customer does not have enough money to purchase the item'
