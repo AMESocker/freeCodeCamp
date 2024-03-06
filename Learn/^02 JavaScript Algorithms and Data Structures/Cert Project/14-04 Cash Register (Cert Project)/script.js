@@ -62,42 +62,57 @@ let cash = cashInput.value
 
 let display = []
 // console.log(cid[1][1])
-
+let pageDisplay = []
 
 const cashValues = (changeDue, cid) => {
-  let newChangeAmount = 0.00
-  newChangeAmount = changeDue
-  
+  let newChangeAmount = changeDue
+  let currentCid = cid
+  console.log(...currentCid)
   for (let i = 8; i >= 0; i--) {
-  let numOfUnit = Math.floor(newChangeAmount / cidDen[i][1]);
+    let numOfUnit = Math.floor(newChangeAmount / cidDen[i][1]);
     let numOfUnitCid = (cid[i][1] / cidDen[i][1]);
-    
-    // console.log(cidDen[i][0], newChangeAmount ,numOfUnit,numOfUnitCid ,cid[i][1])
-    // console.log(cidDen[i][0],numOfUnit,numOfUnitCid)
-    
-    // console.log(newChangeAmount,numOfUnit ,numOfUnitCid)
-    if (newChangeAmount > 0 && numOfUnit > 0 && numOfUnitCid >= 1) {
-      if(numOfUnit>=numOfUnitCid){
-        for (let j = 0; j < numOfUnitCid; j++) {
-          newChangeAmount = Math.round(newChangeAmount*100)/100-(cidDen[i][1])
-          // console.log(  Math.round(newChangeAmount*100)/100  )
-          console.log(cidDen[i][0])
-          // console.log('newAmount', newChangeAmount.toFixed(2))
-        }
-      }else{
-        for (let j = 0; j < numOfUnit; j++) {
-          newChangeAmount = Math.round(newChangeAmount*100)/100-(cidDen[i][1])
-          console.log(cidDen[i][0])
-
-          // console.log(cidDen[i][0], newChangeAmount.toFixed(2))
-        }
+    console.log(cidDen[i][0],'-','NOU:',numOfUnit,'NOUID:',numOfUnitCid,'NCA:',newChangeAmount)
+    if (
+      numOfUnit > numOfUnitCid &&
+      newChangeAmount > 0 &&
+      numOfUnit > 0 &&
+      numOfUnitCid > 0
+    )
+    {
+      console.log('A' )
+      for (let j = 0; j < numOfUnitCid; j++) {
+        newChangeAmount =
+        Math.round(newChangeAmount * 100) / 100 - cidDen[i][1];
+        display.push(cidDen[i])
+        console.log(newChangeAmount, numOfUnitCid)
       }
-      // console.log('Change Due:',newChangeAmount,'NOU',numOfUnit)
+    } else if(numOfUnit > numOfUnitCid && numOfUnitCid > 0){
+      console.log('B')
+      for (let j = 0; j < numOfUnit; j++) {
+        newChangeAmount =
+          (Math.round(newChangeAmount * 100) / 100) - cidDen[i][1];
+        display.push(cidDen[i])
+        console.log(newChangeAmount)
+      }
     }
-    // console.log(cidDen[i][0],cid[i][1],cidDen[i][1]);
+  }
+  cvDisplay()
+}
+
+const cvDisplay = () => { 
+  let total = 0
+  for (let i = 0; i < display.length; i++) {
+    total += display[i][1]
+    if(i==0){
+      // console.log(display[i][0])
+    }else{
+      // console.log(display[i][0],display[i-1][0])
+    }
+    // console.log(display[i][0],`$${total}`)
+
+    // console.log(display[0],`$${total}`)
   }
 
-  // console.log(...display)
 }
 
 const registerTests = (price, cash, cid) => {
@@ -117,7 +132,7 @@ const registerTests = (price, cash, cid) => {
       console.log('Status: INSUFFICIENT_FUNDS')
     } else {
       cashValues(changeDue, cid)
-      console.log('Change due:', changeDue, 'CID:', totalCid)
+      // console.log('Change due:', changeDue, 'CID:', totalCid)
     }
 
   }
@@ -132,14 +147,14 @@ const registerTests = (price, cash, cid) => {
 // })
 
 const tests = [//(price,cash)
-  // registerTests(1,1),        //No change due
-  registerTests(11,1),      //Not enough money
+  // registerTests(1,1),              //No change due
+  // registerTests(11,1),             //Not enough money
+  // registerTests(19.5,20,cidB),     //Status: INSUFFICIENT_FUNDS
 
-  registerTests(19.5,20,cidA),  //Status: OPEN QUARTER: $0.5
-  // registerTests(3.26, 100, cidA),//Status: OPEN TWENTY: $60 TEN: $20 FIVE: $15 ONE: $1 QUARTER: $0.5 DIME: $0.2 PENNY: $0.04
-  // registerTests(19.5,20,cidB),
-  // registerTests(19.5,20,cidC),
-  // registerTests(19.5,20,cidD),
+  registerTests(19.5, 20, cidA),  //Status: OPEN QUARTER: $0.5
+  // registerTests(3.26, 100, cidA), //Status: OPEN TWENTY: $60 TEN: $20 FIVE: $15 ONE: $1 QUARTER: $0.5 DIME: $0.2 PENNY: $0.04
+  // registerTests(19.5,20,cidC),   //Status: INSUFFICIENT_FUNDS
+  // registerTests(19.5,20,cidD),   //Status: CLOSED PENNY: $0.5
 ]
 for (let i = 0; i < tests.length; i++) {
   tests[i]
@@ -181,7 +196,8 @@ When price is 3.26, the value in the #cash element is 100, cidA is
 ["TEN", 20], 
 ["TWENTY", 60], 
 ["ONE HUNDRED", 100]]
-, and the #purchase-btn element is clicked, the value in the #change-due element should be Status: OPEN TWENTY: $60 TEN: $20 FIVE: $15 ONE: $1 QUARTER: $0.5 DIME: $0.2 PENNY: $0.04
+, and the #purchase-btn element is clicked, the value in the #change-due element should be 
+Status: OPEN TWENTY: $60 TEN: $20 FIVE: $15 ONE: $1 QUARTER: $0.5 DIME: $0.2 PENNY: $0.04
 
 When price is 19.5, the value in the #cash element is 20, cidB is 
 [["PENNY", 0.01], 
@@ -193,7 +209,8 @@ When price is 19.5, the value in the #cash element is 20, cidB is
 ["TEN", 0], 
 ["TWENTY", 0], 
 ["ONE HUNDRED", 0]]
-, and the #purchase-btn element is clicked, the value in the #change-due element should be Status: INSUFFICIENT_FUNDS
+, and the #purchase-btn element is clicked, the value in the #change-due element should be 
+Status: INSUFFICIENT_FUNDS
 
 When price is 19.5, the value in the #cash element is 20, cidC is 
 [["PENNY", 0.01], 
@@ -205,7 +222,8 @@ When price is 19.5, the value in the #cash element is 20, cidC is
 ["TEN", 0], 
 ["TWENTY", 0], 
 ["ONE HUNDRED", 0]]
-, and the #purchase-btn element is clicked, the value in the #change-due element should be Status: INSUFFICIENT_FUNDS
+, and the #purchase-btn element is clicked, the value in the #change-due element should be 
+Status: INSUFFICIENT_FUNDS
 
 When price is 19.5, the value in the #cash element is 20, cidD is 
 [["PENNY", 0.5], 
