@@ -12,7 +12,97 @@ const specialAttack = document.getElementById("special-attack");
 const specialDefense = document.getElementById("special-defense");
 const speed = document.getElementById("speed");
 
+// const pokemonAPI = 'https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/';
+const pokemonAPI = 'https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/metapod';
+
+const fetchData = async () => {
+  try{
+    const res = await fetch(pokemonAPI);
+    const data = await res.json();
+    console.log(data)
+  }catch(err){
+    console.log(err)
+  }
+};
+let metapodEx =
+{
+  "base_experience": 72,
+  "height": 7,
+  "id": 11,
+  "name": "metapod",
+  "order": 15,
+  "sprites": {
+      "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/11.png",
+      "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/11.png",
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
+      "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/11.png"
+  },
+  "stats": [
+      {
+          "base_stat": 50,
+          "effort": 0,
+          "stat": {
+              "name": "hp",
+              "url": "https://pokeapi.co/api/v2/stat/1/"
+          }
+      },
+      {
+          "base_stat": 20,
+          "effort": 0,
+          "stat": {
+              "name": "attack",
+              "url": "https://pokeapi.co/api/v2/stat/2/"
+          }
+      },
+      {
+          "base_stat": 55,
+          "effort": 2,
+          "stat": {
+              "name": "defense",
+              "url": "https://pokeapi.co/api/v2/stat/3/"
+          }
+      },
+      {
+          "base_stat": 25,
+          "effort": 0,
+          "stat": {
+              "name": "special-attack",
+              "url": "https://pokeapi.co/api/v2/stat/4/"
+          }
+      },
+      {
+          "base_stat": 25,
+          "effort": 0,
+          "stat": {
+              "name": "special-defense",
+              "url": "https://pokeapi.co/api/v2/stat/5/"
+          }
+      },
+      {
+          "base_stat": 30,
+          "effort": 0,
+          "stat": {
+              "name": "speed",
+              "url": "https://pokeapi.co/api/v2/stat/6/"
+          }
+      }
+  ],
+  "types": [
+      {
+          "slot": 1,
+          "type": {
+              "name": "bug",
+              "url": "https://pokeapi.co/api/v2/type/7/"
+          }
+      }
+  ],
+  "weight": 99
+}
+fetchData();
 //^----Tests----
+
+
+
 /*PokéAPI Proxy
 Usage
 Use the endpoint https://pokeapi-proxy.freecodecamp.rocks/api/pokemon to see a list of all valid Pokémon names, id numbers, and URLs.
