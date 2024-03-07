@@ -1,6 +1,6 @@
 const cashInput = document.getElementById('cash');
 const purchaseBtn = document.getElementById('purchase-btn')
-const changeDue = document.getElementById('change-due')
+const changeDueEle = document.getElementById('change-due')
 
 let price = 11;
 let cidDen = [
@@ -66,59 +66,82 @@ let pageDisplay = []
 
 const cashValues = (changeDue, cid) => {
   let newChangeAmount = changeDue
-  let currentCid = cid
-  console.log(...currentCid)
+  let totalCid = 0
+  // console.log(...currentCid)
   for (let i = 8; i >= 0; i--) {
+    totalCid += cid[i][1]
+    let totalDen = 0
+
     let numOfUnit = Math.floor(newChangeAmount / cidDen[i][1]);
     let numOfUnitCid = (cid[i][1] / cidDen[i][1]);
-    console.log(cidDen[i][0],'-','NOU:',numOfUnit,'NOUID:',numOfUnitCid,'NCA:',newChangeAmount)
-    if (
-      numOfUnit > numOfUnitCid &&
-      newChangeAmount > 0 &&
-      numOfUnit > 0 &&
-      numOfUnitCid > 0
-    )
-    {
-      console.log('A' )
-      for (let j = 0; j < numOfUnitCid; j++) {
-        newChangeAmount =
-        Math.round(newChangeAmount * 100) / 100 - cidDen[i][1];
-        display.push(cidDen[i])
-        console.log(newChangeAmount, numOfUnitCid)
-      }
-    } else if(numOfUnit > numOfUnitCid && numOfUnitCid > 0){
-      console.log('B')
+
+    // console.log(cidDen[i][0], '-', 'NOU:', numOfUnit, 'NOUID:', numOfUnitCid, 'NCA:', newChangeAmount)
+
+    if (numOfUnit < numOfUnitCid && numOfUnit > 0 && numOfUnitCid > 0 && newChangeAmount > 0) {
       for (let j = 0; j < numOfUnit; j++) {
-        newChangeAmount =
-          (Math.round(newChangeAmount * 100) / 100) - cidDen[i][1];
-        display.push(cidDen[i])
-        console.log(newChangeAmount)
+        // console.log(cidDen[i][0])
+        // console.log(display[display.length-2],cidDen[i][0])
+
+        totalDen += cidDen[i][1]
+        if (display[display.length-1] != `${cidDen[i][0]}:`) {
+          display.push(`${cidDen[i][0]}:`)
+        }
+        console.log(totalDen)
+        newChangeAmount = Math.round(newChangeAmount * 100) / 100 - cidDen[i][1];
+        numOfUnitCid--
       }
+
+      display.push(`$${totalDen}`)
+
+
+    } else if (numOfUnit > numOfUnitCid && numOfUnitCid > 0) {
+      for (let j = 0; j < numOfUnitCid; j++) {
+        console.log(cidDen[i][0])
+
+        display.push(cidDen[i])
+        newChangeAmount = (Math.round(newChangeAmount * 100) / 100) - cidDen[i][1];
+        if (newChangeAmount > 0) {
+          // console.log('Status: INSUFFICIENT_FUNDS')
+        }
+        // console.log('After:', cidDen[i][0], numOfUnitCid, newChangeAmount)
+      }
+
+    } else if (numOfUnit == numOfUnitCid && numOfUnitCid > 0) {
+      for (let j = 0; j < numOfUnit; j++) {
+        console.log('C')
+        display.push(cidDen[i])
+        newChangeAmount = Math.round(newChangeAmount * 100) / 100 - cidDen[i][1];
+        numOfUnitCid--
+        console.log(totalCid,cidDen[i][1])
+        totalCid -= cidDen[i][1]
+      }
+
     }
+
+    // console.log(cidDen[i][0], '-', 'NOU:', numOfUnit, 'NOUID:', numOfUnitCid, 'NCA:', newChangeAmount)
   }
-  cvDisplay()
+  console.log(display.join(' '))
+  if (totalCid < 0.01) {
+    changeDueEle.textContent += 'Status: CLOSED'
+    changeDueEle.textContent += `${display}`
+  } else if (newChangeAmount > 0) {
+    changeDueEle.textContent += 'Status: INSUFFICIENT_FUNDS'
+  } else {
+    changeDueEle.textContent += `Status: OPEN ${display.join(' ')}`
+   
+  }
 }
 
-const cvDisplay = () => { 
-  let total = 0
-  for (let i = 0; i < display.length; i++) {
-    total += display[i][1]
-    if(i==0){
-      // console.log(display[i][0])
-    }else{
-      // console.log(display[i][0],display[i-1][0])
-    }
-    // console.log(display[i][0],`$${total}`)
+const cdElement = () =>{
 
-    // console.log(display[0],`$${total}`)
-  }
 
 }
+
 
 const registerTests = (price, cash, cid) => {
   if (cash === price) {
     console.log('No change due')
-    changeDue.textContent = 'No change due - customer paid with exact cash'
+    changeDueEle.textContent = 'No change due - customer paid with exact cash'
   } else if (cash < price) {
     console.log('Not enough money')
     // alert('Customer does not have enough money to purchase the item')
@@ -129,7 +152,7 @@ const registerTests = (price, cash, cid) => {
       totalCid += cid[i][1]
     }
     if (changeDue > totalCid) {
-      console.log('Status: INSUFFICIENT_FUNDS')
+      changeDueEle.textContent = 'Status: INSUFFICIENT_FUNDS'
     } else {
       cashValues(changeDue, cid)
       // console.log('Change due:', changeDue, 'CID:', totalCid)
@@ -145,7 +168,7 @@ const registerTests = (price, cash, cid) => {
 //     alert('Customer does not have enough money to purchase the item')
 //   }
 // })
-
+//^----Tests----
 const tests = [//(price,cash)
   // registerTests(1,1),              //No change due
   // registerTests(11,1),             //Not enough money
@@ -154,13 +177,12 @@ const tests = [//(price,cash)
   registerTests(19.5, 20, cidA),  //Status: OPEN QUARTER: $0.5
   // registerTests(3.26, 100, cidA), //Status: OPEN TWENTY: $60 TEN: $20 FIVE: $15 ONE: $1 QUARTER: $0.5 DIME: $0.2 PENNY: $0.04
   // registerTests(19.5,20,cidC),   //Status: INSUFFICIENT_FUNDS
-  // registerTests(19.5,20,cidD),   //Status: CLOSED PENNY: $0.5
+  // registerTests(19.5, 20, cidD),   //Status: CLOSED PENNY: $0.5
 ]
 for (let i = 0; i < tests.length; i++) {
   tests[i]
 }
 
-//^----Tests----
 //cash < price, textContent = 'Customer does not have enough money to purchase the item'
 //cash = price, textContent = 'No change due - customer paid with exact cash'
 
