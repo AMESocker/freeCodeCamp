@@ -7,3 +7,17 @@ body{
   padding:30px;
   font-size: x-large;
 }
+img{
+  width: 200px;
+}
+h1, img{
+  margin: 0 0 2px;
+}
+.results{
+  padding: 2px
+}
+#sprite{
+  background-color: rgb(105, 105, 160);
+  border-radius: 20px;
+
+}
