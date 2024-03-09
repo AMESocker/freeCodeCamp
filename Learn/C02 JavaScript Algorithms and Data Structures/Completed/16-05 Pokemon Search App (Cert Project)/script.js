@@ -21,79 +21,78 @@ const cleanData = (input) => {
   fetchData(pokemonAPI)
 }
 const fetchData = async (pokemon) => {
-  try{
+  try {
     const res = await fetch(pokemon);
     const data = await res.json();
-        console.log('Yes')
-        displayData(data)
+    console.log('Yes')
+    displayData(data)
 
-    }catch(err){
-      alert('Pokémon not found')
+  } catch (err) {
+    alert('Pokémon not found')
     // console.log(err)
     // displayData(err)
   }
 };
 
 const displayData = (data) => {
- 
-    console.log(data)
-pokemonName.textContent += data.name.toUpperCase()
-pokemonId.textContent +=   data.id
-weight.textContent += data.weight
-height.textContent += data.height
-hp.textContent += data.stats[0].base_stat
-attack.textContent += data.stats[1].base_stat
-defense.textContent += data.stats[2].base_stat
-specialAttack.textContent += data.stats[3].base_stat
-specialDefense.textContent += data.stats[4].base_stat
-speed.textContent += data.stats[5].base_stat
 
-let dataSprite = data.sprites.front_default
-img.innerHTML += `
-<img id='sprite' src=${dataSprite}>`
-let dataType = data.types[0].type.name.toUpperCase()
+  console.log(data)
+  pokemonName.textContent += data.name.toUpperCase();
+  pokemonId.textContent += data.id;
+  weight.textContent += data.weight;
+  height.textContent += data.height;
+  hp.textContent += data.stats[0].base_stat;
+  attack.textContent += data.stats[1].base_stat;
+  defense.textContent += data.stats[2].base_stat;
+  specialAttack.textContent += data.stats[3].base_stat;
+  specialDefense.textContent += data.stats[4].base_stat;
+  speed.textContent += data.stats[5].base_stat;
 
-types.innerHTML +=
-`<div>${dataType}</div>
-`
-if(data.types[1]){
-    let dataType1 = data.types[1].type.name.toUpperCase()
-    types.innerHTML +=
-`
-<div>${dataType1}</div>
-`
+  let dataSprite = data.sprites.front_default
+  img.innerHTML += `
+    <img id='sprite' src=${dataSprite}>`
+  let dataType = data.types[0].type.name.toUpperCase()
+
+  types.innerHTML +=`
+    <div>${dataType}</div>
+    `;
+  if (data.types[1]) {
+    let dataType1 = data.types[1].type.name.toUpperCase();
+    types.innerHTML +=`      
+      <div>${dataType1}</div>
+      `;
+  }
+
 }
-  
-}
 
-searchButton.addEventListener('click',()=>{
-    let elements = [
-        pokemonName,
-        pokemonId,
-        weight,
-        height,
-        hp,
-        attack,
-        defense,
-        specialAttack,
-        specialDefense,
-        speed,
-    ]
-for (let i = 0; i < elements.length; i++) {
+searchButton.addEventListener('click', () => {
+  let elements = [
+    pokemonName,
+    pokemonId,
+    weight,
+    height,
+    hp,
+    attack,
+    defense,
+    specialAttack,
+    specialDefense,
+    speed,
+  ]
+  for (let i = 0; i < elements.length; i++) {
     elements[i].textContent = ''
-}
-types.innerHTML =''
-img.innerHTML = ''
-    cleanData(searchInput.value)
+  }
+  types.innerHTML = ''
+  img.innerHTML = ''
+  cleanData(searchInput.value)
 })
 
 //^----Tests----
 const tests = [
-//   'Red',
-//   'Pikachu',
-//   '94'
+  //   'Red',
+  //   'Pikachu',
+  //   '94'
 ]
-for(let i = 0;i<tests.length;i++){
+for (let i = 0; i < tests.length; i++) {
   cleanData(tests[i])
 }
 
