@@ -19,10 +19,14 @@ def generate_password(length,nums, special_chars, uppercase, lowercase):
         for _ in range(length):
             password += secrets.choice(all_characters)
         constraints = [
-            (nums,'[0-9]',''),
-            (lowercase ,'[a-z]'),
-            (uppercase, '[a-z]')
+            (nums,r'\d',''),
+            (lowercase ,r'[a-z]'),
+            (uppercase, r'[A-Z]'),
+            (special_chars,fr'[{symbols}]')
             ]
+        # Check constraints
+        for constraint, pattern in constraints:
+            len(re.findall(pattern, password))
     return password
 
 # new_password = generate_password(8)
@@ -30,12 +34,13 @@ def generate_password(length,nums, special_chars, uppercase, lowercase):
 
 #
 
-pattern = '[^a-z]t' #"l+"
-quote = 'Not all those who wander are lost.'
-print(re.findall(pattern,quote))
 
 # Start 01/25/24
 """ 
+
+pattern = r'\W' #"l+"
+quote = '_'
+print(re.findall(pattern,quote))
 print(all_characters)
 print(secrets.choice(all_characters)) 
 # pattern = re.compile('l+')
