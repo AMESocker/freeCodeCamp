@@ -7,8 +7,17 @@ rods = {
   'C':[],  
 }
 
-def move():
+def move(n, source, auxiliary, target):
   print(rods)
-
-move()
+  for i in range(number_of_moves):
+    remainder = (i + 1) % 3
+    if remainder == 1:
+      print(f'Move {i + 1} allowed between {source} and {target}')
+    elif remainder == 2:
+      print(f'Move {i + 1} allowed between {source} and {auxiliary}')
+    elif remainder == 0:
+      print(f'Move {i + 1} allowed between {auxiliary} and {target}')
+  # display starting configuration
+# initiate call from source A to target C with auxiliary B
+move(NUMBER_OF_DISKS,'A', 'B', 'C')
 # print(type(rods['A']))
