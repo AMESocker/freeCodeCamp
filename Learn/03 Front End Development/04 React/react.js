@@ -189,7 +189,7 @@ class TypesOfFood extends React.Component {
 
 // Change code below this line
 ReactDOM.render(<TypesOfFood />, document.getElementById('root'))*/
-//? 13 Write a React Component from Scratch
+/*//? 13 Write a React Component from Scratch
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -203,6 +203,50 @@ class MyComponent extends React.Component {
   }
 }
 ReactDOM.render(<MyComponent />, document.getElementById('root'))
-//? 14
-//? 15
+*/
+/*//? 14 Pass Props to a Stateless Functional Component
+const CurrentDate = (props) => {
+  return (
+    <div>
+      <p>The current date is: {props.date} </p>
+    </div>
+  );
+};
+
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>What date is it?</h3>
+        <CurrentDate date={Date()} />
+      </div>
+    );
+  }
+};
+ReactDOM.render(<Calendar />, document.getElementById('root'))*/
+//? 15 Pass an Array as Props
+const List = (props) => {
+  return <p>{props.tasks.join(", ")}</p>
+};
+
+class ToDo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>To Do Lists</h1>
+        <h2>Today</h2>
+        <List tasks={["walk dog", "workout"]} />
+        <h2>Tomorrow</h2>
+        <List tasks={["walk dog", "workout", "clean"]}/>
+      </div>
+    );
+  }
+};
+ReactDOM.render(<ToDo />, document.getElementById('root'))
 //? 16
