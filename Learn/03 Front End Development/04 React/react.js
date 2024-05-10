@@ -1,6 +1,6 @@
-/*//? 1 Create a Simple JSX Element
+/*//? 01 Create a Simple JSX Element
 const JSX = <h1>Hello JSX!</h1>*/
-/*//? 2 Create a Complex JSX Element
+/*//? 02 Create a Complex JSX Element
 // const JSX = 
 // <div>
 //   <h1>New</h1>
@@ -11,7 +11,7 @@ const JSX = <h1>Hello JSX!</h1>*/
 //     <li>info</li>
 //   </ul>
 // </div>*/
-  //? 3 Add Comments in JSX
+  //? 03 Add Comments in JSX
 // const JSX = (
 //   <div>
 //     {/* Commented in JSX */}
@@ -19,20 +19,20 @@ const JSX = <h1>Hello JSX!</h1>*/
 //     <p>Here's a subtitle</p>
 //   </div>
 // );
-/*//? 4 Render HTML Elements to the DOM
+/*//? 04 Render HTML Elements to the DOM
 // const JSX = (
 //   <div>
 //     <h1>Hello World</h1>
 //     <p>Lets render this to the DOM</p>
 //   </div>
 // );*/
-/*//? 5 Define an HTML Class in JSX
+/*//? 05 Define an HTML Class in JSX
 // const JSX = (
 //   <div className="myDiv">
 //     <h1 >Add a class to this div</h1>
 //   </div>
 // );*/
-/*//? 6 Learn About Self-Closing JSX Tags
+/*//? 06 Learn About Self-Closing JSX Tags
 // const JSX = (
 //   <div>
 //     <h2>Welcome to React!</h2> <br />
@@ -41,7 +41,7 @@ const JSX = <h1>Hello JSX!</h1>*/
 //   </div>
 // );
 // ReactDOM.render(JSX, document.getElementById('root'))*/
-/*//? 7 Create a Stateless Functional Component
+/*//? 07 Create a Stateless Functional Component
 // const MyComponent = function() {
   // Change code below this line
 // return(
@@ -51,7 +51,7 @@ const JSX = <h1>Hello JSX!</h1>*/
 
   // Change code above this line
 // }*/
-/*//? 8 Create a React Component
+/*//? 08 Create a React Component
 // class MyComponent extends React.Component {
 //   constructor(props) {
 //     super(props);
@@ -67,7 +67,7 @@ const JSX = <h1>Hello JSX!</h1>*/
 //   }
 // };
 // ReactDOM.render(React.createElement(MyComponent, null), document.getElementById('root'))*/
-/*//? 9 Create a Component with Composition
+/*//? 09 Create a Component with Composition
 // const ChildComponent = () => {
 //   return (
 //     <div>
@@ -227,7 +227,7 @@ class Calendar extends React.Component {
   }
 };
 ReactDOM.render(<Calendar />, document.getElementById('root'))*/
-//? 15 Pass an Array as Props
+/*//? 15 Pass an Array as Props
 const List = (props) => {
   return <p>{props.tasks.join(", ")}</p>
 };
@@ -249,4 +249,57 @@ class ToDo extends React.Component {
   }
 };
 ReactDOM.render(<ToDo />, document.getElementById('root'))
-//? 16
+*/
+/*//? 16 Use Default Props
+const ShoppingCart = (props) => {
+  return (
+    <div>
+      <h1>Shopping Cart Component</h1>
+    </div>
+  )
+};
+
+ShoppingCart.defaultProps = {items:0}
+ReactDOM.render(<ShoppingCart />, document.getElementById('root'))
+*/
+/*//? 17 Override Default Props
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+}
+
+Items.defaultProps = {
+  quantity: 0
+}
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <Items quantity={10}/>
+  }
+};
+ReactDOM.render(<ShoppingCart />, document.getElementById('root'))*/
+//? 18 Use PropTypes to Define the Props You Expect
+import PropTypes from 'prop-types';
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+};
+
+// Change code below this line
+Items.propTypes = { quantity: PropTypes.number.isRequired}
+// Change code above this line
+
+Items.defaultProps = {
+  quantity: 0
+};
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <Items />
+  }
+};
+ReactDOM.render(<ShoppingCart />, document.getElementById('root'))
