@@ -279,8 +279,9 @@ class ShoppingCart extends React.Component {
     return <Items quantity={10}/>
   }
 };
-ReactDOM.render(<ShoppingCart />, document.getElementById('root'))*/
-//? 18 Use PropTypes to Define the Props You Expect
+ReactDOM.render(<ShoppingCart />, document.getElementById('root'))
+*/
+/*//? 18 Use PropTypes to Define the Props You Expect
 import PropTypes from 'prop-types';
 const Items = (props) => {
   return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
@@ -303,3 +304,75 @@ class ShoppingCart extends React.Component {
   }
 };
 ReactDOM.render(<ShoppingCart />, document.getElementById('root'))
+*/
+/*//? 19 Access Props Using this.props
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+            <h1>{this.props.message}</h1>
+        </div>
+    );
+  }
+};
+
+class Welcome extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+        <div>
+          <p>Hello,
+
+          </p>
+    )
+
+
+ReactDOM.render(<Welcome />, document.getElementById('root'))
+*/
+/*//? 20 Review Using Props with Stateless Functional Components
+// import PropTypes from 'prop-types';
+
+class CampSite extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <Camper/>
+      </div>
+    );
+  }
+};
+// Change code below this line
+const Camper = (props) => {
+  return <p>{props.name}</p>
+}
+Camper.defaultProps = { name: 'CamperBot' }
+// Camper.propTypes = { name: PropTypes.string.isRequired }
+ReactDOM.render(<CampSite />, document.getElementById('root'))*/
+/*//? 21 Create a Stateful Component
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    // Only change code below this line
+    this.state = {
+      firstName: 'Aron'
+    }
+    // Only change code above this line
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.firstName}</h1>
+      </div>
+    );
+  }
+};
+ReactDOM.render(<StatefulComponent />, document.getElementById('root'))*/
