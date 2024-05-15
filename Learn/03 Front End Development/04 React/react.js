@@ -623,3 +623,175 @@ class MyForm extends React.Component {
 }
 ReactDOM.render(<MyForm />, document.getElementById('root'))
 */
+/*//? 30 Pass State as Props to Child Components
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'CamperBot'
+    }
+  }
+  render() {
+    return (
+       <div>
+         {/* Change code below this line 
+          <Navbar name={this.state.name} />
+         {/* Change code above this line 
+       </div>
+    );
+  }
+};
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+    <div>
+      {/* Change code below this line 
+      <h1>Hello, my name is: {this.props.name}</h1>
+      {/* Change code above this line 
+    </div>
+    );
+  }
+};
+ReactDOM.render(<MyApp />, document.getElementById('root'))
+*/
+/*//? 31 Pass a Callback as Props
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      inputValue: event.target.value
+    });
+  }
+  render() {
+    return (
+       <div>
+        { /* Change code below this line 
+        <GetInput input={this.state.inputValue} handleChange={this.handleChange} />
+        <RenderInput input={this.state.inputValue} />
+        { /* Change code above this line 
+       </div>
+    );
+  }
+};
+
+class GetInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Get Input:</h3>
+        <input
+          value={this.props.input}
+          onChange={this.props.handleChange}/>
+      </div>
+    );
+  }
+};
+
+class RenderInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Input Render:</h3>
+        <p>{this.props.input}</p>
+      </div>
+    );
+  }
+};
+ReactDOM.render(<MyApp />, document.getElementById('root'))
+*/
+/*//? 32 Use the Lifecycle Method componentWillMount
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  UNSAFE_componentWillMount() {
+    // Change code below this line
+    console.log('MyComponent will mount')
+    // Change code above this line
+  }
+  render() {
+    return <div />
+  }
+};
+ReactDOM.createRoot(document.getElementById('root')).render(<MyComponent />)
+*/
+/*//? 33 Use the Lifecycle Method componentDidMount
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUsers: null
+    };
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        activeUsers: 1273
+      });
+    }, 2500);
+  }
+  render() {
+    return (
+      <div>
+        {/* Change code below this line 
+        <h1>Active Users: {this.state.activeUsers}</h1>
+        {/* Change code above this line 
+      </div>
+    );
+  }
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<MyComponent />)
+*/
+//? 34 Add Event Listeners
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: ''
+    };
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+  // Change code below this line
+  componentDidMount() {
+
+  }
+  componentWillUnmount() {
+
+  }
+  // Change code above this line
+  handleEnter() {
+    this.setState((state) => ({
+      message: state.message + 'You pressed the enter key! '
+    }));
+  }
+  handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      this.handleEnter();
+    }
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+      </div>
+    );
+  }
+};
+ReactDOM.createRoot(document.getElementById('root')).render(<MyComponent />)
