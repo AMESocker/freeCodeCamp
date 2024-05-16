@@ -1193,7 +1193,7 @@ class MyToDoList extends React.Component {
 }
 ReactDOM.createRoot(document.getElementById('root')).render(<MyToDoList />)
 */
-//? 45 Give Sibling Elements a Unique Key Attribute
+/*//? 45 Give Sibling Elements a Unique Key Attribute
 const frontEndFrameworks = [
   'React',
   'Angular',
@@ -1215,3 +1215,61 @@ function Frameworks() {
   );
 };
 ReactDOM.createRoot(document.getElementById('root')).render(<Frameworks />)
+*/
+/*//? 46 Use Array.filter() to Dynamically Filter an Array
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [
+        {
+          username: 'Jeff',
+          online: true
+        },
+        {
+          username: 'Alan',
+          online: false
+        },
+        {
+          username: 'Mary',
+          online: true
+        },
+        {
+          username: 'Jim',
+          online: false
+        },
+        {
+          username: 'Sara',
+          online: true
+        },
+        {
+          username: 'Laura',
+          online: true
+        }
+      ]
+    };
+  }
+  render() {
+    const usersOnline = this.state.users.filter(user => user.online); // Change this line
+    const renderOnline = usersOnline.map((user, index) => <li key={index}>{user.username}</li>); // Change this line
+    return (
+      <div>
+        <h1>Current Online Users:</h1>
+        <ul>{renderOnline}</ul>
+      </div>
+    );
+  }
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<MyComponent />)
+*/
+//? 47 Render React on the Server with renderToString
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <div/>
+  }
+};
+// Change code below this line
+ReactDOMServer.renderToString(<App />)
