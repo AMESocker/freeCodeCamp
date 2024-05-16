@@ -11,14 +11,15 @@ const JSX = <h1>Hello JSX!</h1>*/
 //     <li>info</li>
 //   </ul>
 // </div>*/
-  //? 03 Add Comments in JSX
-// const JSX = (
-//   <div>
-//     {/* Commented in JSX */}
-//     <h1>This is a block of JSX</h1>
-//     <p>Here's a subtitle</p>
-//   </div>
-// );
+/*//? 03 Add Comments in JSX
+const JSX = (
+  <div>
+    {/* Commented in JSX 
+    <h1>This is a block of JSX</h1>
+    <p>Here's a subtitle</p>
+  </div>
+);
+*/
 /*//? 04 Render HTML Elements to the DOM
 // const JSX = (
 //   <div>
@@ -314,7 +315,7 @@ class App extends React.Component {
   render() {
     return (
         <div>
-            <h1>{this.props.message}</h1>
+            <Welcome name="Aron" />
         </div>
     );
   }
@@ -327,13 +328,14 @@ class Welcome extends React.Component {
   render() {
     return (
         <div>
-          <p>Hello,
-
+          <p>Hello, 
+           <strong> {this.props.name}</strong> 
           </p>
+        </div>
     )
-
-
-ReactDOM.render(<Welcome />, document.getElementById('root'))
+  }
+}
+ReactDOM.render(<App />, document.getElementById('root'))
 */
 /*//? 20 Review Using Props with Stateless Functional Components
 // import PropTypes from 'prop-types';
@@ -1008,7 +1010,7 @@ class MyComponent extends React.Component {
 };
 ReactDOM.createRoot(document.getElementById('root')).render(<MyComponent />) 
  */
-//? 41 Use a Ternary Expression for Conditional Rendering
+/*//? 41 Use a Ternary Expression for Conditional Rendering
 const inputStyle = {
   width: 235,
   margin: 5
@@ -1018,7 +1020,10 @@ class CheckUserAge extends React.Component {
   constructor(props) {
     super(props);
     // Change code below this line
-
+    this.state = {
+      input: '',
+      userAge: ''
+    }
     // Change code above this line
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -1048,11 +1053,165 @@ class CheckUserAge extends React.Component {
           onChange={this.handleChange}
         />
         <br />
-        {/* Change code below this line */}
-
-        {/* Change code above this line */}
+        {/* Change code below this line 
+        {this.state.userAge === '' ? buttonOne : this.state.userAge < 18 ? buttonThree : buttonTwo}
+        {/* Change code above this line 
       </div>
     );
   }
 }
 ReactDOM.createRoot(document.getElementById('root')).render(<CheckUserAge />) 
+*/
+/*//? 42 Render Conditionally from Props
+class Results extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    {/* Change code below this line 
+    return (
+      <h1>
+        {this.props.fiftyFifty ? "You win!" : "You lose!"}
+      </h1>
+    )
+    {/* Change code above this line 
+  }
+}
+
+class GameOfChance extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 1
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(prevState => {
+      // Complete the return statement:
+      return {
+        counter: prevState.counter + 1
+      }
+    });
+  }
+  render() {
+    const expression =  Math.random() > 0.5; // Change this line
+    return (
+      <div>
+        <button onClick={this.handleClick}>Play Again</button>
+        {/* Change code below this line 
+        <Results fiftyFifty={expression} />
+        {/* Change code above this line 
+        <p>{'Turn: ' + this.state.counter}</p>
+      </div>
+    );
+  }
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<GameOfChance />) 
+*/
+/*//? 43 Change Inline CSS Conditionally Based on Component State
+class GateKeeper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ input: event.target.value })
+  }
+  render() {
+    let inputStyle = {
+      border: '1px solid black'
+    };
+    // Change code below this line
+    if (this.state.input.length > 15) {
+      inputStyle.border = '3px solid red'
+    }
+    // Change code above this line
+    return (
+      <div>
+        <h3>Don't Type Too Much:</h3>
+        <input
+          type="text"
+          style={inputStyle}
+          value={this.state.input}
+          onChange={this.handleChange} />
+      </div>
+    );
+  }
+};
+ReactDOM.createRoot(document.getElementById('root')).render(<GateKeeper />)
+*/
+/*//? 44 Use Array.map() to Dynamically Render Elements
+const textAreaStyles = {
+  width: 235,
+  margin: 5
+};
+
+class MyToDoList extends React.Component {
+  constructor(props) {
+    super(props);
+    // Change code below this line
+    this.state = {
+      userInput: '',
+      toDoList: []
+    }
+    // Change code above this line
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleSubmit() {
+    const itemsArray = this.state.userInput.split(',');
+    this.setState({
+      toDoList: itemsArray
+    });
+  }
+  handleChange(e) {
+    this.setState({
+      userInput: e.target.value
+    });
+  }
+  render() {
+    const items = this.state.toDoList.map(item => <li>{item}</li>); // Change this line
+    return (
+      <div>
+        <textarea
+          onChange={this.handleChange}
+          value={this.state.userInput}
+          style={textAreaStyles}
+          placeholder='Separate Items With Commas'
+        />
+        <br />
+        <button onClick={this.handleSubmit}>Create List</button>
+        <h1>My To Do List:</h1>
+        <ul>{items}</ul>
+      </div>
+    );
+  }
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<MyToDoList />)
+*/
+//? 45 Give Sibling Elements a Unique Key Attribute
+const frontEndFrameworks = [
+  'React',
+  'Angular',
+  'Ember',
+  'Knockout',
+  'Backbone',
+  'Vue'
+];
+
+function Frameworks() {
+  const renderFrameworks = frontEndFrameworks.map((framework, index) => <li key={index}>{framework}</li>); // Change this line
+  return (
+    <div>
+      <h1>Popular Front End JavaScript Frameworks</h1>
+      <ul>
+        {renderFrameworks}
+      </ul>
+    </div>
+  );
+};
+ReactDOM.createRoot(document.getElementById('root')).render(<Frameworks />)
