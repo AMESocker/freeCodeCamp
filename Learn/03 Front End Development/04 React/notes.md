@@ -24,7 +24,7 @@ Here's an example:
 
 Valid JSX:
 
-```
+```js
   <div>
     <p>Paragraph One</p>
     <p>Paragraph Two</p>
@@ -34,7 +34,7 @@ Valid JSX:
 
 Invalid JSX:
 
-```
+```js
   <p>Paragraph One</p>
   <p>Paragraph Two</p>
   <p>Paragraph Three</p>
@@ -93,7 +93,7 @@ There are two ways to create a React component. The first way is to use a JavaSc
 
 To create a component with a function, you simply write a JavaScript function that returns either JSX or `null`. One important thing to note is that React requires your function name to begin with a capital letter. Here's an example of a stateless functional component that assigns an HTML class in JSX:
 
-```
+```js
 const DemoComponent = function() {
   return (
     <div className='customClass' />
@@ -111,7 +111,7 @@ Note: The text is considered a child of the `div` element, so you will not be ab
 ## 8 Create a React Component
 
 The other way to define a React component is with the ES6 `class` syntax. In the following example, `Kitten` extends `React.Component`:
-```
+```js
 class Kitten extends React.Component {
   constructor(props) {
     super(props);
@@ -131,7 +131,7 @@ This creates an ES6 class `Kitten` which extends the `React.Component` class. So
 Now we will look at how we can compose multiple React components together. Imagine you are building an app and have created three components: a `Navbar`, `Dashboard`, and `Footer`.
 
 To compose these components together, you could create an `App` parent component which renders each of these three components as children. To render a component as a child in a React component, you include the component name written as a custom HTML tag in the JSX. For example, in the `render` method you could write:
-```
+```js
 return (
  <App>
   <Navbar />
@@ -174,14 +174,14 @@ Define a class `MyComponent` that extends `React.Component`. Its render method s
 Render this component to the DOM using `ReactDOM.render()`. There is a `div` with `id='challenge-node'` available for you to use.
 ## 14 Pass Props to a Stateless Functional Component
 The previous challenges covered a lot about creating and composing JSX elements, functional components, and ES6 style class components in React. With this foundation, it's time to look at another feature very common in React: props. In React, you can pass props, or properties, to child components. Say you have an `App` component which renders a child component called `Welcome` which is a stateless functional component. You can pass `Welcome` a `user` property by writing:
-```
+```js
 <App>
   <Welcome user='Mark' />
 </App>
 ```
 You use custom HTML attributes created by you and supported by React to be passed to the component. In this case, the created property `user` is passed to the component `Welcome`. Since `Welcome` is a stateless functional component, it has access to this value like so:
 
-```
+```js
 const Welcome = (props) => <h1>Hello, {props.user}!</h1>
 ```
 It is standard to call this value `props` and when dealing with stateless functional components, you basically consider it as an argument to a function which returns JSX. You can access the value of the argument in the function body. With class components, you will see this is a little different.
@@ -189,13 +189,13 @@ It is standard to call this value `props` and when dealing with stateless functi
 There are `Calendar` and `CurrentDate` components in the code editor. When rendering `CurrentDate` from the `Calendar` component, pass in a property of date assigned to the current date from JavaScript's `Date` object. Then access this `prop` in the `CurrentDate` component, showing its value within the `p` tags. Note that for `prop` values to be evaluated as JavaScript, they must be enclosed in curly brackets, for instance `date={Date()}`.
 ## 15 Pass an Array as Props
 The last challenge demonstrated how to pass information from a parent component to a child component as `props` or properties. This challenge looks at how arrays can be passed as `props`. To pass an array to a JSX element, it must be treated as JavaScript and wrapped in curly braces.
-```
+```js
 <ParentComponent>
   <ChildComponent colors={["green", "blue", "red"]} />
 </ParentComponent>
 ```
 The child component then has access to the array property `colors`. Array methods such as `join()` can be used when accessing the property.
-```
+```js
 const ChildComponent = (props) => <p>{props.colors.join(', ')}</p>
 ```
 This will join all `colors` array items into a comma separated string and produce: `<p>green, blue, red</p>`. Later, we will learn about other common methods to render arrays of data in React.
@@ -215,7 +215,7 @@ Note: Remember that the syntax to add a prop to a component looks similar to how
 React provides useful type-checking features to verify that components receive props of the correct type. For example, your application makes an API call to retrieve data that you expect to be in an array, which is then passed to a component as a prop. You can set `propTypes` on your component to require the data to be of type `array`. This will throw a useful warning when the data is of any other type.
 
 It's considered a best practice to set `propTypes` when you know the type of a prop ahead of time. You can define a `propTypes` property for a component in the same way you defined `defaultProps`. Doing this will check that props of a given key are present with a given type. Here's an example to require the type `function` for a prop called `handleClick`:
-```
+```js
 MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
 ```
 In the example above, the `PropTypes.func` part checks that `handleClick` is a function. Adding `isRequired` tells React that `handleClick` is a required property for that component. You will see a warning if that prop isn't provided. Also notice that `func` represents `function`. Among the seven JavaScript primitive types, `function` and `boolean` (written as `bool`) are the only two that use unusual spelling. In addition to the primitive types, there are other types available. For example, you can check that a prop is a React element. Please refer to the [documentation](https://reactjs.org/docs/typechecking-with-proptypes.html#proptypes) for all of the options.
@@ -242,7 +242,7 @@ The code editor has a `CampSite` component that renders a `Camper` component as 
 One of the most important topics in React is `state`. State consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. React offers a nice solution for the state management of modern web applications.
 
 You create `state` in a React component by declaring a state property on the component class in its `constructor`. This initializes the component with `state` when it is created. The `state` property must be set to a JavaScript `object`. Declaring it looks like this:
-```
+```js
 this.state = {
 
 }
@@ -270,7 +270,7 @@ In the `MyComponent` render method, define a `const` called `name` and set it eq
 Next, in the return statement, render this value in an `h1` tag using the variable `name`. Remember, you need to use the JSX syntax (curly braces for JavaScript) in the return statement.
 ## 24 Set State with this.setState
 The previous challenges covered component `state` and how to initialize state in the `constructor`. There is also a way to change the component's `state`. React provides a method for updating component `state` called `setState`. You call the `setState` method within your component class like so: `this.setState()`, passing in an object with key-value pairs. The keys are your state properties and the values are the updated state data. For instance, if we were storing a `username` in state and wanted to update it, it would look like this:
-```
+```js
 this.setState({
   username: 'Lewis'
 });
@@ -295,19 +295,19 @@ Next, add a click handler to the `button` element in the render method. It shoul
 Once you complete the above steps you should be able to click the button and see `You clicked!`.
 ## 26 Use State to Toggle an Element
 Sometimes you might need to know the previous state when updating the state. However, state updates may be asynchronous - this means React may batch multiple `setState()` calls into a single update. This means you can't rely on the previous value of `this.state` or `this.props` when calculating the next value. So, you should not use code like this:
-```
+```js
 this.setState({
   counter: this.state.counter + this.props.increment
 });
 ```
 Instead, you should pass `setState` a function that allows you to access state and props. Using a function with `setState` guarantees you are working with the most current values of state and props. This means that the above should be rewritten as:
-```
+```js
 this.setState((state, props) => ({
   counter: state.counter + props.increment
 }));
 ```
 You can also use a form without `props` if you need only the `state`:
-```
+```js
 this.setState(state => ({
   counter: state.counter + 1
 }));
@@ -396,11 +396,11 @@ There are other complex concepts that add powerful capabilities to your React co
 If you import styles from a stylesheet, it isn't much different at all. You apply a class to your JSX element using the `className` attribute, and apply styles to the class in your stylesheet. Another option is to apply inline styles, which are very common in ReactJS development.
 
 You apply inline styles to JSX elements similar to how you do it in HTML, but with a few JSX differences. Here's an example of an inline style in HTML:
-```
+```js
 <div style="color: yellow; font-size: 16px">Mellow Yellow</div>
 ```
 JSX elements use the `style` attribute, but because of the way JSX is transpiled, you can't set the value to a `string`. Instead, you set it equal to a JavaScript object. Here's an example:
-```
+```js
 <div style={{color: "yellow", fontSize: 16}}>Mellow Yellow</div>
 ```
 Notice how we camelCase the `fontSize` property? This is because React will not accept kebab-case keys in the style object. React will apply the correct property name for us in the HTML.
@@ -428,7 +428,7 @@ MyComponent contains a `boolean` in its state which tracks whether you want to d
 Note: You must write an `if/else` to pass the tests. Use of the ternary operator will not pass here.
 ## 40 Use && for a More Concise Conditional
 The `if/else` statements worked in the last challenge, but there's a more concise way to achieve the same result. Imagine that you are tracking several conditions in a component and you want different elements to render depending on each of these conditions. If you write a lot of `else if` statements to return slightly different UIs, you may repeat code which leaves room for error. Instead, you can use the `&&` logical operator to perform conditional logic in a more concise way. This is possible because you want to check if a condition is `true`, and if it is, return some markup. Here's an example:
-```
+```js
 {condition && <p>markup</p>}
 ```
 If the `condition` is `true`, the markup will be returned. If the condition is `false`, the operation will immediately return `false` after evaluating the `condition` and return nothing. You can include these statements directly in your JSX and string multiple conditions together by writing `&&` after each one. This allows you to handle more complex conditional logic in your `render()` method without repeating a lot of code.
@@ -437,7 +437,7 @@ Solve the previous example again, so the `h1` only renders if `display` is `true
 #  41-47
 ## 41 Use a Ternary Expression for Conditional Rendering
 Before moving on to dynamic rendering techniques, there's one last way to use built-in JavaScript conditionals to render what you want: the ternary operator. The *ternary operator* is often utilized as a shortcut for `if/else` statements in JavaScript. They're not quite as robust as traditional `if/else` statements, but they are very popular among React developers. One reason for this is because of how JSX is compiled, `if/else` statements can't be inserted directly into JSX code. You might have noticed this a couple challenges ago — when an i`f/else` statement was required, it was always *outside* the return statement. Ternary expressions can be an excellent alternative if you want to implement conditional logic within your JSX. Recall that a ternary operator has three parts, but you can combine several ternary expressions together. Here's the basic syntax:
-```
+```js
 condition ? expressionIfTrue : expressionIfFalse;
 ```
 The code editor has three constants defined within the `CheckUserAge` component's `render()` method. They are called `buttonOne`, `buttonTwo`, and `buttonThree`. Each of these is assigned a simple JSX expression representing a button element. First, initialize the state of `CheckUserAge` with `input` and `userAge` both set to values of an empty string.
@@ -479,7 +479,7 @@ The code editor has an array with some front end frameworks and a stateless func
 Normally, you want to make the key something that uniquely identifies the element being rendered. As a last resort the array index may be used, but typically you should try to use a unique identification.
 ## 46 Use Array.filter() to Dynamically Filter an Array
 The `map` array method is a powerful tool that you will use often when working with React. Another method related to `map` is `filter`, which filters the contents of an array based on a condition, then returns a new array. For example, if you have an array of users that all have a property `online` which can be set to `true` or `false`, you can filter only those users that are online by writing:
-```
+```js
 let onlineUsers = users.filter(user => user.online);
 ```
 In the code editor, `MyComponent`'s `state` is initialized with an array of users. Some users are online and some aren't. Filter the array so you see only the users who are online. To do this, first use `filter` to return a new array containing only the users whose `online` property is `true`. Then, in the `renderOnline` variable, map over the filtered array, and return a `li` element for each user that contains the text of their `username`. Be sure to include a unique `key` as well, like in the last challenges.
