@@ -284,7 +284,7 @@ const store = Redux.createStore(
   asyncDataReducer,
   Redux.applyMiddleware(ReduxThunk.default)
 ); */
-//? 13 Write a Counter with Redux
+/* //? 13 Write a Counter with Redux
 const INCREMENT = 'INCREMENT'; // Define a constant for increment action types
 const DECREMENT = 'DECREMENT'; // Define a constant for decrement action types
 
@@ -308,4 +308,96 @@ const decAction = () => {
     type: DECREMENT
   }
 }; // Define an action creator for decrementing
-const store = Redux.createStore(counterReducer); // Define the Redux store here, passing in your reducers
+const store = Redux.createStore(counterReducer); // Define the Redux store here, passing in your reducers */
+/* //? 14 Never Mutate State
+const ADD_TO_DO = 'ADD_TO_DO';
+ 
+// A list of strings representing tasks to do:
+const toDos = [
+  'Go to the store',
+  'Clean the house',
+  'Cook dinner',
+  'Learn to code',
+];
+ 
+const immutableReducer = (state = toDos, action) => {
+  switch(action.type) {
+    case ADD_TO_DO:
+      // Don't mutate state here or the tests will fail
+      return [...state, action.todo];
+    default:
+      return state;
+  }
+};
+ 
+const addToDo = (todo) => {
+  return {
+    type: ADD_TO_DO,
+    todo
+  }
+}
+ 
+const store = Redux.createStore(immutableReducer); */
+/* //? 15 Use the Spread Operator on Arrays
+const immutableReducer = (state = ['Do not mutate state!'], action) => {
+  switch(action.type) {
+    case 'ADD_TO_DO':
+      // Don't mutate state here or the tests will fail
+      return [...state, action.todo];
+    default:
+      return state;
+  }
+};
+
+const addToDo = (todo) => {
+  return {
+    type: 'ADD_TO_DO',
+    todo
+  }
+}
+
+const store = Redux.createStore(immutableReducer); */
+/* //? 16 Remove an Item from an Array
+const immutableReducer = (state = [0,1,2,3,4,5], action) => {
+  switch(action.type) {
+    case 'REMOVE_ITEM':
+      // Don't mutate state here or the tests will fail
+      return state.filter((item, index) => index !== action.index);
+    default:
+      return state;
+  }
+};
+
+const removeItem = (index) => {
+  return {
+    type: 'REMOVE_ITEM',
+    index
+  }
+}
+
+const store = Redux.createStore(immutableReducer); */
+//? 17 Copy an Object with Object.assign
+const defaultState = {
+  user: 'CamperBot',
+  status: 'offline',
+  friends: '732,982',
+  community: 'freeCodeCamp'
+};
+
+const immutableReducer = (state = defaultState, action) => {
+  switch(action.type) {
+    case 'ONLINE':
+      // Don't mutate state here or the tests will fail
+      return Object.assign({}, state, {status: 'online'});
+    default:
+      return state;
+  }
+};
+
+const wakeUp = () => {
+  return {
+    type: 'ONLINE'
+  }
+};
+
+const store = Redux.createStore(immutableReducer);
