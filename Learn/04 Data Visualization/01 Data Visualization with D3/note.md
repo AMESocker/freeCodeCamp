@@ -189,3 +189,43 @@ It's important to note that you do NOT need to write a `for` loop or use `forEac
 Change the `x` attribute callback function so it returns the index times 30.
 
 **Note**: Each bar has a width of 25, so increasing each `x` value by 30 adds some space between the bars. Any value greater than 25 would work in this example.
+## 14 Dynamically Change the Height of Each Bar
+The height of each bar can be set to the value of the data point in the array, similar to how the `x` value was set dynamically.
+```js
+selection.attr("property", (d, i) => {})
+```
+Here `d` would be the data point value, and `i` would be the index of the data point in the array.
+
+Change the callback function for the `height` attribute to return the data value times 3.
+
+**Note**: Remember that multiplying all data points by the same constant scales the data (like zooming in). It helps to see the differences between bar values in this example.
+## 15 Invert SVG Elements
+You may have noticed the bar chart looked like it's upside-down, or inverted. This is because of how SVG uses (x, y) coordinates.
+
+In SVG, the origin point for the coordinates is in the upper-left corner. An `x` coordinate of 0 places a shape on the left edge of the SVG area. A `y` coordinate of 0 places a shape on the top edge of the SVG area. Higher `x` values push the rectangle to the right. Higher `y` values push the rectangle down.
+
+To make the bars right-side-up, you need to change the way the `y` coordinate is calculated. It needs to account for both the height of the bar and the total height of the SVG area.
+
+The height of the SVG area is 100. If you have a data point of 0 in the set, you would want the bar to start at the bottom of the SVG area (not the top). To do this, the `y` coordinate needs a value of 100. If the data point value were 1, you would start with a `y` coordinate of 100 to set the bar at the bottom. Then you need to account for the height of the bar of 1, so the final `y` coordinate would be 99.
+
+The `y` coordinate that is `y = heightOfSVG - heightOfBar` would place the bars right-side-up.
+
+Change the callback function for the `y` attribute to set the bars right-side-up. Remember that the `height` of the bar is 3 times the data value `d`.
+
+Note: In general, the relationship is `y = h - m * d`, where `m` is the constant that scales the data points.
+## 16 Change the Color of an SVG Element
+The bars are in the right position, but they are all the same black color. SVG has a way to change the color of the bars.
+
+In SVG, a `rect` shape is colored with the `fill` attribute. It supports hex codes, color names, and rgb values, as well as more complex options like gradients and transparency.
+
+Add an `attr()` method to set the `fill` of all the bars to the color navy.
+## 17 Add Labels to D3 Elements
+D3 lets you label a graph element, such as a bar, using the SVG `text` element.
+
+Like the `rect` element, a `text` element needs to have `x` and `y` attributes, to place it on the SVG. It also needs to access the data to display those values.
+
+D3 gives you a high level of control over how you label your bars.
+
+The code in the editor already binds the data to each new `text` element. First, append `text` nodes to the `svg`. Next, add attributes for the `x` and `y` coordinates. They should be calculated the same way as the `rect` ones, except the `y` value for the `text` should make the label sit 3 units higher than the bar. Finally, use the D3 `text()` method to set the label equal to the data point value.
+
+**Note**: For the label to sit higher than the bar, decide if the `y` value for the text should be 3 greater or 3 less than the `y` value for the bar.

@@ -1,0 +1,23 @@
+/*? 8 Update the Height of an Element Dynamically 
+ .bar {
+  width: 25px;
+  height: 100px;
+  display: inline-block;
+  background-color: blue;
+} */
+/*? 9 Change the Presentation of a Bar Chart 
+.bar {
+  width: 25px;
+  height: 100px;
+  /* Add your code below this line 
+  margin: 2px;
+  
+  /* Add your code above this line 
+  display: inline-block;
+  background-color: blue;
+}*/
+/*? 10 Learn About SVG in D3
+svg {
+  background-color: pink;
+}
+*/
