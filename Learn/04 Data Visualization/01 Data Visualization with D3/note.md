@@ -229,3 +229,44 @@ D3 gives you a high level of control over how you label your bars.
 The code in the editor already binds the data to each new `text` element. First, append `text` nodes to the `svg`. Next, add attributes for the `x` and `y` coordinates. They should be calculated the same way as the `rect` ones, except the `y` value for the `text` should make the label sit 3 units higher than the bar. Finally, use the D3 `text()` method to set the label equal to the data point value.
 
 **Note**: For the label to sit higher than the bar, decide if the `y` value for the text should be 3 greater or 3 less than the `y` value for the bar.
+## 18 Style D3 Labels
+D3 methods can add styles to the bar labels. The `fill` attribute sets the color of the text for a `text` node. The `style()` method sets CSS rules for other styles, such as `font-family` or `font-size`.
+
+Set the `font-size` of the `text` elements to `25px`, and the color of the text to red.
+## 19 Add a Hover Effect to a D3 Element
+It's possible to add effects that highlight a bar when the user hovers over it with the mouse. So far, the styling for the rectangles is applied with the built-in D3 and SVG methods, but you can use CSS as well.
+
+You set the CSS class on the SVG elements with the `attr()` method. Then the `:hover` pseudo-class for your new class holds the style rules for any hover effects.
+
+Use the `attr()` method to add a class of `bar` to all the rect elements. This changes the `fill` color of the bar to brown when you mouse over it.
+## 20 Add a Tooltip to a D3 Element
+A tooltip shows more information about an item on a page when the user hovers over that item. There are several ways to add a tooltip to a visualization. This challenge uses the SVG `title` element.
+
+`title` pairs with the `text()` method to dynamically add data to the bars.
+
+Append a `title` element under each `rect` node. Then call the `text()` method with a callback function so the text displays the data value.
+#  21 - 30
+## 21 Create a Scatterplot with SVG Circles
+A scatter plot is another type of visualization. It usually uses circles to map data points, which have two values each. These values tie to the `x` and `y` axes, and are used to position the circle in the visualization.
+
+SVG has a `circle` tag to create the circle shape. It works a lot like the `rect` elements you used for the bar chart.
+
+Use the `data()`, `enter()`, and `append()` methods to bind `dataset` to new `circle` elements that are appended to the SVG.
+
+**Note**: The circles won't be visible because we haven't set their attributes yet. We'll do that in the next challenge.
+## 22 Add Attributes to the Circle Elements
+The last challenge created the `circle` elements for each point in the `dataset`, and appended them to the SVG. But D3 needs more information about the position and size of each `circle` to display them correctly.
+
+A `circle` in SVG has three main attributes. The `cx` and `cy` attributes are the coordinates. They tell D3 where to position the center of the shape on the SVG. The radius (`r` attribute) gives the size of the `circle`.
+
+Just like the `rect` `y` coordinate, the `cy` attribute for a circle is measured from the top of the SVG, not from the bottom.
+
+All three attributes can use a callback function to set their values dynamically. Remember that all methods chained after `data(dataset)` run once per item in dataset. The d parameter in the callback function refers to the current item in `dataset`, which is an array for each point. You use bracket notation, like `d[0]`, to access the values in that array.
+## 23 Add Labels to Scatter Plot Circles
+You can add text to create labels for the points in a scatter plot.
+
+The goal is to display the comma-separated values for the first (`x`) and second (`y`) fields of each item in `dataset`.
+
+The `text` nodes need `x` and `y` attributes to position it on the SVG. In this challenge, the `y` value (which determines height) can use the same value that the `circle` uses for its `cy` attribute. The `x` value can be slightly larger than the `cx` value of the `circle`, so the label is visible. This will push the label to the right of the plotted point.
+
+Label each point on the scatter plot using the `text` elements. The text of the label should be the two values separated by a comma and a space. For example, the label for the first point is `34, 78`. Set the `x` attribute so it's `5` units more than the value you used for the `cx` attribute on the `circle`. Set the `y` attribute the same way that's used for the `cy` value on the `circle`.

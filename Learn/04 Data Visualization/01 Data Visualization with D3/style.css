@@ -21,3 +21,8 @@ svg {
   background-color: pink;
 }
 */
+/*? 19 Add a Hover Effect to a D3 Element
+.bar:hover {
+  fill: brown;
+}
+*/

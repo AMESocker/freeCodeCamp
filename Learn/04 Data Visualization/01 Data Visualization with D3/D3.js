@@ -209,7 +209,7 @@ svg.selectAll("rect")
    .attr("width", 25)
    .attr("height", (d, i) => 3 * d)
    .attr("fill", "navy"); */
-//? 17 Add Labels to D3 Elements
+/* //? 17 Add Labels to D3 Elements
 const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
 const w = 500;
@@ -236,4 +236,194 @@ svg.selectAll("text")
    .append("text")
    .text((d) => d)
    .attr("x", (d, i) => i * 30)
-   .attr("y", (d, i) => h - 3 * d - 3)
+   .attr("y", (d, i) => h - 3 * d - 3) */
+/* //? 18 Style D3 Labels
+const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+const w = 500;
+const h = 100;
+
+const svg = d3.select("body")
+              .append("svg")
+              .attr("width", w)
+              .attr("height", h);
+
+svg.selectAll("rect")
+   .data(dataset)
+   .enter()
+   .append("rect")
+   .attr("x", (d, i) => i * 30)
+   .attr("y", (d, i) => h - 3 * d)
+   .attr("width", 25)
+   .attr("height", (d, i) => d * 3)
+   .attr("fill", "navy");
+
+svg.selectAll("text")
+   .data(dataset)
+   .enter()
+   .append("text")
+   .text((d) => d)
+   .attr("x", (d, i) => i * 30)
+   .attr("y", (d, i) => h - (3 * d) - 3)
+   // Add your code below this line
+   .attr('fill', 'red')
+   .style('font-size', '25px') */
+/* //? 19 Add a Hover Effect to a D3 Element
+const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+const w = 500;
+const h = 100;
+
+const svg = d3.select("body")
+              .append("svg")
+              .attr("width", w)
+              .attr("height", h);
+
+svg.selectAll("rect")
+   .data(dataset)
+   .enter()
+   .append("rect")
+   .attr("x", (d, i) => i * 30)
+   .attr("y", (d, i) => h - 3 * d)
+   .attr("width", 25)
+   .attr("height", (d, i) => 3 * d)
+   .attr("fill", "navy")
+   // Add your code below this line
+   .attr('class', 'bar')
+   // Add your code above this line
+
+svg.selectAll("text")
+   .data(dataset)
+   .enter()
+   .append("text")
+   .text((d) => d)
+   .attr("x", (d, i) => i * 30)
+   .attr("y", (d, i) => h - (3 * d) - 3); */
+/* //? 20 Add a Tooltip to a D3 Element
+const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+const w = 500;
+const h = 100;
+
+const svg = d3.select("body")
+              .append("svg")
+              .attr("width", w)
+              .attr("height", h);
+
+svg.selectAll("rect")
+   .data(dataset)
+   .enter()
+   .append("rect")
+   .attr("x", (d, i) => i * 30)
+   .attr("y", (d, i) => h - 3 * d)
+   .attr("width", 25)
+   .attr("height", (d, i) => d * 3)
+   .attr("fill", "navy")
+   .attr("class", "bar")
+   // Add your code below this line
+   .append('title')
+    .text((d) => d)
+   // Add your code above this line
+
+svg.selectAll("text")
+   .data(dataset)
+   .enter()
+   .append("text")
+   .text((d) => d)
+   .attr("x", (d, i) => i * 30)
+   .attr("y", (d, i) => h - (d * 3 + 3)) */
+/* //? 21 Create a Scatterplot with SVG Circles
+const dataset = [
+  [ 34,    78 ],
+  [ 109,   280 ],
+  [ 310,   120 ],
+  [ 79,    411 ],
+  [ 420,   220 ],
+  [ 233,   145 ],
+  [ 333,   96 ],
+  [ 222,   333 ],
+  [ 78,    320 ],
+  [ 21,    123 ]
+];
+
+
+const w = 500;
+const h = 500;
+
+const svg = d3.select("body")
+  .append("svg")
+  .attr("width", w)
+  .attr("height", h);
+
+svg.selectAll("circle")
+  .data(dataset)
+  .enter()
+  .append("circle") */
+/* //? 22 Add Attributes to the Circle Elements  
+const dataset = [
+  [ 34,    78 ],
+  [ 109,   280 ],
+  [ 310,   120 ],
+  [ 79,    411 ],
+  [ 420,   220 ],
+  [ 233,   145 ],
+  [ 333,   96 ],
+  [ 222,   333 ],
+  [ 78,    320 ],
+  [ 21,    123 ]
+];
+
+
+const w = 500;
+const h = 500;
+
+const svg = d3.select("body")
+  .append("svg")
+  .attr("width", w)
+  .attr("height", h);
+
+svg.selectAll("circle")
+.data(dataset)
+.enter()
+.append("circle")
+// Add your code below this line
+.attr('cx', (d) => d[0])
+.attr('cy', (d) => h - d[1])
+.attr('r', 15) */
+//? 23 Add Labels to Scatter Plot Circles
+const dataset = [
+  [ 34,    78 ],
+  [ 109,   280 ],
+  [ 310,   120 ],
+  [ 79,    411 ],
+  [ 420,   220 ],
+  [ 233,   145 ],
+  [ 333,   96 ],
+  [ 222,   333 ],
+  [ 78,    320 ],
+  [ 21,    123 ]
+];
+
+const w = 500;
+const h = 500;
+
+const svg = d3.select("body")
+  .append("svg")
+  .attr("width", w)
+  .attr("height", h);
+
+svg.selectAll("circle")
+.data(dataset)
+.enter()
+.append("circle")
+.attr("cx", (d, i) => d[0])
+.attr("cy", (d, i) => h - d[1])
+.attr("r", 5);
+
+svg.selectAll("text")
+.data(dataset)
+.enter()
+.append("text")
+.text((d) => d[0] + ", " + d[1])
+.attr("x", (d) => d[0] + 5)
+.attr("y", (d) => h - d[1]);
