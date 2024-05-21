@@ -1,4 +1,4 @@
-#  Step 1-10
+#  Step  1 - 10
 ## Step 1
 JavaScript is the programming language that powers the web. Unlike the HTML and CSS you have learned previously, JavaScript is most commonly used to write logic instead of markup.
 
@@ -84,7 +84,7 @@ The `second` variable would now have the value `"One"`.
 To see this in action, change your `secondCharacter` assignment from `"Test"` to your `character` variable.
 
 Then open the console to see what gets logged.
-# Step 11 - 20
+#  Step 11 - 20
 ## Step 11
 You are now ready to declare your next variable. Remove both `console.log` statements, and the `character` reassignment.
 
@@ -146,7 +146,7 @@ Update your `rows[2]` to dynamically access the last element in the rows array. 
 You should not see anything change in your console.
 ## Step 20
 For now, remove your first console log and your rows`[rows.length - 1]` assignment. Leave the second `rows` log statement for later.
-# Step 21 - 30
+#  Step 21 - 30
 ## Step 21
 A *method* in JavaScript is a function that's associated with certain values or objects. An example you've already encountered is the `.log()` method, which is part of the `console` object.
 
@@ -212,3 +212,84 @@ for (let index = 100; "second"; "third") {
 }
 ```
 Replace the string `"iterator"` with a let declaration for the variable `i`. Assign it the value `0` to start. This will give the `i` variable the value `0` the **first time** your loop runs.
+## Step 30
+The *condition* of a `for` loop tells the loop how many times it should iterate. When the `condition` becomes false, the loop will stop.
+
+In JavaScript, a Boolean value can be either `true` or `false`. These are not strings - you will learn more about the difference later on.
+
+For now, you will use the less than operator (`<`). This allows you to check if the value on the left is less than the value on the right. For example, `count < 3` would evaluate to `true` if `count` is `2`, and `false` if `count` is `4`.
+
+Replace your `"condition"` string with a condition to check if `i` is less than `count`.
+#  Step 31 - 40
+## Step 31
+Your *iteration* statement will tell your loop what to do with the iterator after each run.
+
+When you reassign a variable, you can use the variable to reference the previous value before the reassignment. This allows you to do things like add three to an existing number. For example, bees = bees + 3; would increase the value of bees by three.
+
+Use that syntax to replace your "iteration" string with a reassignment statement that increases i by one.
+## Step 32
+Your loop should now run eight times. Inside the body of the loop, print the value of the `i` iterator and see what happens.
+## Step 33
+You should see the numbers zero through seven printed in your console, one per line. This will serve as the foundation for generating your pyramid.
+
+Replace your log statement with a statement to push `i` to your `rows` array.
+## Step 34
+Unfortunately, now you cannot see what your loop is doing.
+
+Use `let` to declare a `result` variable, and assign it an empty string. An empty string is represented by quotation marks with nothing between them, such as `""`.
+## Step 35
+Add a log statement to print the value of `result`. Depending on which console you use, you may not see anything printed.
+## Step 36
+To manipulate the `result` string, you will use a different type of loop. Specifically, a `for...of` loop, which iterates over each item in an iterable object and temporarily assigns it to a variable.
+
+The syntax for a `for...of` loop looks like:
+```js
+for (const value of iterable) {}
+```
+Note that you can use `const` because the variable only exists for a single iteration, not during the entire loop.
+
+Create a `for...of` loop to iterate through your `rows` array, assigning each value to a `row` variable.
+## Step 37
+Remember in your previous loop that you used the addition operator `+` to increase the value of `i` by `1`.
+
+You can do a similar thing with a string value, by appending a new string to an existing string. For example, `hello = hello + " World";` would add the string `" World"` to the existing string stored in the `hello` variable. This is called *concatenation*.
+
+In your `for...of` loop, use the addition operator to concatenate the `row` value to the `result` value.
+## Step 38
+Now all of your numbers are appearing on the same line. This will not work for creating a pyramid.
+
+You will need to add a new line to each row. However, pressing the return key to insert a line break between quotes in JavaScript will result in a parsing error. Instead, you need to use the special escape sequence `\n`, which is interpreted as a new line when the string is logged. For example:
+```js
+lineOne = lineOne + "\n" + lineTwo;
+```
+Use a second addition operator to concatenate a new line between the existing `result` value and the added `row` value.
+## Step 39
+Printing numbers won't result in a visually appealing pyramid. Now that you're outputting the formatted content of your `rows` array, it's time to update your original loop.
+
+Instead of pushing `i` to the array, push the value of your `character` variable.
+## Step 40
+Now you have a series of `#` characters, but the pyramid shape is still missing. Fortunately, the `i` variable represents the current "row" number in your loop, enabling you to use it for crafting a pyramid-like structure.
+
+To achieve this, you will use the `.repeat()` method available to strings. This method accepts a number as an argument, specifying the number of times to repeat the target string. For example, using `.repeat()` to generate the string `"Code! Code! Code!"`:
+```js
+const activity = "Code! ";
+activity.repeat(3);
+```
+Use the `.repeat()` method on your `character`, and give it `i` for the number.
+#  Step 41 - 50
+## Step 41
+You're getting closer! At this point, you're encountering what's known as an _off-by-one error_, a frequent problem in zero-based indexing languages like JavaScript.
+
+The first index of your `rows` array is 0, which is why you start your `for` loop with `i = 0`. But repeating a string zero times results in nothing to print.
+
+To fix this, add `1` to the value of `i` in your `.repeat()` call. Do not assign it back to `i` like you did in your loop conditions.
+## Step 42
+The logic for formatting this pyramid is likely going to get complicated, which means it's a great time to extract that code into a function.
+
+A *function* is a block of code that can be reused throughout your application. Functions are declared with the following syntax:
+```js
+function name(parameter) {}
+```
+The `function` keyword tells JavaScript that the `name` variable is going to be a function. `parameter` is a variable that represents a value that is passed into the function when it is used. A function may have as many, or as few, *parameters* as you'd like. Like a `for` loop, the space between the curly braces is the *function* body.
+
+Declare a `padRow` function. Do not create any parameter variables yet. The function body should be empty. Remember that you need to use camel case for your naming convention.
