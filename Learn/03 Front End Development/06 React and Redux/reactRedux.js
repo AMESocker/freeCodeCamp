@@ -72,7 +72,7 @@ const messageReducer = (state = [], action) => {
 const store = Redux.createStore(messageReducer);
 
 ReactDOM.createRoot(document.getElementById('root')).render(<DisplayMessages />) */
-//? 4 Use Provider to Connect Redux to React
+/* //? 4 Use Provider to Connect Redux to React
 // Redux:
 const ADD = 'ADD';
 
@@ -157,4 +157,21 @@ class AppWrapper extends React.Component {
   }
   // Change code above this line
 };
-ReactDOM.createRoot(document.getElementById('root')).render(<DisplayMessages />)
+ReactDOM.createRoot(document.getElementById('root')).render(<DisplayMessages />) */
+/* //? 5 Map State to Props
+const state = [];
+// Change code below this line
+const mapStateToProps = (state) => {
+  return {
+    messages: state
+  }
+} */
+//? 6 Map Dispatch to Props
+const addMessage = (message) => {
+  return {
+    type: 'ADD',
+    message: message
+  }
+};
+
+// Change code below this line
