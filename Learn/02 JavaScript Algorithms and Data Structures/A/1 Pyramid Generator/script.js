@@ -2,7 +2,10 @@ const character = "#";
 const count = 8;
 const rows = [];
 
-function padRow(){}
+function padRow(){
+
+}
+
 
 for (let i = 0; i<count; i++) {
   rows.push(character.repeat(i+1))
@@ -15,6 +18,14 @@ for (const row of rows) {
 }
 
 console.log(result);
+
+// const call = padRow();
+// console.log(call);
+/* function padRow(){
+  const test = "Testing";
+  return test;
+} */
+// const call = padRow('CamperAron');
 // let rows = ["Naomi", "Quincy","CamperChan"];
 // let pushed = rows.push("freeCodeCamp");
 // console.log(pushed);

@@ -293,3 +293,90 @@ function name(parameter) {}
 The `function` keyword tells JavaScript that the `name` variable is going to be a function. `parameter` is a variable that represents a value that is passed into the function when it is used. A function may have as many, or as few, *parameters* as you'd like. Like a `for` loop, the space between the curly braces is the *function* body.
 
 Declare a `padRow` function. Do not create any parameter variables yet. The function body should be empty. Remember that you need to use camel case for your naming convention.
+## Step 43
+In order to use a function, you need to call it. A *function call* tells your application to run the code from the function wherever you choose to call it. The syntax for a function call is the function name followed by parentheses. For example, this code defines and calls a `test` function.
+```js
+function test() {}
+test();
+```
+Call your `padRow` function.
+## Step 44
+You are calling your `padRow` function, but not doing anything with that function call. All functions in JavaScript *return* a value, meaning they provide the defined result of calling them for you to use elsewhere.
+
+To see the result of calling your `padRow` function, declare a `call` variable and assign your existing `padRow` call to that variable.
+## Step 45
+Now add a log statement to print the value of your `call` variable.
+## Step 46
+Your `call` variable has an `undefined` value, even though you defined it! This is because your `padRow` function does not currently return a value. By default, functions return `undefined` as their value.
+
+In order to return something else, you need to use the `return` keyword. Here is an example of a function that returns the string `"Functions are cool!"`:
+```js
+function demo() {
+  return "Functions are cool!";
+}
+```
+Use the `return` keyword to have your function return the string `"Hello!"`.
+## Step 47
+When you have a value that is explicitly written in your code, like the `"Hello!"` string in your function, it is considered to be hard-coded. Hard-coding a value inside a function might not make it as reusable as you'd like.
+
+Instead, you can define *parameters* for the function. Parameters are special variables that are given a value when you call the function, and can be used in your function to dynamically change the result of the function's code.
+
+To add a parameter to your function, you need to add a variable name inside the parentheses. For example, this `demo` function has a `name` parameter:
+```js
+function demo(name) {}
+```
+`name` sounds like a useful parameter, so go ahead and add it to your `padRow` function.
+## Step 48
+A function does not have to return a hard-coded value. It can return the value stored in a variable. Parameters are special variables for a function, so they can also be returned.
+
+Change your `padRow` function to `return` the `name` parameter directly.
+## Step 49
+If you open your console again, you'll see that your `padRow` function is returning `undefined`, even though you defined a return value! This is because parameters need to be given a value when you **call** the function.
+
+When you pass a value to a function call, that value is referred to as an *argument*. Here is an example of calling a `demo` function and passing `"Naomi"` as the argument for the `name` parameter.
+```js
+function demo(name) {
+  return name;
+}
+demo("Naomi");
+```
+Pass your own name as the argument for the `name` parameter in your `padRow` call. Remember that your name is a string, so you'll need to use quotes.
+## Step 50
+Variables in JavaScript are available in a specific *scope*. In other words, where a variable is declared determines where in your code it can be used.
+
+The first scope is the global scope. Variables that are declared outside of any "block" like a function or `for` loop are in the *global scope*. Your `character`, `count`, and `rows` variables are all in the global scope.
+
+When a variable is in the global scope, a function can access it in its definition. Here is an example of a function using a global `title` variable:
+```js
+const title = "Professor ";
+function demo(name) {
+  return title + name;
+}
+demo("Naomi")
+```
+This example would return `"Professor Naomi"`. Update your `padRow` function to return the value of concatenating your `character` variable to the beginning of the `name` parameter.
+#  Step 51 - 60
+## Step 51
+Variables can also be declared inside a function. These variables are considered to be in the `local scope`, or `block scope`. A variable declared inside a function can only be used inside that function. If you try to access it outside of the function, you will either get `undefined` or an error.
+
+To see this in action, use `const` to declare a `test` variable in your `padRow` function. Initialize it with the value `"Testing"`.
+
+Then, below your function, try to log `test` to the console. You will see an error because it is not defined outside of the function's local scope. Remove that `console.log` to pass the tests and continue.
+## Step 52
+There is a bit of a problem, here. Your `test` declaration is currently after your `return` statement. An important thing to know about the `return` keyword is that it does not just define a value to be returned from your function, it also stops the execution of your function code. This means that any code after a `return` statement will not run.
+
+Move your `test` initialization to the line above your `return` statement.
+## Step 53
+If you try to add a `console.log(test)` call below your `padRow` function, you would see an error. This is because test is defined in the local scope, meaning you cannot access it in the global scope (outside of the `padRow` function).
+
+Returning a value from a function brings that value into the scope where the function was called. To bring your `"Testing"` value from the `padRow` function into the global scope, update your `return` statement to return only the `test` variable.
+## Step 54
+Now your `call` variable has the value `"Testing"`. But your function is no longer using the `name` parameter.
+
+Remove the `name` parameter from your function declaration, then remove your `"CamperChan"` string from the padRow call.
+## Step 55
+Because your function was no longer using the parameter, changing the value passed in the call did not affect it.
+
+Go ahead and remove the `test` declaration from your `padRow` function. Also, remove the `return` statement, so your function is empty again.
+## Step 56
+As expected, your function now returns `undefined` again. Your `call` variable is not necessary any more, so remove the `call` declaration and the `console.log` for the `call` variable.
