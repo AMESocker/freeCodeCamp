@@ -27,13 +27,14 @@ const QUOTES = [
     quote: "The best way to predict the future is to create it.",
     author: "Peter Drucker",
   },
-  {
-    quote: "The only thing necessary for the triumph of evil.",
-    author: "Edmund Burke",
-  },
+
   {
     quote: "The only thing we have to fear is fear itself.",
     author: "Franklin D. Roosevelt",
+  },
+  {
+    quote: "The only true wisdom is in knowing you know nothing.",
+    author: "Socrates",
   },
 ];
 class Quote extends React.Component {
