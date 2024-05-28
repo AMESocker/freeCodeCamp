@@ -18,15 +18,15 @@ const displayData = (dataResponse) => {
     d[0] = getYear(d[0])
   })
   console.log(dataset)
- 
-  
+
+
   const w = 900;
   const h = 500;
   const padding = 20;
-  const barWidth = (w-padding) / dataset.length;
+  const barWidth = (w - padding) / dataset.length;
 
   const xScale = d3.scaleLinear()
-    .domain([d3.min(dataset,(d)=>d[0]), d3.max(dataset,(d)=>d[0])])
+    .domain([d3.min(dataset, (d) => d[0]), d3.max(dataset, (d) => d[0])])
     .range([0, w - padding]);
 
   const svg = d3.select(chartDiv)
@@ -48,11 +48,12 @@ const displayData = (dataResponse) => {
     .attr("data-gdp", (d) => d[1])
     .append('title')
     .attr('id', 'tooltip')
+    .attr('data-date', (d) => d[0])
     .text((d) => d[0])
 
-const xAxis = d3.axisBottom(xScale);
+  const xAxis = d3.axisBottom(xScale);
 
-svg.append("g")
+  svg.append("g")
     .attr("transform", "translate(0," + (h - padding) + ")")
     .call(xAxis);
 
