@@ -10,14 +10,6 @@ fetch(dataset)
 const displayData = (dataResponse) => {
   const dataset = dataResponse;
 
-  //get year from dataset
-  const getYear = (date) => {
-    return date.substring(0, 4)
-  }
-  dataset.forEach((d) => {
-    d[0] = getYear(d[0])
-  })
-  console.log(dataset)
 
 
   const w = 900;
@@ -46,16 +38,31 @@ const displayData = (dataResponse) => {
     .attr("class", "bar")
     .attr("data-date", (d) => d[0])
     .attr("data-gdp", (d) => d[1])
-    .append('title')
+    // .append('title')
     .attr('id', 'tooltip')
-    .attr('data-date', (d) => d[0])
-    .text((d) => d[0])
+
 
   const xAxis = d3.axisBottom(xScale);
 
+  
+  //get year from dataset
+  const getYear = (date) => {
+    return date.substring(0, 4)
+  }
+  dataset.forEach((d) => {
+    d[0] = getYear(d[0])
+  })
+  console.log(dataset)
+
   svg.append("g")
+    .attr('id', 'x-axis')
     .attr("transform", "translate(0," + (h - padding) + ")")
-    .call(xAxis);
+    .call(xAxis)
+
+  svg.append("g")
+    .attr('id', 'y-axis')
+    .attr("transform", "translate(" + padding + ", 0)")
+    // .call(d3.axisLeft(d3.scaleLinear().domain([0, d3.max(dataset, (d) => d[1])]).range([h - padding, 0])))
 
 
 }
