@@ -1,0 +1,41 @@
+:root{
+  /* set color palette */
+  --color-A: #8c7373;
+  --color-B: #f0f0f0;
+}
+#app{
+  /* center element in width */
+  margin: 0 auto;
+  /* give element width */
+  width: 80%;
+  /* give element height */
+  height: 100%;
+  /* center element in height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* give element padding */
+  padding: 20px;
+  /* give element background color */
+  background-color: var(--color-A)
+
+
+
+}
+#editor{
+  /* give element width */
+  width: 500px;
+  /* give element height */
+  height: 250px;
+  /* give element padding */
+  padding: 20px;
+  /* give element background color */
+  background-color: var(--color-B);
+  /* give element border */
+  border: 1px solid black;
+  /* give element border radius */
+  border-radius: 5px;
+  /* give element overflow */
+  overflow: auto;  
+
+}
