@@ -380,3 +380,28 @@ Because your function was no longer using the parameter, changing the value pass
 Go ahead and remove the `test` declaration from your `padRow` function. Also, remove the `return` statement, so your function is empty again.
 ## Step 56
 As expected, your function now returns `undefined` again. Your `call` variable is not necessary any more, so remove the `call` declaration and the `console.log` for the `call` variable.
+## Step 57
+In order to know how to format a row, your `padRow` function will need to know which row number you are on, and how many rows in total are being generated.
+
+The best way to do this is by creating function parameters for them. Give your `padRow` function a `rowNumber` and `rowCount` parameter. Multiple parameters are separated by a comma:
+```js
+function name(first, second) {}
+```
+## Step 58
+Remember in an earlier step, you learned about return values. A function can *return* a value for your application to consume separately.
+
+In a function, the `return` keyword is used to specify a return value. For example, this function would return the value given to the first parameter:
+```js
+function name(parameter) {
+  return parameter;
+}
+```
+Use the `return` keyword to return the value of the `character` variable, repeated `rowNumber` times.
+## Step 59
+A *function* call allows you to actually use a function. You may not have been aware of it, but the methods like `.push()` that you have been using have been function calls.
+
+A function is called by referencing the function's name, and adding `()`. Here's how to call a `test` function:
+```js
+test();
+```
+Replace the `character.repeat(i + 1)` in your `.push()` call with a function call for your `padRow` function.

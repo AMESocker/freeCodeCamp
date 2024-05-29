@@ -2,13 +2,13 @@ const character = "#";
 const count = 8;
 const rows = [];
 
-function padRow(){
-
+function padRow(rowNumber, rowCount){
+  return character.repeat(rowNumber);
 }
 
 
 for (let i = 0; i<count; i++) {
-  rows.push(character.repeat(i+1))
+  rows.push(padRow())
 }
 
 let result = '';
