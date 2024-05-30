@@ -33,69 +33,58 @@ const JSX = (
 //     <h1 >Add a class to this div</h1>
 //   </div>
 // );*/
-/*//? 06 Learn About Self-Closing JSX Tags
-// const JSX = (
-//   <div>
-//     <h2>Welcome to React!</h2> <br />
-//     <p>Be sure to close all tags!</p>
-//     <hr />
-//   </div>
-// );
-// ReactDOM.render(JSX, document.getElementById('root'))*/
-/*//? 07 Create a Stateless Functional Component
-// const MyComponent = function() {
-  // Change code below this line
-// return(
-
-//   <div>some string of text</div>
-// );
-
-  // Change code above this line
-// }*/
-/*//? 08 Create a React Component
-// class MyComponent extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   render() {
-//     // Change code below this line
-//     return (
-//       <div>
-//         <h1>Hello React!</h1>
-//       </div>
-//     )
-//     // Change code above this line
-//   }
-// };
-// ReactDOM.render(React.createElement(MyComponent, null), document.getElementById('root'))*/
-/*//? 09 Create a Component with Composition
-// const ChildComponent = () => {
-//   return (
-//     <div>
-//       <p>I am the child</p>
-//     </div>
-//   );
-// };
-
-// class ParentComponent extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   render() {
-//     return (
-//       <div>
-//         <h1>I am the parent</h1>
-//         {  Change code below this line  }
-//         <ChildComponent />
-
-//         { Change code above this line }
-//       </div>
-//     );
-//   }
-// };
-
-// ReactDOM.render(React.createElement(ParentComponent, null), document.getElementById('root'))*/
-/*//? 10 Use React to Render Nested Components
+/* //? 06 Learn About Self-Closing JSX Tags
+const JSX = (
+  <div>
+    <h2>Welcome to React!</h2> <br />
+    <p>Be sure to close all tags!</p>
+    <hr />
+  </div>
+);
+ReactDOM.render(JSX, document.getElementById('root')) */
+/* //? 07 Create a Stateless Functional Component
+const MyComponent = function () {
+  return (
+    <div>some string of text</div>
+  );
+} */
+/* //? 08 Create a React Component
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Hello React!</h1>
+      </div>
+    )
+  }
+};
+ReactDOM.render(React.createElement(MyComponent, null), document.getElementById('root')) */
+/* //? 09 Create a Component with Composition
+const ChildComponent = () => {
+  return (
+    <div>
+      <p>I am the child</p>
+    </div>
+  );
+};
+class ParentComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>I am the parent</h1>
+        <ChildComponent />
+      </div>
+    );
+  }
+};
+ReactDOM.render(React.createElement(ParentComponent, null), document.getElementById('root')) */
+/* //? 10 Use React to Render Nested Components
 const TypesOfFruit = () => {
   return (
     <div>
@@ -109,35 +98,28 @@ const TypesOfFruit = () => {
     </div>
   );
 };
-
 const Fruits = () => {
   return (
     <div>
-      // {  Change code below this line  }
         <TypesOfFruit />
-      // {  Change code above this line  }
     </div>
   );
 };
-
 class TypesOfFood extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <div>
         <h1>Types of Food:</h1>
-        {  Change code below this line  }
           <Fruits />
-        { Change code above this line  }
       </div>
     );
   }
 };
-ReactDOM.render(React.createElement(TypesOfFood, null), document.getElementById('root'))*/
-/*//? 11 Compose React Components
+ReactDOM.render(React.createElement(TypesOfFood, null), document.getElementById('root')) */
+/* //? 11 Compose React Components
 class Fruits extends React.Component {
   constructor(props) {
     super(props);
@@ -146,15 +128,12 @@ class Fruits extends React.Component {
     return (
       <div>
         <h2>Fruits:</h2>
-        { /* Change code below this line  }
         <NonCitrus />
           <Citrus />
-        { /* Change code above this line  }
       </div>
     );
   }
 };
-
 class TypesOfFood extends React.Component {
   constructor(props) {
      super(props);
@@ -163,15 +142,13 @@ class TypesOfFood extends React.Component {
     return (
       <div>
         <h1>Types of Food:</h1>
-        { /* Change code below this line  }
         <Fruits />
-        { /* Change code above this line  }
         <Vegetables />
       </div>
     );
   }
 };
-ReactDOM.render(React.createElement(TypesOfFood, null), document.getElementById('root'))*/
+ReactDOM.render(React.createElement(TypesOfFood, null), document.getElementById('root')) */
 /*//? 12 Render a Class Component to the DOM
 class TypesOfFood extends React.Component {
   constructor(props) {
@@ -363,11 +340,9 @@ ReactDOM.render(<CampSite />, document.getElementById('root'))*/
 class StatefulComponent extends React.Component {
   constructor(props) {
     super(props);
-    // Only change code below this line
     this.state = {
       firstName: 'Aron'
     }
-    // Only change code above this line
   }
   render() {
     return (
@@ -405,9 +380,7 @@ class MyComponent extends React.Component {
     }
   }
   render() {
-    // Change code below this line
     const name = this.state.name
-    // Change code above this line
     return (
       <div>
         <h1>{name}</h1>
@@ -451,9 +424,7 @@ class MyComponent extends React.Component {
     this.state = {
       text: "Hello"
     };
-    // Change code below this line
     this.handleClick = this.handleClick.bind(this)
-    // Change code above this line
   }
   handleClick() {
     this.setState({
@@ -478,17 +449,13 @@ class MyComponent extends React.Component {
     this.state = {
       visibility: false
     };
-    // Change code below this line
     this.toggleVisibility = this.toggleVisibility.bind(this)
-    // Change code above this line
   }
-  // Change code below this line
   toggleVisibility() {
     this.setState(state => ({
       visibility: !state.visibility
     }))
   }
-  // Change code above this line
   render() {
     if (this.state.visibility) {
       return (
@@ -558,17 +525,15 @@ class ControlledInput extends React.Component {
     this.state = {
       input: ''
     };
-    // Change code below this line
     this.handleChange = this.handleChange.bind(this)
-    // Change code above this line
   }
-  // Change code below this line
+  //? Change code below this line
   handleChange(event) {
     this.setState({
       input: event.target.value
     })
   }
-  // Change code above this line
+  //? Change code above this line
   render() {
     return (
       <div>
@@ -660,7 +625,7 @@ class Navbar extends React.Component {
 };
 ReactDOM.render(<MyApp />, document.getElementById('root'))
 */
-/*//? 31 Pass a Callback as Props
+//? 31 Pass a Callback as Props
 class MyApp extends React.Component {
   constructor(props) {
     super(props);
@@ -677,10 +642,10 @@ class MyApp extends React.Component {
   render() {
     return (
        <div>
-        { /* Change code below this line 
+        {/* Change code below this line  */}
         <GetInput input={this.state.inputValue} handleChange={this.handleChange} />
         <RenderInput input={this.state.inputValue} />
-        { /* Change code above this line 
+         {/* Change code above this line  */}
        </div>
     );
   }
@@ -716,7 +681,7 @@ class RenderInput extends React.Component {
   }
 };
 ReactDOM.render(<MyApp />, document.getElementById('root'))
-*/
+
 /*//? 32 Use the Lifecycle Method componentWillMount
 class MyComponent extends React.Component {
   constructor(props) {
@@ -1010,7 +975,7 @@ class MyComponent extends React.Component {
 };
 ReactDOM.createRoot(document.getElementById('root')).render(<MyComponent />) 
  */
-/*//? 41 Use a Ternary Expression for Conditional Rendering
+/* //? 41 Use a Ternary Expression for Conditional Rendering
 const inputStyle = {
   width: 235,
   margin: 5
@@ -1053,15 +1018,14 @@ class CheckUserAge extends React.Component {
           onChange={this.handleChange}
         />
         <br />
-        {/* Change code below this line 
+        {/* Change code below this line  
         {this.state.userAge === '' ? buttonOne : this.state.userAge < 18 ? buttonThree : buttonTwo}
-        {/* Change code above this line 
+         {/* Change code above this line  
       </div>
     );
   }
 }
-ReactDOM.createRoot(document.getElementById('root')).render(<CheckUserAge />) 
-*/
+ReactDOM.createRoot(document.getElementById('root')).render(<CheckUserAge />)  */
 /*//? 42 Render Conditionally from Props
 class Results extends React.Component {
   constructor(props) {
