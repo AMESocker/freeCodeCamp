@@ -405,3 +405,93 @@ A function is called by referencing the function's name, and adding `()`. Here's
 test();
 ```
 Replace the `character.repeat(i + 1)` in your `.push()` call with a function call for your `padRow` function.
+## Step 60
+Step 60
+Your `padRow` function has two parameters which you defined. Values are provided to those parameters when a function is called.
+
+The values you provide to a function call are referred to as *arguments*, and you *pass* arguments to a function call. Here's a function call with `"Hello"` passed as an argument:
+```js
+test("Hello");
+```
+Pass `i + 1` and `count` as the arguments to your `padRow` call. Like parameters, arguments are separated by a comma.
+#  Step 61 - 70
+## Step 61
+You should now see the same bunch of characters in your console. Your `padRow` function is doing the exact same thing you were doing earlier, but now it's in a reusable section of its own.
+
+Use the addition operator to concatenate a blank space `" "` to the beginning and end of your repeated `character` string.
+
+Remember that you can use the `+` operator to concatenate strings like this:
+```js
+" " + "string"
+```
+## Step 62
+Now it is time for a bit of math. Consider a three-row pyramid. If we want it centered, it would look something like:
+```js
+··#··
+·###·
+#####
+```
+Empty spaces have been replaced with interpuncts, or middle dots, for readability. If you extrapolate the pattern, you can see that the spaces at the beginning and end of a row follow a pattern.
+
+Update your blank space strings to be repeated `rowCount - rowNumber` times.
+
+Open up the console to see the result.
+## Step 63
+You can pass full expressions as an argument. The function will receive the result of evaluating that expression. For example, these two function calls would yield the same result:
+```js
+test(2 * 3 + 1);
+test(7);
+```
+Looking at the pattern again:
+```js
+··#··
+·###·
+#####
+```
+Update the `character` value to be repeated `2 * rowNumber - 1` times.
+
+Open up the console again to see the updated result.
+## Step 64
+Your pyramid generator now functions as expected. But this is an excellent opportunity to further explore the code you have written.
+
+The addition operator is not the only way to add values to a variable. The *addition assignment* operator can be used as shorthand to mean "take the original value of the variable, add this value, and assign the result back to the variable." For example, these two statements would yield the same result:
+```js
+test = test + 1;
+test += 1;
+```
+Update your iterator statement in the `for` loop to use addition assignment.
+## Step 65
+Because you are only increasing `i` by `1`, you can use the *increment operator* `++`. This operator increases the value of a variable by 1, updating the assignment for that variable. For example, `test` would become `8` here:
+```js
+let test = 7;
+test++;
+```
+Replace your addition assignment with the increment operator for your loop iteration.
+## Step 66(68)
+Rather than having to pass `i + 1` to your `padRow` call, you could instead start your loop at `1`. This would allow you to create a one-indexed loop.
+
+Update your iterator to start at `1` instead of `0`.
+## Step 69
+The pyramid looks a little funny now. Because you are starting the loop at `1` instead of `0`, you do not need to add one to `i` when you pass it to padRow.
+
+Update the first argument of your padRow call to be i.
+## Step 70
+Unfortunately, now the bottom of the pyramid has disappeared. This is because you have created another off-by-one error.
+
+Your original loop went for `i` values from 0 to 7, because `count` is `8` and your condition requires `i` to be less than `count`. Your loop is now running for `i` values from `1` to `7`.
+
+Your loop needs to be updated to run when `i` is `8`, too. Looking at your logic, this means your loop should run when `i` is *less than or equal to* `count`. You can use the less than or equal to operator `<=` for this.
+
+Update your loop condition to run while i is less than or equal to count.
+```js
+for (let i = 1; i <= count; i++) {
+  rows.push(padRow(i, count));
+}
+```
+#  Step 71 - 80
+## Step 71
+Comments can be helpful for explaining why your code takes a certain approach, or leaving to-do notes for your future self.
+
+In JavaScript, you can use `//` to leave a single-line comment in your code.
+
+Add a single-line comment above your function to remind yourself to change the code to a different kind of loop.
