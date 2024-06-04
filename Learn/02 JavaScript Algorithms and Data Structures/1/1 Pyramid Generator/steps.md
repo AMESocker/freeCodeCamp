@@ -495,3 +495,385 @@ Comments can be helpful for explaining why your code takes a certain approach, o
 In JavaScript, you can use `//` to leave a single-line comment in your code.
 
 Add a single-line comment above your function to remind yourself to change the code to a different kind of loop.
+## Step 72
+JavaScript also has support for multi-line comments. A multi-line comment starts with `/*` and ends with `*/`.
+
+Unlike a single-line comment, a multi-line comment will encapsulate multiple lines.
+
+Use `/*` and `*/` to turn your current for loop, including the body, into a multi-line comment.
+## Step 73
+Your pyramid has disappeared again. That's okay - that is to be expected.
+
+Before you create your new loop, you need to learn about `if` statements. An *`if` statement* allows you to run a block of code only when a condition is met. They use the following syntax:
+```js
+if (condition) {
+  logic
+}
+```
+Create an `if` statement with the boolean `true` as the condition. In the body, print the string `"Condition is true"`.
+## Step 74
+You'll see the string printed in the console, because `true` is in fact true.
+
+Change the condition of your `if` statement to the boolean `false`.
+## Step 75
+Now the string is no longer printing, because `false` is not `true`. But what about other values?
+
+Try changing the condition to the string `"false"`.
+## Step 76
+The text has appeared again! This is because `"false"` is a string, which when evaluated to a boolean becomes `true`. This means `"false"` is a truthy value.
+
+A *truthy value* is a value that is considered true when evaluated as a boolean. Most of the values you encounter in JavaScript will be truthy.
+
+A *falsy value* is the opposite - a value considered false when evaluated as a boolean. JavaScript has a defined list of falsy values. Some of them include `false`, `0`, `""`, `null`, `undefined`, and `NaN`.
+
+Try changing your `if` condition to an empty string `""`, which is a falsy value.
+```js
+if ("") {
+  console.log("Condition is true");
+}
+```
+## Step 77
+The text is gone again! Empty strings evaluate to `false`, making them a *falsy value*. You will learn more about truthy and falsy values in future projects.
+
+In addition to `if` statements, JavaScript also has *else if* statements. `else if` statements allow you to check multiple conditions in a single block of code.
+
+Here is the syntax for an `else if` statement:
+```js
+if (condition1) {
+  // code to run if condition1 is true
+} else if (condition2) {
+  // code to run if condition2 is true
+} else if (condition3) {
+  // code to run if condition3 is true
+} 
+```
+If the first condition is `false`, JavaScript will check the next condition in the chain. If the second condition is `false`, JavaScript will check the third condition, and so on.
+
+Below your `if` statement, add an `else if` statement that checks if `5` is less than `10`. Then inside the body of the `else if` statement, log the string `"5 is less than 10"` to the console.
+
+Check the console to see the results.
+```js
+if ("") {
+  console.log("Condition is true");
+}
+else if (5 < 10) {
+  console.log("5 is less than 10");
+}
+```
+## Step 78
+Sometimes you will want to run different code when all of the `if...else if` conditions are `false`. You can do this by adding an `else` block.
+
+An `else` block will only evaluate if the conditions in the `if` and `else if` blocks are not met.
+
+Here the `else` block is added to the `else if` block.
+
+```js
+if (condition) {
+  // this code will run if condition is true
+} else if (condition2) {
+  // this code will run if the first condition is false
+} else {
+  // this code will run 
+  // if the first and second conditions are false
+}
+```
+Add an `else` block to the `else if` block. Inside the `else` block, log the string `"This is the else block"` to the console.
+
+To see the results in the console, you can manually change the `<` in the `else if` statement to `>`. That will make the condition `false` and the `else` block will run.
+```js
+if ("") {
+  console.log("Condition is true");
+} else if (5 > 10) {
+  console.log("5 is less than 10");
+} else {
+  console.log("This is the else block");
+}
+```
+## Step 79
+Now that you have practiced working with `if...else if...else` statements, you can remove them from your code.
+
+Once you complete that, use `let` to declare a `continueLoop` variable and assign it the boolean `false`. Then use `let` to declare a `done` variable and assign it the value `0`.
+```js
+let continueLoop = false;
+let done = 0;
+```
+## Step 80
+A *`while`* loop will run over and over again until the `condition` specified is no longer true. It has the following syntax:
+```js
+while (condition) {
+  logic;
+}
+```
+Use that syntax to declare a `while` loop with `continueLoop` as the condition. The body should be empty.
+```js
+while (continueLoop) {}
+```
+#  Step 81 - 90
+## Step 81
+Right now, if you change `continueLoop` to true, your `while` loop will run forever. This is called an *infinite loop*, and you should be careful to avoid these. An infinite loop can lock up your system, requiring a full restart to escape.
+
+To avoid this, start by using the increment operator to increase the value of the `done` variable inside your loop.
+```js
+while (continueLoop) {
+  done++;
+}
+```
+## Step 82
+The *equality* operator `==` is used to check if two values are equal. To compare two values, you'd use a statement like `value == 8`.
+
+Add an `if` statement to your loop. The statement should check if `done` is equal to `count` using the equality operator.
+```js
+while (continueLoop) {
+  done++;
+  if (done == count) {}
+}
+```
+## Step 83
+The equality operator can lead to some strange behavior in JavaScript. For example, `"0" == 0` is true, even though one is a string and one is a number.
+
+The strict *equality* operator `===` is used to check if two values are equal and share the same type. As a general rule, this is the equality operator you should always use. With the strict equality operator, `"0" === 0` becomes false, because while they might have the same value of zero, they are not of the same type.
+
+Update your `done == count` condition to use the strict equality operator.
+```js
+  if (done === count) {
+
+  }
+  ```
+## Step 84
+When `done` has reached the value of `count`, we want the loop to stop executing.
+
+Inside your `if` body, assign the boolean `false` to your `continueLoop` variable.
+```js
+  if (done === count) {
+    continueLoop = false;
+  }
+```
+## Step 85
+To make your pyramid generate again, push the result of calling `padRow` with `done` and `count` as the arguments to your `rows` array, similar to what you did in your first loop.
+```js
+  if (done === count) {
+    continueLoop = false;
+    rows.push(padRow(done, count));
+  }
+```
+## Step 86
+The *strict inequality* operator `!==` allows you to check if two values are not equal, or do not have the same type. The syntax is similar to the equality operator: `value !== 4`.
+
+Update your `while` loop condition to check if `done` is not equal to `count`.
+```js
+while (done !== count) {
+  done++;
+  rows.push(padRow(done, count));
+  if (done === count) {
+    continueLoop = false;
+  }
+}
+```
+## Step 87
+Since you have moved the comparison into the `while` condition, you can remove your entire `if` statement.
+```js
+while (done !== count) {
+  done++;
+  rows.push(padRow(done, count));
+
+}
+```
+## Step 88
+Your loop is no longer relying on the `continueLoop` variable. This makes the variable an *unused declaration*. Generally, you want to avoid unused declarations to prevent future confusion.
+
+Remove your `continueLoop` variable.
+## Step 89
+Your pyramid generator is still working. However, it could be possible to end up with an infinite loop again.
+
+Because you are only checking if `done` is not equal to `count`, if done were to be **larger** than `count` your loop would go on forever.
+
+Update your loop's condition to check if `done` is less than or equal to `count`.
+```js
+while (done <= count) {
+  done++;
+  rows.push(padRow(done, count));
+}
+```
+## Step 90
+Using `done` to track the number of rows that have been generated is functional, but you can actually clean up the logic a bit further.
+
+Arrays have a special `length` property that allows you to see how many values, or *elements*, are in the array. You would access this property using syntax like `myArray.length`.
+
+Update your condition to check if `rows.length` is less than or equal to `count`.
+```js
+while (rows.length <= count) {
+  rows.push(padRow(rows.length, count));
+}
+```
+#  Step 91 - 100
+## Step 91
+You can also replace the `done` reference in your `padRow` call.
+
+Note that `rows.length` here would give you an off-by-one error, because `done` is incremented *before* the call.
+
+So you'll need to replace `done` here with `rows.length + 1`. When you do this, you may see a `Range Error`, because we've created another off-by-one error.
+
+You'll need to change the `while` condition to use the less than operator, instead of the less than or equal operator.
+```js
+while (rows.length < count) {
+  rows.push(padRow(rows.length + 1, count));
+}
+```
+## Step 92
+Now you no longer need your `done` variable. Remove the increment operation from your loop, and the variable declaration for `done`.
+## Step 93
+That's a very clean and functional loop. Nice work! But there's still more to explore.
+
+Use a multi-line comment to comment out your `while` loop.
+## Step 94
+What if you made your pyramid upside-down, or *inverted?* Time to try it out!
+
+Start by creating a new `for` loop. Declare your iterator `i` and assign it the value of `count`, then use the boolean `false` for your condition and iteration statements.
+```js
+for (let i = count; false; false) {}
+```
+## Step 95
+Because you are going to loop in the opposite direction, your loop needs to run while `i` is greater than `0`. You can use the *greater than* operator `>` for this.
+
+Set your loop's condition to run when `i` is greater than `0`.
+```js
+for (let i = count; i > 0; false) {}
+```
+## Step 96
+Your iteration statement is also going to be different. Instead of adding `1` to `i` with each loop, you need to subtract `1`.
+
+Like you did earlier with `i = i + 1`, update your iteration statement to give `i` the value of subtracting `1` from itself.
+```js
+for (let i = count; i > 0; i = i - 1) {}
+```
+## Step 97
+Again, push the result of calling `padRow` with your `i` and `count` variables to your `rows` array.
+
+Open up the console to see the upside-down pyramid.
+```js
+for (let i = count; i > 0; i = i - 1) {
+  rows.push(padRow(i, count));
+}
+```
+## Step 98
+Just like addition, there are different operators you can use for subtraction. The *subtraction assignment* operator -= subtracts the given value from the current variable value, then assigns the result back to the variable.
+
+Replace your iterator statement with the correct statement using the subtraction assignment operator.
+## Step 99
+Because you are only subtracting one from `i`, you can use the *decrement operator* `--`.
+
+Replace your subtraction assignment with the decrement operator.
+## Step 100
+Use a multi-line comment to comment out this loop as well, to prepare for the next approach.
+#  Step 101 - 110
+## Step 101
+You can actually build the inverted pyramid without needing to loop "backwards" like you did.
+
+To do this, you'll need to learn a couple of new array methods. Start by using `const` to declare a `numbers` variable. Assign it an array with the elements `1`, `2`, and `3`. Then log the `numbers` array.
+```js
+const numbers = [1, 2, 3];
+console.log(numbers);
+```
+## Step 102
+The `.unshift()` method of an array allows you to add a value to the **beginning** of the array, unlike `.push()` which adds the value at the end of the array. Here is an example:
+```js
+const numbers = [1, 2, 3];
+numbers.unshift(5);
+```
+The `numbers` array would now be `[5, 1, 2, 3]`.
+
+Use `const` to declare an `unshifted` variable, and assign it the result of calling `.unshift()` on your `numbers` array. Pass `5` as the argument. Then print your `unshifted` variable.
+```js
+const unshifted = numbers.unshift(5);
+console.log(unshifted);
+```
+## Step 103
+Notice that like `.push()`, `.unshift()` returns the new length of the array after the element is added.
+
+Arrays also have a `.shift()` method. This will remove the **first** element of the array, unlike `.pop()` which removes the last element. Here is an example of the `.shift()` method:
+```js
+const numbers = [1, 2, 3];
+numbers.shift();
+```
+The `numbers` array would be `[2, 3]`.
+
+Declare a `shifted` variable, assign it the result of calling `.shift()` on your `numbers` array, and print the variable.
+```js
+const shifted = numbers.shift();
+console.log(shifted);
+```
+## Step 104
+Now that you've tried these methods, you can do another inverted pyramid approach. But first you need to clean up your experimentation.
+
+Remove your `numbers` array, and the method calls and log calls.
+## Step 105
+Sometimes you may wish to bring back previous code that you commented out. You can do so by removing the `/*` and `*/` around that code. This is called uncommenting.
+
+Uncomment only your first `for` loop. Leave the single line comment and the other two multi line comments in place.
+## Step 106
+Your pyramid is no longer inverted. This is because you are adding new rows to the **end** of the array.
+
+Update your loop body to add new rows to the beginning of the array.
+```js
+for (let i = 1; i <= count; i++)  {
+  rows.unshift(padRow(i, count));
+}
+```
+## Step 107
+What if you had a way to toggle between an inverted pyramid and a standard pyramid?
+
+Start by declaring an `inverted` variable, and assigning it the value `true`. You are not changing this variable in your code, but you will need to use `let` so our tests can modify it later.
+```js
+let inverted = true;
+```
+## Step 108
+Use an `if` statement to check if `inverted` is true. Remember that you do not need to use an equality operator here.
+```js
+if (inverted) {}
+```
+## Step 109
+Now move your `.unshift()` call into your `if` block.
+```js
+if (inverted) {
+  rows.unshift(padRow(i, count));
+}
+```
+## Step 110
+If your pyramid is not inverted, then you will want to have an `else` block that builds the pyramid in the normal order.
+
+In earlier steps, you learned how to work with `else` statement like this:
+```js
+if (condition) {
+  // if condition is true, run this code
+} else {
+  // if condition is false, run this code
+}
+```
+Add an `else` block to your `if` block.
+```js
+if (inverted) {
+  rows.unshift(padRow(i, count));
+} else {
+
+}
+```
+#  Step 111 - 113
+## Step 111
+When `inverted` is false, you want to build a standard pyramid. Use `.push()` like you have in previous steps to achieve this.
+```js
+if (inverted) {
+  rows.unshift(padRow(i, count));
+} else {
+  rows.push(padRow(i, count));
+}
+```
+## Step 112
+Your pyramid generator is now in a finished state, with more functionality than you originally planned! The next step is to clean up your code.
+
+Remove all comments, both single- and multi-line, from your code.
+## Step 113
+Nice work! Experiment with different values for your `character`, `count`, and `inverted` variables.
+
+When you are ready to move on to your next project, set `character` to `"!"`, `count` to `10`, and `inverted` to `false` to continue.
+
+Congratulations on completing your first JavaScript project!
