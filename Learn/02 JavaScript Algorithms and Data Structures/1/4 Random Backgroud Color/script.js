@@ -1,17 +1,6 @@
-const darkColorsArr = [
-  "#2C3E50",
-  "#34495E",
-  "#2C2C2C",
-  "#616A6B",
-  "#4A235A",
-  "#2F4F4F",
-  "#0E4B5A",
-  "#36454F",
-  "#2C3E50",
-  "#800020",
-];
 const hexNumbers = "0123456789ABCDEF";
 console.log(hexNumbers.length);
+
 function getRandomIndex() {
 
   let hexNumber = []
@@ -38,3 +27,27 @@ function changeBackgroundColor() {
 const btn = document.querySelector("#btn");
 
 btn.onclick = changeBackgroundColor;
+
+//save the colors that the user likes
+const saveBtn = document.querySelector("#save-btn");
+
+saveBtn.onclick = function() {
+  const savedColors = localStorage.getItem("colors") ? JSON.parse(localStorage.getItem("colors")) : [];
+  savedColors.push(bgHexCodeSpanElement.innerText);
+  localStorage.setItem("colors", JSON.stringify(savedColors));
+}
+
+//display the saved colors
+const displayBtn = document.querySelector("#display-btn");
+
+displayBtn.onclick = function() {
+  const savedColors = localStorage.getItem("colors") ? JSON.parse(localStorage.getItem("colors")) : [];
+  const colorsContainer = document.querySelector("#colors-container");
+  colorsContainer.innerHTML = "";
+  savedColors.forEach(color => {
+    const colorDiv = document.createElement("div");
+    colorDiv.style.backgroundColor = color;
+    colorDiv.innerText = color;
+    colorsContainer.appendChild(colorDiv);
+  });
+}
