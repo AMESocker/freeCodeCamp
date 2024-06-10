@@ -336,7 +336,7 @@ const Camper = (props) => {
 Camper.defaultProps = { name: 'CamperBot' }
 // Camper.propTypes = { name: PropTypes.string.isRequired }
 ReactDOM.render(<CampSite />, document.getElementById('root'))*/
-/*//? 21 Create a Stateful Component
+/* //? 21 Create a Stateful Component
 class StatefulComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -352,7 +352,7 @@ class StatefulComponent extends React.Component {
     );
   }
 };
-ReactDOM.render(<StatefulComponent />, document.getElementById('root'))*/
+ReactDOM.render(<StatefulComponent />, document.getElementById('root')) */
 /*//? 22 Render State in the User Interface
 class MyComponent extends React.Component {
   constructor(props) {
@@ -527,19 +527,15 @@ class ControlledInput extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this)
   }
-  //? Change code below this line
   handleChange(event) {
     this.setState({
       input: event.target.value
     })
   }
-  //? Change code above this line
   render() {
     return (
       <div>
-        //  Change code below this line 
         <input value={this.state.input} onChange={this.handleChange.bind(this)} />
-        // Change code above this line 
         <h4>Controlled Input:</h4>
         <p>{this.state.input}</p>
       </div>
@@ -565,25 +561,19 @@ class MyForm extends React.Component {
     });
   }
   handleSubmit(event) {
-    // Change code below this line
     this.setState({
       submit: this.state.input
     })
     event.preventDefault()
-    // Change code above this line
   }
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          {/* Change code below this line 
           <input value={this.state.input} onChange={this.handleChange} />
-          {/* Change code above this line 
           <button type='submit'>Submit!</button>
         </form>
-        {/* Change code below this line 
         <h1>{this.state.submit}</h1>
-        // Change code above this line 
       </div>
     );
   }
@@ -625,7 +615,7 @@ class Navbar extends React.Component {
 };
 ReactDOM.render(<MyApp />, document.getElementById('root'))
 */
-//? 31 Pass a Callback as Props
+/* //? 31 Pass a Callback as Props
 class MyApp extends React.Component {
   constructor(props) {
     super(props);
@@ -642,10 +632,8 @@ class MyApp extends React.Component {
   render() {
     return (
        <div>
-        {/* Change code below this line  */}
         <GetInput input={this.state.inputValue} handleChange={this.handleChange} />
         <RenderInput input={this.state.inputValue} />
-         {/* Change code above this line  */}
        </div>
     );
   }
@@ -680,17 +668,14 @@ class RenderInput extends React.Component {
     );
   }
 };
-ReactDOM.render(<MyApp />, document.getElementById('root'))
-
+ReactDOM.render(<MyApp />, document.getElementById('root')) */
 /*//? 32 Use the Lifecycle Method componentWillMount
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
   }
   UNSAFE_componentWillMount() {
-    // Change code below this line
     console.log('MyComponent will mount')
-    // Change code above this line
   }
   render() {
     return <div />
@@ -735,14 +720,12 @@ class MyComponent extends React.Component {
     this.handleEnter = this.handleEnter.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
-  // Change code below this line
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyPress)
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyPress)
   }
-  // Change code above this line
   handleEnter() {
     this.setState((state) => ({
       message: state.message + 'You pressed the enter key! '
