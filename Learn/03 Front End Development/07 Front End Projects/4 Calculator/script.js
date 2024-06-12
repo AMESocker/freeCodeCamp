@@ -18,11 +18,8 @@
 /* Failed Tests
 
 13. If 2 or more operators are entered consecutively, the operation performed should be the last operator entered (excluding the negative (-) sign.
-The sequence "5 * - + 5" = should produce an output of "10" : expected '-25' to equal '10'
-AssertionError: The sequence "5 * - + 5" = should produce an output of "10" : expected '-25' to equal '10'
-
-
-
+The sequence "5 * - + 5" = should produce an output of  "10" : expected '-25' to equal '10'
+?The sequence "5 * - 5"   = should produce an output of "-25" : expected '0' to equal '-25'
 */
 
 let typedNumbers = []
@@ -88,17 +85,27 @@ class Calculator extends React.Component {
       });
       
   }
-
+  //The sequence "5 * - + 5" = should produce an output of  "10" : expected '-25' to equal '10'
   operators(value) {
     let operatorValue = value;
     typedNumbers.push(operatorValue)
     let displayOperators = typedNumbers.join('')
 
-    if(typedNumbers[typedNumbers.length - 2] == operatorValue) {
-      console.log('operator', typedNumbers)
-    }
+    let operators = ['+', '*', '/', '-']
 
-    console.log(displayOperators)
+    if (operators.includes(typedNumbers[typedNumbers.length - 2])) {
+      if(typedNumbers[typedNumbers.length - 2] === '-') {
+        typedNumbers.splice(typedNumbers.length - 3, 2)
+      }
+
+    }
+    if(operators.includes(typedNumbers[typedNumbers.length - 2]) && typedNumbers[typedNumbers.length - 1] !== '-'){
+      typedNumbers.splice(typedNumbers.length - 2, 1)
+      }
+
+
+
+ 
 
     this.setState({
       display: displayOperators,
