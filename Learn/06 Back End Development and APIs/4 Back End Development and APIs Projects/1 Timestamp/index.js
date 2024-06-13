@@ -39,7 +39,7 @@ app.get("/api/:date?", function (req, res) {
   let date = req.params.date;
   let dateObject = new Date(date);
   let response
-  console.log(date,date*1000,date.length);
+  console.log(date,date.length,response);
 
   if (date.length === 10) {
     response = {
@@ -49,7 +49,7 @@ app.get("/api/:date?", function (req, res) {
   } else if (date.length === 13) {
     let unixDate = Number(date )
     response = {
-      unix: date,
+      unix: unixDate,
       utc: new Date(unixDate).toUTCString()
     }
  }else if (dateObject.toString() === "Invalid Date") {
@@ -62,6 +62,7 @@ app.get("/api/:date?", function (req, res) {
       utc: dateObject.toUTCString()
     }
   }
+  console.log(response);
   res.json(response);
 });
 
