@@ -24,21 +24,41 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get('/api', function(req, res, next) {
+  req.time = new Date();
+  next();
+}, function(req, res) {
+  res.json({
+    unix: req.time.getTime(),
+    utc: req.time.toUTCString()
+  });
+});
+
+
 app.get("/api/:date?", function (req, res) {
   let date = req.params.date;
   let dateObject = new Date(date);
-  let response = {
-    unix: dateObject.getTime(),
-    utc: dateObject.toUTCString()
-  };
-  if (dateObject.toString() === "Invalid Date") {
+  let response
+  console.log(date.length);
+
+  if (date.length === 10) {
+    response = {
+      unix: dateObject.getTime(),
+      utc: dateObject.toUTCString()
+    };
+  } else if (date.length === 13) {
+    response = {
+      unix: date,
+      utc: new Date(parseInt(date)).toUTCString()
+    }
+  } else {
     response = {
       error: "Invalid Date"
     };
   }
   res.json(response);
-}
-);
+});
+
 
 
 
