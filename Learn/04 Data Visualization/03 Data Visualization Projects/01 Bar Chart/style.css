@@ -1,4 +1,46 @@
+:root{
+  /* Palette A */
+  --a:#CDE8E5;
+  --b:#EEF7FF;
+  --c:#7AB2B2;
+  --d:#4D869C;
+/* Palette B */
+--e:#2C4E80;
+--f:#00215E;
+--g:#FFC55A;
+--h:#FC4100;
+}
+body{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--f)
+}
+#container{
+  background-color: var(--h);
+  width: 920px;
+  margin: 50px 0;
+  padding: 15px;
+  border-radius: 10px;
+}
 #title{
   text-align: center;
   font-size: 1.5em;
+}
+.bar{
+  display: inline-block;
+  fill: var(--e);
+  /* margin-right: 2px; */
+}
+.bar:hover{
+  fill: var(--g);
+}
+#chart{
+
+/* background-color: seagreen; */
+  padding: 10px;
+}
+
+svg{
+  background-color: #ffffff;
 }
