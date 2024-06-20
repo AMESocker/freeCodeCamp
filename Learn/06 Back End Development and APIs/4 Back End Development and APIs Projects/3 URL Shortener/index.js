@@ -51,19 +51,17 @@ app.post('/api/shorturl/', function (req, res) {
       res.json({ error: 'invalid url' });
     } else if (!urlObj.protocol.includes('http')) {
       res.json({ error: 'invalid url' });
-    } else {
-      if (!shortUrls.find(urlData => urlData.original_url === url)) {
-        shortUrls.push({
-          original_url: urlObj,
-          short_url: randomHexNumber(),
-        });
-      }
-
-      res.json({
-        original_url: url,
-        "short_url": shortUrls[shortUrls.length - 1].short_url,
+    } else if (!shortUrls.find(urlData => urlData.original_url === url)) {
+      shortUrls.push({
+        original_url: urlObj,
+        short_url: randomHexNumber(),
       });
     }
+
+    res.json({
+      original_url: url,
+      "short_url": shortUrls[shortUrls.length - 1].short_url,
+    });
   });
 
 
