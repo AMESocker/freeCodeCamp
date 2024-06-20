@@ -28,21 +28,23 @@ app.post('/api/users', (req, res) => {
       username: newUser
     });
     
-    res.json({ 
+    res.json({
+
       _id : id,
       username: newUser
     });
   }
-    
+    console.log(users);
 })
 
 app.get('/api/users', (req, res) => {
   res.json(users);
 })
 
-let exercises = [];
+let log = [];
 
 app.post('/api/users/:_id/exercises', (req, res) => {
+
   const userId = req.params._id;
   const user = users.find(user => user._id == userId);
   if (!user) {
@@ -51,18 +53,40 @@ app.post('/api/users/:_id/exercises', (req, res) => {
   const description = req.body.description;
   const duration = req.body.duration;
   const date = req.body.date;
+
+  let userPresent = log.find(log => log._id == userId)
+
   const newExercise = {
-    // _id: userId,
-    // username: user.username,
-    description: description,
-    duration: duration,
-    date: date
+    username: user.username,
+    count: userPresent ? userPresent.log.length + 1 : 1,
+    _id: userId,
+    log:[{
+      description: description,
+      duration: Number(duration),
+      date:  date ? date : 
+      new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date()),
+      // new Date().toDateString(),
+    }]
   }
-  exercises.push(newExercise);
-  res.json({newExercise});
+
+  // const date = new Date();
+  // const formatter = new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  // const formattedDate = new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date());
+
+
+  if(userPresent){
+    userPresent.count = userPresent.log.length + 1;
+    userPresent.log.push(newExercise.log[0]);
+    res.json({newExercise});
+  } else {
+    log.push(newExercise);
+    res.json({newExercise});
+  }
+
 })
+
 app.get('/api/users/:_id/logs', (req, res) => {
-  res.json(exercises);
+  res.json(log);
 })
 
 
