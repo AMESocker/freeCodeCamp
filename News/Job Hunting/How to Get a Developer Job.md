@@ -49,11 +49,7 @@ You don't start a date by telling the other person that no one wants to date you
 The single most important thing on your resume, aside from past work experience as a programmer (which you don't have if this will be your first job), is your portfolio projects.
 Portfolio projects are a stand-in for work experience. The goal is to demonstrate to employers that you've built real projects that solve real problems. You've already built a few projects in Boot.dev, and maybe even a few more on your own. Let's take a look at them now. Maybe what you have is good enough, but maybe you need to think about building something new, or modify and enhance what you have.
 YOU WANT TO STAND OUT
-Most first-time job seekers are building the same old stuff:
-- TODO apps
-- CRUD servers
-- Spotify clones
-- Command line calculators
+Most first-time job seekers are building the same old stuff: TODO apps, CRUD servers, Spotify clones, Command line calculators
 These are fine projects for learning, but they're not going to impress a hiring manager. They're not going to make you stand out from the crowd.
 PICK SOMETHING UNIQUE
 When I was in college, I won a little hackathon with a Python script that analyzed an .mp3 file and found the "loudness spikes". It then generated some sheet music representing the drum beat of the song. The end result was you could play a drum beat into a microphone, and it would generate sheet music for you.
@@ -115,6 +111,7 @@ Use a paragraph or two to describe why someone should care about your project. T
 There are a lot of ways to zip and unzip files, but none of them use so little memory! Zipzip is the zipping tool you need for working on low-memory devices like Raspberry Pis. I use a Raspberry Pi as a home server, and I was frustrated by my inability to easily manage large files on a small device, so I built zipzod.
 You can title this section whatever you want. I've used "motivation" or "goals" before.
 MORE EXAMPLES
+```markdown
 1. HTMX
 * Why should only <a> and <form> be able to make HTTP requests?
 * Why should only click & submit events trigger them?
@@ -130,6 +127,7 @@ The development of websockets is shaped by four principles:
 * Simplicity: all you need to understand is msg = await ws.recv() and await ws.send(msg). websockets takes care of managing connections so you can focus on your application.
 * Robustness: websockets is built for production. For example, it was the only library to handle backpressure correctly before the issue became widely known in the Python community.
 * Performance: memory usage is optimized and configurable. A C extension accelerates expensive operations. It's pre-compiled for Linux, macOS and Windows and packaged in the wheel format for each system and Python version.
+```
 MAKE IT A STORY
 Remember, you're trying to grab attention here! This section should feel like a little story.
 I had problem A and I tried B but it didn't work because C. I built D and now I can do E with ease!
