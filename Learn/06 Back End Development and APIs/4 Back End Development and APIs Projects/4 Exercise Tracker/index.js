@@ -29,12 +29,11 @@ app.post('/api/users', (req, res) => {
     });
     
     res.json({
-
       _id : id,
       username: newUser
     });
   }
-    console.log(users);
+    // console.log(users);
 })
 
 app.get('/api/users', (req, res) => {
@@ -85,8 +84,9 @@ app.post('/api/users/:_id/exercises', (req, res) => {
 
 })
 
-app.get('/api/users/:_id/logs', (req, res) => {
+app.get('/api/users/:_id/logs?', (req, res) => {
   res.json(log);
+  console.log(log);
 })
 
 
