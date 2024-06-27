@@ -8,7 +8,7 @@ class Controls extends React.Component {
 
   render() {
     return (
-      <div class="row">
+      <div >
         <div id="break-label">Break Length</div>
         <div class="length row">
           <div class="col-3"></div>
@@ -103,19 +103,15 @@ class Clock extends React.Component {
 
   timeDisplay = () => {
     let minutes = Math.floor(this.state.timeLeft / 60);
-    let seconds = this.state.timeLeft - minutes * 60;
-    if (seconds < 10) {
-      return minutes + ':0' + seconds;
-    }
-    return minutes + ':' + seconds;
+    let seconds = this.state.timeLeft - 60 * minutes;
+    return seconds = seconds < 10 ? "0" + seconds : seconds, minutes = minutes < 10 ? "0" + minutes : minutes,
+    minutes + ":" + seconds
   }
 
   render() {
     return (
       <div id="clock" class="container text-center">
-        <div class="row">
           <h1 class="col-12">25 + 5 Clock</h1>
-        </div>
         <Controls />
         <div class="col-12" id="break-length">{this.state.breakLength}</div>
 
