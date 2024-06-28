@@ -1,5 +1,11 @@
 #    1-20
 ##   1-10 
+### Intro
+React is a popular JavaScript library for building reusable, component-driven user interfaces for web pages or applications.
+
+React combines HTML with JavaScript functionality into its own markup language called JSX. React also makes it easy to manage the flow of data throughout the application.
+
+In this course, you'll learn how to create different React components, manage data in the form of state props, use different lifecycle methods like componentDidMount, and much more.
 ### 1 Create a Simple JSX Element
 
 React is an Open Source view library created and maintained by Facebook. It's a great tool to render the User Interface (UI) of modern web applications.
@@ -11,6 +17,11 @@ For instance, because JSX is a syntactic extension of JavaScript, you can actual
 However, because JSX is not valid JavaScript, JSX code must be compiled into JavaScript. The transpiler Babel is a popular tool for this process. For your convenience, it's already added behind the scenes for these challenges. If you happen to write syntactically invalid JSX, you will see the first test in these challenges fail.
 
 It's worth noting that under the hood the challenges are calling `ReactDOM.render(JSX, document.getElementById('root'))`. This function call is what places your JSX into React's own lightweight representation of the DOM. React then uses snapshots of its own DOM to optimize updating only specific parts of the actual DOM.
+
+The current code uses JSX to assign a `div` element to the constant `JSX`. Replace the `div` with an `h1` element and add the text `Hello JSX!` inside it.
+```js
+const JSX = <h1>Hello JSX!</h1>
+```
 ### 2 Create a Complex JSX Element
 
 The last challenge was a simple example of JSX, but JSX can represent more complex HTML as well.
