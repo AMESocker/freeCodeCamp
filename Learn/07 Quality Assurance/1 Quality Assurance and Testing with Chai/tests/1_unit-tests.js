@@ -121,7 +121,6 @@ suite('Basic Assertions', function () {
   });
 
   // -----------------------------------------------------------------------------
-/*
 
   const Car = function () {
     this.model = 'sedan';
@@ -140,28 +139,27 @@ suite('Basic Assertions', function () {
   const airlinePlane = new Plane();
 
   suite('Objects', function () {
-    // #16
+    // #16 Test if an Object has a Property
     test('#property, #notProperty', function () {
-      assert.fail(myCar, 'wings', "Cars don't have wings");
-      assert.fail(airlinePlane, 'engines', 'Planes have engines');
-      assert.fail(myCar, 'wheels', 'Cars have wheels');
+      assert.notProperty(myCar, 'wings', "Cars don't have wings");
+      assert.property(airlinePlane, 'engines', 'Planes have engines');
+      assert.property(myCar, 'wheels', 'Cars have wheels');
     });
-    // #17
+    // #17 Test if a Value is of a Specific Data Structure Type
     test('#typeOf, #notTypeOf', function () {
-      assert.fail(myCar, 'object');
-      assert.fail(myCar.model, 'string');
-      assert.fail(airlinePlane.wings, 'string');
-      assert.fail(airlinePlane.engines, 'array');
-      assert.fail(myCar.wheels, 'number');
+      assert.typeOf(myCar, 'object');
+      assert.typeOf(myCar.model, 'string');
+      assert.notTypeOf(airlinePlane.wings, 'string');
+      assert.typeOf(airlinePlane.engines, 'array');
+      assert.typeOf(myCar.wheels, 'number');
     });
-    // #18
+    // #18 Test if an Object is an Instance of a Constructor
     test('#instanceOf, #notInstanceOf', function () {
-      assert.fail(myCar, Plane);
-      assert.fail(airlinePlane, Plane);
-      assert.fail(airlinePlane, Object);
-      assert.fail(myCar.wheels, String);
+      assert.notInstanceOf(myCar, Plane);
+      assert.instanceOf(airlinePlane, Plane);
+      assert.instanceOf(airlinePlane, Object);
+      assert.notInstanceOf(myCar.wheels, String);
     });
   });
- */
   // -----------------------------------------------------------------------------
 });
