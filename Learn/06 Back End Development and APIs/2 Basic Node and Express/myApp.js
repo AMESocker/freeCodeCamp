@@ -5,18 +5,19 @@ console.log("Hello World");
 let bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: false}));
-
+//? 3 Serve an HTML File
 app.get("/", (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
-
+//? 7 Implement a Root-Level Request Logger Middleware
 app.use(function(req, res, next) {
   console.log(req.method + ' ' + req.path + ' - ' + req.ip);
   next();
 });
-
+//? 4 Serve Static Assets
 app.use('/public', express.static(__dirname + '/public'));
-
+//? 5 Serve JSON on a Specific Route
+//? 6 Use the .env File
 app.get('/json', function(req, res) {
   let message = "Hello json";
   if (process.env.MESSAGE_STYLE === 'uppercase') {
@@ -24,7 +25,7 @@ app.get('/json', function(req, res) {
   }
   res.json({"message": message});
 });
-
+//? 8 Chain Middleware to Create a Time Server
 app.get('/now', function(req, res, next) {
   req.time = new Date().toString();
   next();
