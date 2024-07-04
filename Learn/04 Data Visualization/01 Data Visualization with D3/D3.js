@@ -182,8 +182,6 @@ svg.selectAll("rect")
    .attr("y", (d, i) => {
      // Add your code below this line
       return h - 3 * d;
-
-
      // Add your code above this line
    })
    .attr("width", 25)
