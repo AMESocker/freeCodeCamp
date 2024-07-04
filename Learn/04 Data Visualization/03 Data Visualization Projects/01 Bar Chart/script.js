@@ -44,7 +44,6 @@ const displayData = (dataResponse) => {
 
   const xAxis = d3.axisBottom(xScale);
 
-  
   //get year from dataset
   const getYear = (date) => {
     return date.substring(0, 4)
@@ -57,8 +56,6 @@ const displayData = (dataResponse) => {
   svg.append("g")
     .attr('id', 'x-axis')
     .attr("transform", "translate(0," + (h - padding) + ")")
-    
-    
 
   svg.append("g")
     .attr('id', 'y-axis')
