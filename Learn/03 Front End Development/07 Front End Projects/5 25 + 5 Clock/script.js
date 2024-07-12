@@ -1,26 +1,5 @@
 let countdownID
-class Controls extends React.Component {
-  constructor(props) {
-    super(props);
 
-  }
-
-
-  render() {
-    return (
-      <div >
-        <div id="break-label">Break Length</div>
-        <div class="length row">
-          <div class="col-3"></div>
-          <button class="time col-2" id="break-decrement" onClick={this.decrementBreak}>-</button>
-          <div class="col-2"></div>
-          <button class="time col-2" id="break-increment" onClick={this.props.incrementBreak}>+</button>
-          <div class="col-3"></div>
-        </div>
-      </div>
-    )
-  }
-}
 class Clock extends React.Component {
   constructor(props) {
     super(props);
@@ -74,6 +53,8 @@ class Clock extends React.Component {
   }
 
   resetClock = () => {
+    document.getElementById('beep').pause();
+    document.getElementById('beep').currentTime = 0
     clearInterval(countdownID);
     this.setState({
       breakLength: 300,
@@ -89,13 +70,12 @@ class Clock extends React.Component {
   runClock = () => {
     if (this.state.timerState === 'stopped') {
       countdownID = setInterval(() => {
+        this.countdownType();
         this.setState({
           timeLeft: this.state.timeLeft - 1,
           timerState: 'running',
         })
-        this.countdownType();
       }, 1000);
-    // }, 100);//for testing
     } else if (this.state.timerState === 'running') {
       clearInterval(countdownID);
       this.setState({
@@ -106,24 +86,23 @@ class Clock extends React.Component {
   }
 
   countdownType = () => {
-    if(this.state.timeLeft === 0){console.log('timeLeft is 0')
+    if(this.state.timeLeft === 0){
       document.getElementById('beep').play();
       clearInterval(countdownID);
       if(this.state.timerType === 'Session'){
         this.setState({
           timerState: 'stopped',
           timerType: 'Break',
-          timeLeft: this.state.breakLength,
+          timeLeft: this.state.breakLength + 1,
         })
-        this.runClock();
       } else {
         this.setState({
           timerState: 'stopped',
           timerType: 'Session',
-          timeLeft: this.state.sessionLength,
+          timeLeft: this.state.sessionLength + 1,
         })
-        this.runClock();
       }
+      this.runClock();
     }
   }
 
