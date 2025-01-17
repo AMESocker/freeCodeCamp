@@ -2,10 +2,12 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 require('dotenv').config()
+const audit = require('express-requests-logger')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('useFindAndModify', false);
 
 const Schema = mongoose.Schema;
 
@@ -13,18 +15,18 @@ const Schema = mongoose.Schema;
 app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use(function (req, res, next) {
-  // console.log(req.method + ' ' + req.path + ' - ' + req.ip);
-  console.log(req.method + ' ' + req.path);
+  console.log(req.method + ' ' + req.path + ' - ' + req.ip);
   next();
 });
-
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
-  });
+});
 
 //----Date Format----
 let dateEntry;
+
 let month =
   new Date().getMonth() + 1 < 10
     ? "0" + (new Date().getMonth() + 1)
@@ -79,35 +81,43 @@ app.get('/api/users', (req, res) => {
   });
 });
 
-app.post("/api/users/:_id/exercises", (req, res) => {
-  User.findOneAndUpdate(
-    { _id: req.params._id },
-    { $push: { log: req.body } },
-    { new: true },
-    (err, data) => {
-      if (err) return console.error(err);
-      if (data) {
-        month =
-          new Date(req.body.date).getMonth() + 1 < 10
-            ? "0" + (new Date(req.body.date).getMonth() + 1)
-            : new Date(req.body.date).getMonth() + 1;
-        dateEntry =
-          new Date(req.body.date).getFullYear() +
-          "-" +
-          month +
-          "-" +
-          new Date(req.body.date).getDate();
+app.post("/api/users/:_id/exercises", async(req, res) => {
+  req.body.duration = parseInt(req.body.duration);
+  let newDateEntry;
 
+  if (!req.body.date) {
+    req.body.date = new Date().toString().substring(0, 15);
+    newDateEntry = new Date().toString().substring(0, 15);
+  } else {
+    newDateEntry = new Date(req.body.date).toString().substring(0, 10) + " " + new Date(req.body.date).getFullYear().toString();
+  }
+
+  const user = await User.findById(req.params._id, (err, data) => {
+    if (err) return console.error(err);
+
+    data.log.push({
+      description: req.body.description,
+      duration: req.body.duration,
+      date: newDateEntry
+    });
+
+    data.count = data.log.length;
+
+
+    return data.save((err, data) => {
+      if (err) return console.error(err);
       res.json({
-        username: data.username,
-        _id: data._id,
-        date: dateEntry,
-        duration: parseInt(req.body.duration),
-        description: req.body.description,
+        'username': data.username,
+        'description': req.body.description,
+        'duration': Number(req.body.duration),
+        '_id': data._id,
+        'date': newDateEntry
       });
     }
-    }
-  );
+    );
+  });
+
+
 });
 
 app.get('/api/users/:_id/logs', (req, res) => {
@@ -129,14 +139,13 @@ app.get('/api/users/:_id/logs', (req, res) => {
       data.log = data.log.slice(0, limit);
     }
 
-    console.log(data.log[0].date.toDateString());
     res.json({
       _id: data._id,
       username: data.username,
       count: data.log.length,
       log: data.log.map((session) => ({
         description: session.description,
-        duration: session.duration,
+        duration: Number(session.duration),
         date: session.date.toDateString(),
       })),
     });

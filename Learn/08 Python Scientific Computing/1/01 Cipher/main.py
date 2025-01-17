@@ -31,29 +31,29 @@ encryption = encrypt(text,custom_key)                                   # Step 6
 text = 'Hello Zaira!'                                                   # Step 2,41,49,74
 custom_key = 'happycoding'                                                   # Step 54,91
 def vigenere(message,key,direction=1):                                  # Step 53,65,72
-        key_index = 0                                                   # Step 55
-        alphabet = 'abcdefghijklmnopqrstuvwxyz'                         # Step 11
-        final_message = ''                                              # Step 33,70
+    key_index = 0                                                   # Step 55
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'                         # Step 11
+    final_message = ''                                              # Step 33,70
 
-        for char in message.lower():                                    # Step 18,25
-                # Append any non-letter character to the message        # Step 56,77
-                if not char.isalpha():                                  # Step 38,75,76
-                        final_message += char                           # Step 39
-                else:
-                        # Find the right key character to encode/decode # Step 59,71
-                        key_char = key[key_index % len(key)]            # Step 57
-                        key_index += 1                                  # Step 58
-                # Define the offset and the encrypted/decrypted letter. # Step 61,71
-                        offset = alphabet.index(key_char)               # Step 60
-                        index = alphabet.find(char)                     # Step 23
-                        new_index = (index + offset*direction)% len(alphabet)                                      # Step 26,42,43,66
-                        final_message += alphabet[new_index]            # Step 30,34,35,36
-        return final_message                                            # Step 62
+    for char in message.lower():                                    # Step 18,25
+        # Append any non-letter character to the message        # Step 56,77
+        if not char.isalpha():                                  # Step 38,75,76
+                final_message += char                           # Step 39
+        else:
+                # Find the right key character to encode/decode # Step 59,71
+                key_char = key[key_index % len(key)]            # Step 57
+                key_index += 1                                  # Step 58
+        # Define the offset and the encrypted/decrypted letter. # Step 61,71
+                offset = alphabet.index(key_char)               # Step 60
+                index = alphabet.find(char)                     # Step 23
+                new_index = (index + offset*direction)% len(alphabet)                                      # Step 26,42,43,66
+                final_message += alphabet[new_index]            # Step 30,34,35,36
+    return final_message                                            # Step 62
 def encrypt(message,key):                                               # Step 78
-        return vigenere(message, key)                                   # Step 79
+    return vigenere(message, key)                                   # Step 79
 
 def decrypt(message,key):                                               # Step 80
-        return vigenere(message, key, -1)
+    return vigenere(message, key, -1)
 
 print(f'\nEncrypted text: {text}')                                        # Step 64,83,87,88,89
 print(f'Key: {custom_key}')                                               # Step 84,88

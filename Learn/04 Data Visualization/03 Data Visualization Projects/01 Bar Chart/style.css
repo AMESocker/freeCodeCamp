@@ -14,11 +14,11 @@ body{
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--f)
+  background-color: var(--f);
 }
 #container{
   background-color: var(--h);
-  width: 920px;
+  width: 615px;
   margin: 50px 0;
   padding: 15px;
   border-radius: 10px;

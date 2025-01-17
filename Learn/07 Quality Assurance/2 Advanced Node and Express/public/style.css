@@ -1,3 +1,10 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #363636;
+  color:white;
+  margin: 0;
+  padding: 0;
+}
 .border {
   border-style: inset;
   border-width: 1px;

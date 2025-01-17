@@ -1,49 +1,71 @@
 # Ch 1: Strategy
 1. WELCOME
-This info course is designed to help you kick off your job search! We can't make any guarantees about how long it's going to take you to find a programming job, but we can do everything in our power to make sure you're being as effective as possible in your search.
-PREREQUISITES
-You probably shouldn't be here unless at least one of the following is true:
-You've completed everything up to this point in the backend career path on Boot.dev
-You've had a job as a programmer before
-You have a CS degree or the educational equivalent
-LEARNING GOALS FOR THIS COURSE
-Build a job-ready GitHub profile
-Build a professional LinkedIn profile
-Build a resume that will cut through the noise
-Prepare you with a plan for applying, interviewing, networking, and even negotiating
+
+    This info course is designed to help you kick off your job search! We can't make any guarantees about how long it's going to take you to find a programming job, but we can do everything in our power to make sure you're being as effective as possible in your search.
+
+    PREREQUISITES
+
+    You probably shouldn't be here unless at least one of the following is true:
+    You've completed everything up to this point in the backend career path on Boot.dev
+    You've had a job as a programmer before
+    You have a CS degree or the educational equivalent
+
+    LEARNING GOALS FOR THIS COURSE
+
+    Build a job-ready GitHub profile
+    Build a professional LinkedIn profile
+    Build a resume that will cut through the noise
+    Prepare you with a plan for applying, interviewing, networking, and even negotiating
+
 2. LEARN, BUILD, AND APPLY
-Before we get into the nitty-gritty of portfolio preparation, I want to draw your attention to something critically important:
-Do not stop learning and building as you apply for jobs!
-I've seen so many prospective engineers "complete" their education, be it a degree, an online course, or a physical boot camp, and then stop learning. They stop building. They stop growing. They spend a few months applying, get discouraged, and then give up completely.
-DO NOT DO THIS.
-Every new thing you learn, every new bit of effort you put into your projects and open-source contributions make the job search that much easier. There's a compounding effect.
-BE MINDFUL OF YOUR TIME
-Let's say you have 10 hours each week to dedicate to your future programming career. I recommend spending roughly half of that time continuing to learn and build, and the other half doing job-search activities.
-Don't get me wrong, you should still be spending a good amount of time each week getting your resume in front of people by applying, networking, and interviewing. But if you spend all of your time doing that, you're going to burn out, and each month that passes without writing code is actually going to make it harder and harder to get a job.
-Instead, if you have a healthy balance of learning/building and applying/networking, your search will get easier over time. You'll be more confident in your skills, you'll have more to talk about in interviews, and you'll have more to show off on your resume.
+
+    Before we get into the nitty-gritty of portfolio preparation, I want to draw your attention to something critically important:
+    Do not stop learning and building as you apply for jobs!
+    I've seen so many prospective engineers "complete" their education, be it a degree, an online course, or a physical boot camp, and then stop learning. They stop building. They stop growing. They spend a few months applying, get discouraged, and then give up completely.
+
+    DO NOT DO THIS.
+
+    Every new thing you learn, every new bit of effort you put into your projects and open-source contributions make the job search that much easier. There's a compounding effect.
+
+    BE MINDFUL OF YOUR TIME
+
+    Let's say you have 10 hours each week to dedicate to your future programming career. I recommend spending roughly half of that time continuing to learn and build, and the other half doing job-search activities.
+    Don't get me wrong, you should still be spending a good amount of time each week getting your resume in front of people by applying, networking, and interviewing. But if you spend all of your time doing that, you're going to burn out, and each month that passes without writing code is actually going to make it harder and harder to get a job.
+    Instead, if you have a healthy balance of learning/building and applying/networking, your search will get easier over time. You'll be more confident in your skills, you'll have more to talk about in interviews, and you'll have more to show off on your resume.
+
 3. PROVIDE SIGNAL
-Your #1 job as a job-seeker is to provide a signal to potential employers. Signal is the opposite of noise. Noise is all the stuff that doesn't matter. Signal is the stuff that does.
-Recruiters, HR reps, hiring managers, and future teammates are all looking for signals. They're looking for reasons to hire you. They're looking for reasons to not hire you. Your job is to make it as easy as possible for them to find the signal and ignore the noise.
-AN EXAMPLE OF NOISE
-I love to write code and walk my dogs on the beach. I know JavaScript, Python, Go, and Ruby, and I love building applications that are user-friendly and scalable. I would love to work for your company and make your team a success.
-The paragraph above says nothing interesting! There's nothing there that will perk up the ears of a recruiter or hiring manager. It's just a bunch of noise, and it sounds like every other resume in the pile.
-AN EXAMPLE OF SIGNAL
-I've been enjoying web development for the first time ever since I built my first Go project, "stackwrapr". The consolidated toolchain makes me want to leave the JavaScript ecosystem behind for good. I would love to work with you on the telemetry team at SrcChain because I've always been interested in monitoring production systems. I even noticed you're using ElasticSearch, which I've been toying with in my spare time!
-The above at least has a few things going for it:
-It's focused on tech. No one cares about your dogs.
-It has personality. You're not another schmuck claiming to know 10 languages. You're demonstrating experience through your opinions and categorizing yourself as a specialist in Go.
-It's specific. It's not "I can make your company better" it's I can make your team better because I have been learning about this specific thing.
-It sounds like a real, unique, bonafide person. It's not a robot regurgitating a bunch of buzzwords in a list.
-THINK ABOUT PROVIDING SIGNAL
-As we go through the rest of this course creating a GitHub profile, adding documentation to projects, and writing a resume, think about how you can provide a signal every step of the way.
-Everything you write and present to employers should signal that you're a real human who works hard, wants to learn more, and can solve real problems.
+
+    Your #1 job as a job-seeker is to provide a signal to potential employers. Signal is the opposite of noise. Noise is all the stuff that doesn't matter. Signal is the stuff that does.
+    Recruiters, HR reps, hiring managers, and future teammates are all looking for signals. They're looking for reasons to hire you. They're looking for reasons to not hire you. Your job is to make it as easy as possible for them to find the signal and ignore the noise.
+
+    AN EXAMPLE OF NOISE
+
+    I love to write code and walk my dogs on the beach. I know JavaScript, Python, Go, and Ruby, and I love building applications that are user-friendly and scalable. I would love to work for your company and make your team a success.
+    The paragraph above says nothing interesting! There's nothing there that will perk up the ears of a recruiter or hiring manager. It's just a bunch of noise, and it sounds like every other resume in the pile.
+
+    AN EXAMPLE OF SIGNAL
+
+    I've been enjoying web development for the first time ever since I built my first Go project, "stackwrapr". The consolidated toolchain makes me want to leave the JavaScript ecosystem behind for good. I would love to work with you on the telemetry team at SrcChain because I've always been interested in monitoring production systems. I even noticed you're using ElasticSearch, which I've been toying with in my spare time!
+    
+    The above at least has a few things going for it:
+    It's focused on tech. No one cares about your dogs.
+    It has personality. You're not another schmuck claiming to know 10 languages. You're demonstrating experience through your opinions and categorizing yourself as a specialist in Go.
+    It's specific. It's not "I can make your company better" it's I can make your team better because I have been learning about this specific thing.
+    It sounds like a real, unique, bonafide person. It's not a robot regurgitating a bunch of buzzwords in a list.
+
+    THINK ABOUT PROVIDING SIGNAL
+
+    As we go through the rest of this course creating a GitHub profile, adding documentation to projects, and writing a resume, think about how you can provide a signal every step of the way.
+    Everything you write and present to employers should signal that you're a real human who works hard, wants to learn more, and can solve real problems.
+
 4. PITY
-This might sound a bit harsh, but it's certainly worth pointing out: no one is looking to do you any favors. Well, strangers aren't looking to do you favors. (That's why networking is important and we'll talk about it later).
-I've worked as a hiring manager in the past, and occasionally I would get DMs, cover letters or emails that contain a sob story. Something like:
-I've been trying to get my first programming job for 2 years, and I'm really struggling. Please consider me for this role.
-I'm not gonna lie, some of these messages tug on my heartstrings, but as a professional, there is nothing I can do with this information. What am I going to do? Kick the more qualified candidate to the curb just because they didn't write a sad story? If I were to do that I'd not only be making my own job harder, but I'd also be discriminating arbitrarily, which I think has troubling ethical implications.
-So, in reality, all the message above does is tell me "hey, no one wants to hire me". Which, when you think about it, it's a red flag.
-You don't start a date by telling the other person that no one wants to date you. It makes you look bad. Don't start a professional conversation that way either.
+
+    This might sound a bit harsh, but it's certainly worth pointing out: no one is looking to do you any favors. Well, strangers aren't looking to do you favors. (That's why networking is important and we'll talk about it later).
+    I've worked as a hiring manager in the past, and occasionally I would get DMs, cover letters or emails that contain a sob story. Something like:
+    I've been trying to get my first programming job for 2 years, and I'm really struggling. Please consider me for this role.
+    I'm not gonna lie, some of these messages tug on my heartstrings, but as a professional, there is nothing I can do with this information. What am I going to do? Kick the more qualified candidate to the curb just because they didn't write a sad story? If I were to do that I'd not only be making my own job harder, but I'd also be discriminating arbitrarily, which I think has troubling ethical implications.
+    So, in reality, all the message above does is tell me "hey, no one wants to hire me". Which, when you think about it, it's a red flag.
+    You don't start a date by telling the other person that no one wants to date you. It makes you look bad. Don't start a professional conversation that way either.
 # Ch 2: Projects
 1. PORTFOLIO PROJECTS
 The single most important thing on your resume, aside from past work experience as a programmer (which you don't have if this will be your first job), is your portfolio projects.
@@ -455,6 +477,7 @@ The trick is to make sure your contribution is significant. Don't just fix a typ
 # Ch 6: Applying
 1.START APPLYING
 It's time to get going! You've got all you need to start the process of cold applying to companies. There are strategies aside from cold applying that we'll talk about later, but I'm a believer in cold applying as well. It doesn't take a ton of time, and frankly, most of my jobs as a developer came from cold applying.
+
 SET A WEEKLY GOAL
 I sent about 100 resumes out before landing my first full-time developer job. I did that over a 6-week period. Pick a number of applications you want to complete on a weekly basis as your goal. Make sure that it's high enough that you're getting yourself out there, but that it's low enough that you'll have the time to put in the effort needed to make each application good.
 For example, sending 25 applications each week (~3/4 each day) is a great goal. You can spend 30 minutes each day on it, and you'll start getting some feedback from companies.

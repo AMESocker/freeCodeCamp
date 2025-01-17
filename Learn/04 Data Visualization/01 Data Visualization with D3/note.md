@@ -6,7 +6,31 @@ D3 is built to work with common web standards – namely HTML, CSS, and Scalable
 D3 supports many different kinds of input data formats. Then, using its powerful built-in methods, you can transform those data into different charts, graphs, and maps.
 
 In the Data Visualization with D3 courses, you'll learn how to work with data to create different charts, graphs, hover elements, and other ingredients to create dynamic and attractive data visualizations.
-#  1 - 10
+# Contents
+1. Add Document Elements with D3 
+    - select() - selects one element from the document
+    - append() - appends an HTML node to a selected item
+    - text()   - sets the text of the selected node
+2. Select a Group of Elements with D3 
+    - selectAll() - selects a group of elements
+3. Work with Data in D3
+    - data() - attach the data to the elements
+    - enter() - create a new element for each piece of data
+4. Work with Dynamic Data in D3
+    - append()
+5. Add Inline Styling to Elements
+    - style()
+6. Change Styles Based on Data
+    - style(callback function)
+7. Add Classes with D3
+    - attr()
+8. Update the Height of an Element Dynamically
+    - style(callback function)
+9. Change the Presentation of a Bar Chart
+    - style(callback function)
+10. Learn About SVG in D3
+
+#  1 - 9
 ## 1 Add Document Elements with D3
 D3 has several methods that let you add and change elements in your document.
 
@@ -31,7 +55,14 @@ d3.select("ul")
 D3 allows you to chain several methods together with periods to perform a number of actions in a row.
 
 Use the `select` method to select the `body` tag in the document. Then `append` an `h1` tag to it, and add the text `Learning D3` into the `h1` tag.
+```js
+const anchor = d3
+  .select('body')
+  .append('h1')
+  .text('Learning D3');
+```
 ## 2 Select a Group of Elements with D3
+
 D3 also has the `selectAll()` method to select a group of elements. It returns an array of HTML nodes for all the items in the document that match the input string. Here's an example to select all the anchor tags in a document:
 ```js
 const anchors = d3.selectAll("a");
@@ -39,6 +70,11 @@ const anchors = d3.selectAll("a");
 Like the `select()` method, `selectAll()` supports method chaining, and you can use it with other methods.
 
 Select all of the `li` tags in the document, and change their text to `"list item"` by chaining the `.text()` method.
+```js
+const anchor = d3
+  .selectAll('li')
+  .text('list item');
+```
 ## 3 Work with Data in D3
 The D3 library focuses on a data-driven approach. When you have a set of data, you can apply D3 methods to display it on the page. Data comes in many formats, but this challenge uses a simple array of numbers.
 
@@ -65,6 +101,15 @@ Here is an example that selects a ul element and creates a new list item based o
 It may seem confusing to select elements that don't exist yet. This code is telling D3 to first select the `ul` on the page. Next, select all list items, which returns an empty selection. Then the `data()` method reviews the dataset and runs the following code three times, once for each item in the array. The `enter()` method sees there are no `li` elements on the page, but it needs 3 (one for each piece of data in `dataset`). New `li` elements are appended to the `ul` and have the text `New item`.
 
 Select the `body` node, then select all `h2` elements. Have D3 create and append an `h2` tag for each item in the `dataset` array. The text in the `h2` should say `New Title`. Your code should use the `data()` and `enter()` methods.
+```js
+const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+d3.select('body')
+  .selectAll('h2')
+  .data(dataset)
+  .enter()
+  .append('h2')
+  .text('New Title');
+```
 ## 4 Work with Dynamic Data in D3
 The last two challenges cover the basics of displaying data dynamically with D3 using the `data()` and `enter()` methods. These methods take a data set and, together with the `append()` method, create a new DOM element for each entry in the data set.
 
@@ -79,6 +124,15 @@ In the example above, the parameter `d` refers to a single entry in the dataset 
 Using the current example as context, the first `h2` element is bound to 12, the second `h2` element is bound to 31, the third `h2` element is bound to 22, and so on.
 
 Change the `text()` method so that each `h2` element displays the corresponding value from the `dataset` array with a single space and the string `USD`. For example, the first heading should be `12 USD`.
+```js
+const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+d3.select("body").selectAll("h2")
+  .data(dataset)
+  .enter()
+  .append("h2")
+  .text((d) => d + " USD");
+```
 ## 5 Add Inline Styling to Elements
 D3 lets you add inline CSS styles on dynamic elements with the `style()` method.
 
@@ -87,6 +141,7 @@ The `style()` method takes a comma-separated key-value pair as an argument. Here
 selection.style("color", "blue");
 ```
 Add the `style()` method to the code in the editor to make all the displayed text have a font-family of `verdana`.
+
 ## 6 Change Styles Based on Data
 D3 is about visualization and presentation of data. It's likely you'll want to change the styling of elements based on the data. For example, you may want to color a data point blue if it has a value less than 20, and red otherwise. You can use a callback function in the `style()` method and include the conditional logic. The callback function uses the `d` parameter to represent the data point:
 ```js
@@ -135,6 +190,7 @@ The last challenge created a bar chart, but there are a couple of formatting cha
 First, add a `margin` of `2px` to the `bar` class in the `style` tag. Next, change the callback function in the `style()` method so it returns a value `10` times the original data value (plus the `px`).
 
 **Note**: Multiplying each data point by the *same* constant only alters the scale. It's like zooming in, and it doesn't change the meaning of the underlying data.
+#  10 - 20
 ## 10 Learn About SVG in D3
 *SVG* stands for *Scalable Vector Graphics*.
 
@@ -145,9 +201,16 @@ SVG is used to create common geometric shapes. Since D3 maps data into a visual 
 CSS can be scalable when styles use relative units (such as `%`, `em`, `vh`, or `vw`) and not fixed units (such as `px`), but using SVG is more flexible to build data visualizations.
 
 Add an `svg` node to the body using `append()`. Give it a `width` attribute set to the provided `w` constant and a `height` attribute set to the provided `h` constant using the `attr()` or `style()` methods for each. You'll see it in the output because there's a `background-color` of pink applied to it in the `style` tag.
+```js
+const w = 500;
+const h = 100;
 
+d3.select("body").append("svg")
+  .attr("width", w)
+  .attr("height", h)
+  .style("background-color", "pink");
+```
 Note: When using `attr()` width and height attributes do not have units. This is the building block of scaling - the element will always have a 5:1 width to height ratio, no matter what the zoom level is.
-#  11 - 20
 ## 11 Display Shapes with SVG
 The last challenge created an `svg` element with a given width and height, which was visible because it had a `background-color` applied to it in the `style` tag. The code made space for the given width and height.
 
@@ -245,7 +308,7 @@ A tooltip shows more information about an item on a page when the user hovers ov
 `title` pairs with the `text()` method to dynamically add data to the bars.
 
 Append a `title` element under each `rect` node. Then call the `text()` method with a callback function so the text displays the data value.
-#  21 - 30
+#  21 - 29
 ## 21 Create a Scatterplot with SVG Circles
 A scatter plot is another type of visualization. It usually uses circles to map data points, which have two values each. These values tie to the `x` and `y` axes, and are used to position the circle in the visualization.
 

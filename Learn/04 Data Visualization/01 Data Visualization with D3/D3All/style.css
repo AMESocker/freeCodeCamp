@@ -3,13 +3,11 @@ body{
   margin: 0;
   padding: 0;
   text-align: center;
-  background-color: #3b3b3b;
+  background-color: #232323;
   color: white;
 }
 svg{
-  background-color: #01a31a;
-  /* width: 100%; */
-  /* height: 50%; */
+  background-color: #00540d;
 }
 /*? 8 Update the Height of an Element Dynamically 
  .bar {

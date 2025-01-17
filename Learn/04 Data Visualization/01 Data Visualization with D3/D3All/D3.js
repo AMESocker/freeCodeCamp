@@ -1,11 +1,11 @@
-/* //? 1 Add Document Elements with D3
+//? 1 Add Document Elements with D3
 const anchor = d3.select('body')
 .append('h1')
-.text('Learning D3'); */
-/* //? 2 Select a Group of Elements with D3
-const anchor = d3
+.text('Learning D3');
+//? 2 Select a Group of Elements with D3
+const anchor2 = d3
   .selectAll('li')
-  .text('list item'); */
+  .text('list item');
 /* //? 3 Work with Data in D3
   const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
   d3.select('body')
@@ -14,14 +14,15 @@ const anchor = d3
     .enter()
     .append('h2')
     .text('New Title') */
-/* //? 4 Work with Dynamic Data in D3
-const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+//? 4 Work with Dynamic Data in D3
+const dataset4 = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
 d3.select("body").selectAll("h2")
-  .data(dataset)
+  .data(dataset4)
   .enter()
   .append("h2")
-  .text((data) => data + " - points"); */
+  // Add your code below this line
+  .text((data) => data + " points");
 /* //? 5 Add Inline Styling to Elements
 const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
@@ -30,6 +31,7 @@ d3.select("body").selectAll("h2")
   .enter()
   .append("h2")
   .text((d) => (d + " USD"))
+  // Add your code below this line
   .style('font-family', 'verdana'); */
 /* //? 6 Change Styles Based on Data
 const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
@@ -39,15 +41,17 @@ d3.select("body").selectAll("h2")
   .enter()
   .append("h2")
   .text((d) => (d + " USD"))
+  // Add your code below this line
   .style('color', (data) => data < 20 ? 'red' : 'green'); */
-//? 7 Add Classes with D3
+/* //? 7 Add Classes with D3
 const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
 d3.select("body").selectAll("div")
   .data(dataset)
   .enter()
   .append("div")
-  .attr('class', 'bar');
+  // Add your code below this line
+  .attr('class', 'bar'); */
 /* //? 8 Update the Height of an Element Dynamically
 const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
@@ -159,8 +163,8 @@ svg.selectAll("rect")
       return data * 20;
      // Add your code above this line
    }); */
-//? 15 Invert SVG Elements
-/* const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+/* //? 15 Invert SVG Elements
+const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
 const width = 500;
 const height = 500;
@@ -181,7 +185,7 @@ svg.selectAll("rect")
      // Add your code above this line
    })
    .attr("width", 45)
-   .attr("height", (data, i) => 15 * data);   */ 
+   .attr("height", (data, i) => 15 * data);  */  
 /* //? 16 Change the Color of an SVG Element   
 const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
 
@@ -325,7 +329,7 @@ svg.selectAll("text")
    .text((d) => d)
    .attr("x", (d, i) => i * 30)
    .attr("y", (d, i) => h - (d * 3 + 3)) */
-/* //? 21 Create a ScatterPlot with SVG Circles
+/* //? 21 Create a Scatterplot with SVG Circles
 const dataset = [
   [ 34,    78 ],
   [ 109,   280 ],
