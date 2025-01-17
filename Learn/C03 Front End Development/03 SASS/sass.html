@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sass</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.9.12/sass.sync.min.js"></script>
+</head>
+<body>
+  <!-- 1 Store Data with Sass Variables -->
+  <!-- <style type='text/css'>
+
+    .header{
+      text-align: center;
+    }
+    .blog-post, h2 {
+      color: black;
+    }
+  </style>
+  <script>
+    var scss = `
+    $text-color: red;
+
+    .header{
+      text-align: center;
+    }
+    .blog-post, h2 {
+      color: $text-color;
+    }
+    `;
+    var css = Sass.compile(scss);
+    document.write(css);
+  </script>
+
+  
+  <h1 class="header">Learn Sass</h1>
+  <div class="blog-post">
+    <h2>Some random title</h2>
+    <p>This is a paragraph with some random text in it</p>
+  </div>
+  <div class="blog-post">
+    <h2>Header #2</h2>
+    <p>Here is some more random text.</p>
+  </div>
+  <div class="blog-post">
+    <h2>Here is another header</h2>
+    <p>Even more random text within a paragraph</p>
+  </div> -->
+
+  <!-- 2 Nest CSS with Sass -->
+   <style type='text/css'>
+
+    .blog-post {
+      width: 70%;
+      margin: 0 auto;
+    }
+    .blog-post h2 {
+      color: blue;
+    }
+    .blog-post p {
+      color: black;
+    }
+  </style>
+  <script>
+    var scss = `
+    $text-color: red;
+
+    .blog-post {
+      width: 70%;
+      margin: 0 auto;
+      h2 {
+        color: blue;
+      }
+      p {
+        color: black;
+      }
+    }
+    `;
+    var css = Sass.compile(scss);
+    document.write(css);
+  </script>
+  <div class="blog-post">
+    <h1>Blog Title</h1>
+    <p>This is a paragraph</p>
+  </div>
+</body>
+</html>
